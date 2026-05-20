@@ -29,7 +29,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, Table, TableStyle, Indenter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import Color
 
@@ -177,7 +177,9 @@ def create_pdf(data: dict, output_buffer):
                 ('TOPPADDING', (0,0), (-1,-1), 0.5),
                 ('BOTTOMPADDING', (0,0), (-1,-1), 0.5),
             ]))
+            elements.append(Indenter(left=10))
             elements.append(s_table)
+            elements.append(Indenter(left=-10))
             elements.append(Spacer(1, 1))
         elif key == "experience":
             for exp in data[key]:
