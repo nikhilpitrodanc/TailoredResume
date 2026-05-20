@@ -98,13 +98,13 @@ def create_pdf(data: dict, output_buffer):
     
     # Custom styles
     styles.add(ParagraphStyle(name='CompName', parent=styles['Heading1'], fontSize=15, spaceAfter=0, alignment=1))
-    styles.add(ParagraphStyle(name='CompContact', parent=styles['Normal'], fontSize=8.5, spaceAfter=4, alignment=1, textColor=Color(0.15, 0.15, 0.15)))
-    styles.add(ParagraphStyle(name='CompSectionHeader', parent=styles['Heading2'], fontSize=10, spaceAfter=0.5, spaceBefore=3, textColor=Color(0, 0, 0)))
-    styles.add(ParagraphStyle(name='CompSummary', parent=styles['Normal'], fontSize=9, spaceAfter=1.5, leading=10))
-    styles.add(ParagraphStyle(name='CompItemTitle', parent=styles['Normal'], fontSize=9.5, spaceAfter=0.5, spaceBefore=1))
+    styles.add(ParagraphStyle(name='CompContact', parent=styles['Normal'], fontSize=8.5, spaceAfter=3, alignment=1, textColor=Color(0.15, 0.15, 0.15)))
+    styles.add(ParagraphStyle(name='CompSectionHeader', parent=styles['Heading2'], fontSize=10, spaceAfter=0.2, spaceBefore=2, textColor=Color(0, 0, 0)))
+    styles.add(ParagraphStyle(name='CompSummary', parent=styles['Normal'], fontSize=9, spaceAfter=1, leading=10))
+    styles.add(ParagraphStyle(name='CompItemTitle', parent=styles['Normal'], fontSize=9.5, spaceAfter=0.2, spaceBefore=0.8))
     styles.add(ParagraphStyle(name='CompItemDate', parent=styles['Normal'], fontSize=8.5, alignment=2, textColor=Color(0.2, 0.2, 0.2)))
-    styles.add(ParagraphStyle(name='CompResumeBullet', parent=styles['Normal'], fontSize=9, leading=10, leftIndent=10, bulletIndent=3, spaceAfter=0.8))
-    styles.add(ParagraphStyle(name='CompContent', parent=styles['Normal'], fontSize=9, leading=10))
+    styles.add(ParagraphStyle(name='CompResumeBullet', parent=styles['Normal'], fontSize=8.8, leading=9.8, leftIndent=10, bulletIndent=3, spaceAfter=0.5))
+    styles.add(ParagraphStyle(name='CompContent', parent=styles['Normal'], fontSize=8.8, leading=9.8))
 
     elements = []
     line = HRFlowable(width="100%", thickness=0.8, color=Color(0, 0, 0), spaceAfter=1.5, spaceBefore=0)
@@ -157,12 +157,28 @@ def create_pdf(data: dict, output_buffer):
         if key == "summary":
             elements.append(Paragraph(data[key], styles['CompSummary']))
         elif key == "skills":
-            skills_lines = []
+            skills_data = []
             if isinstance(data[key], dict):
                 for cat, items in data[key].items():
-                    label = cat.replace('_', ' ').title()
-                    skills_lines.append(f"<b>{label}:</b> {', '.join(items)}")
-            elements.append(Paragraph("<br/>".join(skills_lines), styles['CompSummary']))
+                    label = cat.replace('_', ' ')
+                    skills_data.append([
+                        Paragraph(f"<b>{label}:</b>", styles['CompSummary']),
+                        Paragraph(", ".join(items), styles['CompSummary'])
+                    ])
+            
+            # Create a table for the skills section to align domains on the left
+            # Total width is 612 (letter) - 22*2 (margins) = 568
+            # Domain column: 135, Skills column: 433
+            s_table = Table(skills_data, colWidths=[135, 433])
+            s_table.setStyle(TableStyle([
+                ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                ('LEFTPADDING', (0,0), (-1,-1), 0),
+                ('RIGHTPADDING', (0,0), (-1,-1), 0),
+                ('TOPPADDING', (0,0), (-1,-1), 0.5),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 0.5),
+            ]))
+            elements.append(s_table)
+            elements.append(Spacer(1, 1))
         elif key == "experience":
             for exp in data[key]:
                 left = f"<b>{exp.get('company', '')}</b> | {exp.get('role', '')}"
@@ -287,21 +303,27 @@ def score_resume_internal(data: Dict[str, Any], analysis: Dict[str, Any]) -> Dic
         repeats = [v for v in unique_verbs if verbs.count(v) > 1]
         feedback.append(f"REPETITION DETECTED: Action verbs used more than once: {', '.join(repeats[:3])}")
 
-    # 4. Word Count
+    # 4. Word Count & Line Length (Strict 18-22 words for single-line bullets)
     wc_scores = []
     for b in all_bullets:
         wc = len(b.split())
-        if 20 <= wc <= 25: wc_scores.append(1.0)
-        elif 18 <= wc <= 27: wc_scores.append(0.5)
+        if 18 <= wc <= 22: wc_scores.append(1.0)
+        elif 16 <= wc <= 24: wc_scores.append(0.5)
         else: wc_scores.append(0.0)
     scores['word_count'] = sum(wc_scores) / len(wc_scores) if wc_scores else 1.0
 
-    # 5. Skills Cat
+    # 5. Skills Cat & Bullet Count Consistency
     categories = list(data.get('skills', {}).keys())
-    scores['skills_cat'] = min(len(categories) / 3, 1.0)
+    scores['skills_cat'] = min(len(categories) / 4, 1.0)
+    
+    # Check if exactly 4 bullets per project
+    proj_bullet_counts = [len(p.get('bullet_points', [])) for p in data.get('projects', [])]
+    if any(c != 4 for c in proj_bullet_counts):
+        feedback.append("INCONSISTENT LAYOUT: Every project MUST have exactly 4 bullet points.")
+        scores['word_count'] *= 0.8 # Penalty for layout inconsistency
 
     if scores['word_count'] < 0.9:
-        feedback.append("CRITICAL: Bullet length variance. Ensure each bullet is strictly between 20-25 words.")
+        feedback.append("CRITICAL: Bullet length variance. Ensure each bullet is strictly between 18-22 words to stay on one line.")
     if scores['quant'] < 0.9:
         feedback.append("IMPACT RATIO LOW: Every bullet must contain a quantifiable metric (%, $, #).")
     if len(keywords_found) < len(must_haves) * 0.9:
@@ -464,13 +486,14 @@ TOP PRIORITIES: {'; '.join(top_3)}
   • Each entry: exactly 3 bullet points.
   • See UNIVERSAL BULLET RULES below.
 
-[PROJECTS — exactly 3 Projects[Must not exceed 3 bullet points], most relevant to JD]
+[PROJECTS — exactly 3 Projects, exactly 4 bullet points each]
   • Pick the 3 projects whose tech_stack and narrative best match the JD keywords.
   • Each project header: list exactly 5 technologies (most ATS-relevant ones).
-  • Each entry: exactly 3 bullet points [Must not exceed 3 bullet points].
+  • Each entry: EXACTLY 4 bullet points.
+  • ONE-LINE CONSTRAINT: Every bullet must be exactly ONE LINE long (approx 18-22 words).
   • BULLET SYNTHESIS: You MUST build each bullet by combining one 'core_action' with 
     one 'quantified_impact' from the project data. Do not just copy-paste; rephrase 
-    to meet the 20-25 word requirement.
+    to meet the strict 18-22 word requirement for single-line display.
   • See UNIVERSAL BULLET RULES below.
 
 [EDUCATION]
@@ -485,14 +508,15 @@ TOP PRIORITIES: {'; '.join(top_3)}
 
 ━━━━━━━━━━━━━━━━━━━  UNIVERSAL BULLET RULES (NON-NEGOTIABLE)  ━━━━━━━━━━━━━━━━━━━
 
-RULE B-1  WORD COUNT: Every bullet must be between 20 and 25 words (inclusive).
-          Count before finalizing. Bullets outside this range will FAIL the ATS scorer.
+RULE B-1  WORD COUNT: Every bullet must be between 18 and 22 words (inclusive).
+          This ensures every bullet stays on exactly ONE LINE in the PDF. Bullets outside 
+          this range will fail the ATS scorer and break the page layout.
 
 RULE B-2  QUANTIFICATION: Every bullet must contain at least one hard number, percentage,
           dollar figure, time-saving metric, or dataset scale (e.g., 500K rows, 30%, 4×).
           "Improved performance" is INVALID. "Improved inference speed by 38%" is VALID.
 
-RULE B-3  ZERO VERB REPETITION: Every single bullet point (all 15 across Experience & 
+RULE B-3  ZERO VERB REPETITION: Every single bullet point (all 18 across Experience & 
           Projects) MUST start with a UNIQUE action verb. You are FORBIDDEN from using 
           the same verb twice.
           
@@ -541,10 +565,10 @@ Before writing the final JSON, mentally verify:
   [ ] EVERY keyword from MUST-HAVE KW list appears in at least one skills category.
   [ ] Experience and project bullets contain ZERO fabricated tools, companies, or metrics.
   [ ] Exactly 2 experience entries, 3 bullets each, MOST RECENT FIRST.
-  [ ] Exactly 3 project entries, 5 tech tags and 3 bullets each.
-  [ ] Every bullet is 20–25 words (count each one).
+  [ ] Exactly 3 project entries, 5 tech tags and 4 bullets each.
+  [ ] Every bullet is exactly 18–22 words (to ensure single-line display).
   [ ] Every bullet has a quantified metric.
-  [ ] No action verb is repeated across all 15 bullets.
+  [ ] No action verb is repeated across all 18 bullets.
   [ ] No fabricated data — everything traces back to master_data.
 
 {f"⚠️  PREVIOUS ATTEMPT FAILED. FIX THESE ISSUES FIRST: {feedback}" if feedback else ""}
@@ -597,9 +621,10 @@ Return ONLY this JSON object with no extra text, no markdown fences:
             "github_link": "github.com/...",
             "technologies": ["Tech1", "Tech2", "Tech3", "Tech4", "Tech5"],
             "bullet_points": [
-                "Action verb + task + quantified result, 20-25 words total.",
-                "Action verb + task + quantified result, 20-25 words total.",
-                "Action verb + task + quantified result, 20-25 words total."
+                "Action verb + task + quantified result, 18-22 words total (Exactly 1 line).",
+                "Action verb + task + quantified result, 18-22 words total (Exactly 1 line).",
+                "Action verb + task + quantified result, 18-22 words total (Exactly 1 line).",
+                "Action verb + task + quantified result, 18-22 words total (Exactly 1 line)."
             ]
         }}
     ],
@@ -674,7 +699,7 @@ async def tailor_endpoint(master_json: str = Form(...), jd: str = Form(...)):
             for exp in tailored_data.get('experience', []):
                 exp['bullet_points'] = exp['bullet_points'][:3]
             for proj in tailored_data.get('projects', []):
-                proj['bullet_points'] = proj['bullet_points'][:3]
+                proj['bullet_points'] = proj['bullet_points'][:4]
 
             if report['score'] >= 95.0:
                 best_data = tailored_data
