@@ -24,6 +24,16 @@
     }
 </script>
 <style>
+    .tilt-wrapper {
+        perspective: 1000px;
+    }
+    .tilt-target {
+        transform-style: preserve-3d;
+        transition: transform 0.1s ease-out;
+    }
+    .tilt-wrapper.tracking .tilt-target {
+        transform: rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+    }
     body {
         font-family: 'Outfit', sans-serif;
     }
@@ -125,9 +135,10 @@
         </div>
 
         <!-- Top Row Dashboard Grid (Hidden until data exists) -->
-        <div id="dashboard-data" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
-            <!-- Target Role Analysis -->
-            <section class="glass-card p-6 rounded-2xl md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+        <div id="dashboard-wrapper" class="tilt-wrapper hidden">
+            <div id="dashboard-data" class="grid grid-cols-1 md:grid-cols-3 gap-6 tilt-target">
+                <!-- Target Role Analysis -->
+                <section class="glass-card p-6 rounded-2xl md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
                 <div class="flex justify-between items-start mb-6">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
@@ -166,6 +177,7 @@
                 
                 <p class="text-sm text-slate-500 text-center px-4 font-medium">Highly optimized for ATS screening.</p>
             </section>
+        </div>
         </div>
 
         <!-- How it Works Section -->
@@ -304,7 +316,7 @@
                     const score = Math.round(parsed.score) || 88;
                     
                     document.getElementById('empty-state').classList.add('hidden');
-                    document.getElementById('dashboard-data').classList.remove('hidden');
+                    document.getElementById('dashboard-wrapper').classList.remove('hidden');
                     document.getElementById('dashboard-actions').classList.remove('hidden');
                     
                     if (resumeData && resumeData.personal_info && resumeData.personal_info.name) {
@@ -349,6 +361,34 @@
                         }
                     }
                 } catch(e) {}
+            }
+
+            // Interactive 3D Mockup Tilt
+            const wrapper = document.getElementById('dashboard-wrapper');
+            if (wrapper) {
+                let rect = wrapper.getBoundingClientRect();
+                
+                window.addEventListener('resize', () => { rect = wrapper.getBoundingClientRect(); });
+                window.addEventListener('scroll', () => { rect = wrapper.getBoundingClientRect(); });
+
+                wrapper.addEventListener('mousemove', (e) => {
+                    rect = wrapper.getBoundingClientRect(); 
+                    const x = (e.clientX - rect.left) / rect.width;
+                    const y = (e.clientY - rect.top) / rect.height;
+                    
+                    const tiltX = (x - 0.5) * 15; 
+                    const tiltY = (0.5 - y) * 10; 
+
+                    wrapper.classList.add('tracking');
+                    wrapper.style.setProperty('--tilt-x', `${tiltX}deg`);
+                    wrapper.style.setProperty('--tilt-y', `${tiltY}deg`);
+                });
+
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.classList.remove('tracking');
+                    wrapper.style.removeProperty('--tilt-x');
+                    wrapper.style.removeProperty('--tilt-y');
+                });
             }
         });
     </script>
