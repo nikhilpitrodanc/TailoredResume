@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>AI Tailoring Studio | TailoredResume.ai</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -118,10 +118,28 @@
         .p-section-header h3 { font-size: 1.25rem; font-weight: 700; color: #1e293b; }
         .form-section h3 { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; }
         label { display: block; font-size: 0.875rem; font-weight: 600; color: #64748b; margin-bottom: 0.5rem; }
+
+        /* Scroll Reveal Animations */
+        .scroll-reveal { opacity: 0; transform: translateY(30px) scale(0.98); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0) scale(1); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Page Loader Transition */
+        #page-loader { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s ease-out, visibility 0.6s; }
+        #page-loader.hidden-loader { opacity: 0; visibility: hidden; }
     </style>
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col relative mobile-blocked">
 
+    <!-- Page Transition Loader -->
+    <div id="page-loader">
+        <span class="material-symbols-outlined text-5xl text-indigo-600 animate-bounce mb-4">auto_awesome</span>
+        <div class="h-1 w-24 bg-indigo-100 rounded-full overflow-hidden">
+            <div class="h-full bg-indigo-600 animate-pulse rounded-full w-full"></div>
+        </div>
+    </div>
     <!-- Glassy Mesh Background -->
     <div class="animated-bg">
         <div class="bg-blob blob-1"></div>
@@ -139,7 +157,7 @@
     <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
         <div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto h-20">
             <div class="text-2xl font-bold text-primary flex items-center gap-2">
-                <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                <img src="/favicon.svg?v=2" alt="TailoredResume.ai Logo" class="w-8 h-8 drop-shadow-sm" />
                 TailoredResume.ai
             </div>
             <nav class="hidden md:flex items-center gap-8">
@@ -308,7 +326,29 @@
         </div>
     </div>
 
+    <!-- Notifications Container -->
+    <div id="notification-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+
     <script src="js/scripts.js"></script>
+    <script>
+        // Page Loader and Scroll Animations
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 600);
+            }
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 
 </html>

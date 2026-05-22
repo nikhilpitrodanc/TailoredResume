@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>TailoredResume.ai | Dashboard</title>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -131,7 +131,7 @@
     <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
         <div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto h-20">
             <div class="text-2xl font-bold text-primary flex items-center gap-2">
-                <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                <img src="/favicon.svg?v=2" alt="TailoredResume.ai Logo" class="w-8 h-8 drop-shadow-sm" />
                 TailoredResume.ai
             </div>
             <nav class="hidden md:flex items-center gap-8">
@@ -167,15 +167,107 @@
         </div>
 
         <!-- Empty State -->
-        <div id="empty-state" class="glass-card p-12 rounded-2xl text-center flex flex-col items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-3xl">magic_button</span>
+        <div id="empty-state" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Side: Call to Action -->
+            <div class="glass-card p-8 md:p-12 rounded-2xl text-left flex flex-col items-start justify-center h-full shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 shadow-inner">
+                    <span class="material-symbols-outlined text-3xl">magic_button</span>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-3 leading-tight">Ready to land your dream job?</h2>
+                <p class="text-slate-500 mb-8 text-base">You haven't optimized any resumes yet. Start the AI tailoring process to get a personalized ATS analysis.</p>
+                <button onclick="window.location.href='/input'" class="bg-primary text-white font-medium px-8 py-3.5 rounded-full hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">auto_fix_high</span> Tailor My First Resume
+                </button>
             </div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-2">Ready to land your dream job?</h2>
-            <p class="text-slate-500 max-w-md mb-6">You haven't optimized any resumes yet. Start the AI tailoring process to get a personalized ATS analysis.</p>
-            <button onclick="window.location.href='/input'" class="bg-primary text-white font-medium px-8 py-3 rounded-full hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all flex items-center gap-2">
-                <span class="material-symbols-outlined text-[20px]">auto_fix_high</span> Tailor My First Resume
-            </button>
+
+            <!-- Right Side: Mockup Cards -->
+            <div id="hero-mockup-wrapper" class="group relative w-full h-[500px] hidden lg:flex items-center justify-center transition-transform duration-200 ease-out" style="transform: perspective(1000px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)); transform-style: preserve-3d;">
+                
+                <!-- Spotlight Glow -->
+                <div class="absolute pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full blur-[60px] bg-indigo-500/20" style="width: 250px; height: 250px; left: calc(var(--mouse-x, 50%) - 125px); top: calc(var(--mouse-y, 50%) - 125px); transform: translateZ(-50px);"></div>
+                
+                <div class="flex gap-4 items-center justify-center w-full relative z-10">
+                    <!-- Card 1: ATS Score -->
+                    <div class="w-64 glass-card p-5 rounded-2xl bg-white/80 shadow-2xl border border-white mt-12" style="transform: translateZ(30px);">
+                        <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3">
+                            <span class="font-bold text-slate-700 text-sm tracking-wide">ATS SCORE</span>
+                            <span class="text-[10px] font-bold text-emerald-500 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> TAILORED</span>
+                        </div>
+                        
+                        <div class="flex flex-col items-center mb-6">
+                            <div class="relative w-32 mt-2">
+                                <svg viewBox="0 0 100 55" class="w-full overflow-visible">
+                                    <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f1f5f9" stroke-width="9" stroke-linecap="round"></path>
+                                    <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#4f46e5" stroke-width="9" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="3"></path>
+                                </svg>
+                                <div class="absolute bottom-0 left-0 w-full text-center translate-y-1">
+                                    <span class="text-[2.75rem] font-black text-slate-800 leading-none tracking-tight">98</span>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-bold text-emerald-500 mt-4 tracking-widest uppercase">ATS Match Score</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between bg-slate-50/80 p-2.5 rounded-lg border border-slate-100/80">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-emerald-500 text-[16px]">check</span>
+                                    <span class="text-[11px] font-bold text-slate-700">Keyword Match</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-emerald-500">100%</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-50/80 p-2.5 rounded-lg border border-slate-100/80">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-emerald-500 text-[16px]">check</span>
+                                    <span class="text-[11px] font-bold text-slate-700 leading-tight">Linguistic<br>Diversity</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-emerald-500">100%</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-slate-50/80 p-2.5 rounded-lg border border-indigo-100/50">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-indigo-500 text-[16px]">warning</span>
+                                    <span class="text-[11px] font-bold text-slate-700">Impact Ratio</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-indigo-600">83%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Resume Preview -->
+                    <div class="w-72 glass-card p-6 rounded-2xl bg-white/95 shadow-2xl border border-white mb-12" style="transform: translateZ(50px);">
+                        <h3 class="font-bold text-slate-700 text-xs tracking-widest mb-4">TAILORED RESUME PREVIEW</h3>
+                        <hr class="border-slate-100 mb-4">
+                        
+                        <div class="text-center mb-5">
+                            <h4 class="font-black text-slate-800 text-[17px] leading-none mb-1" style="font-family: 'Newsreader', serif;">KRISH CHAUDHARY</h4>
+                            <p class="text-[9px] font-bold text-indigo-600 uppercase tracking-widest">AI & MLOPS ENGINEER</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="text-[8px] font-bold text-slate-400 tracking-widest mb-1.5">SUMMARY</h5>
+                            <p class="text-[9px] text-slate-600 leading-relaxed">Driven AI Engineer and Data Analyst specializing in Generative AI, RAG, and MLOps. Skilled in building autonomous agentic workflows using LangGraph and deploying scalable backend services via FastAPI.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h5 class="text-[8px] font-bold text-slate-400 tracking-widest mb-1.5">EXPERIENCE</h5>
+                            <p class="text-[10px] font-bold text-slate-700">Abhay Engineering — Business Analyst <span class="font-normal text-slate-400 text-[9px] float-right">2025</span></p>
+                            <p class="text-[9px] text-slate-600 leading-relaxed mt-1">• Transformed manual billing records into structured technical roadmaps for an automated BI platform, aligning 100% of operational gaps.</p>
+                        </div>
+
+                        <div>
+                            <h5 class="text-[8px] font-bold text-slate-400 tracking-widest mb-1.5">TAILORED SKILLS</h5>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">LangGraph</span>
+                                <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">Gemini 2.5 Flash</span>
+                                <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">FastAPI</span>
+                                <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">MLOps</span>
+                                <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">Docker</span>
+                                <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">RAG Pipelines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Top Row Dashboard Grid (Hidden until data exists) -->
@@ -428,31 +520,37 @@
 
             // Interactive 3D Mockup Tilt
             const wrapper = document.getElementById('dashboard-wrapper');
-            if (wrapper) {
-                let rect = wrapper.getBoundingClientRect();
+            const heroWrapper = document.getElementById('hero-mockup-wrapper');
+            
+            function applyTilt(el) {
+                if (!el) return;
+                let rect = el.getBoundingClientRect();
                 
-                window.addEventListener('resize', () => { rect = wrapper.getBoundingClientRect(); });
-                window.addEventListener('scroll', () => { rect = wrapper.getBoundingClientRect(); });
+                window.addEventListener('resize', () => { rect = el.getBoundingClientRect(); });
+                window.addEventListener('scroll', () => { rect = el.getBoundingClientRect(); });
 
-                wrapper.addEventListener('mousemove', (e) => {
-                    rect = wrapper.getBoundingClientRect(); 
+                el.addEventListener('mousemove', (e) => {
+                    rect = el.getBoundingClientRect(); 
                     const x = (e.clientX - rect.left) / rect.width;
                     const y = (e.clientY - rect.top) / rect.height;
                     
-                    const tiltX = (x - 0.5) * 15; 
-                    const tiltY = (0.5 - y) * 10; 
+                    const tiltX = (x - 0.5) * 20; 
+                    const tiltY = (0.5 - y) * 20; 
 
-                    wrapper.classList.add('tracking');
-                    wrapper.style.setProperty('--tilt-x', `${tiltX}deg`);
-                    wrapper.style.setProperty('--tilt-y', `${tiltY}deg`);
+                    el.style.setProperty('--tilt-x', `${tiltX}deg`);
+                    el.style.setProperty('--tilt-y', `${tiltY}deg`);
+                    el.style.setProperty('--mouse-x', `${x * 100}%`);
+                    el.style.setProperty('--mouse-y', `${y * 100}%`);
                 });
 
-                wrapper.addEventListener('mouseleave', () => {
-                    wrapper.classList.remove('tracking');
-                    wrapper.style.removeProperty('--tilt-x');
-                    wrapper.style.removeProperty('--tilt-y');
+                el.addEventListener('mouseleave', () => {
+                    el.style.setProperty('--tilt-x', `0deg`);
+                    el.style.setProperty('--tilt-y', `0deg`);
                 });
             }
+            
+            applyTilt(wrapper);
+            applyTilt(heroWrapper);
         });
     </script>
 </body>
