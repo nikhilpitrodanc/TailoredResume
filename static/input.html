@@ -1,153 +1,161 @@
 <!DOCTYPE html>
-<!--
-  TailoredResume.ai - Frontend Architecture
-  ========================================
-  File: input.html
-  Purpose: Core application dashboard for data input and analysis triggers.
-  Author: Krish Chaudhary
--->
-<html lang="en" prefix="og: https://ogp.me/ns#">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailor Now | Agentic AI Resume Dashboard | TailoredResume.ai</title>
-    <meta name="description" content="Access the Precision Scriptorium dashboard by Krish Chaudhary. Generate elite tailored resumes instantly using Agentic AI technology. Highly scalable and ATS-optimized.">
-    <meta name="keywords" content="TailoredResume.ai, Krish Chaudhary, Agentic AI Resume, Resume Tailor Now, Student CV Optimization, Professional Career Sync, AI resume generator dashboard">
-    <meta name="author" content="Krish Chaudhary">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tailored-resume-ai.vercel.app/input">
-    <meta property="og:title" content="Tailor Your Resume Now | TailoredResume.ai">
-    <meta property="og:description" content="Ready to optimize your career story? Input your details and generate an elite resume in seconds.">
-    <meta property="og:image" content="https://tailored-resume-ai.vercel.app/og-image.png">
-    <meta property="og:site_name" content="TailoredResume.ai">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Tailor Now | Precision AI | Krish Chaudhary">
-    <meta property="twitter:image" content="https://tailored-resume-ai.vercel.app/og-image.png">
-
-    <link rel="canonical" href="https://tailored-resume-ai.vercel.app/input" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- Structured Data: Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tailored-resume-ai.vercel.app/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "App",
-        "item": "https://tailored-resume-ai.vercel.app/input"
-      }]
-    }
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Tailor Now | TailoredResume.ai</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: "#4f46e5",
+                        secondary: "#7c3aed",
+                    }
+                }
+            }
+        }
     </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: transparent; }
+        .glass-card, .card {
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+            border-radius: 1rem !important;
+            padding: 2rem !important;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .animated-bg {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: #f0f4f8; overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 10s infinite ease-in-out alternate;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #e0e7ff; animation-delay: 0s; }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #f3e8ff; animation-delay: -2s; }
+        .blob-3 { top: 20%; left: 40%; width: 40vw; height: 40vw; background: #e0f2fe; animation-delay: -4s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
+        
+        /* Overriding old inputs to match glassmorphic */
+        .input-field, input[type="text"], input[type="email"], textarea {
+            background: rgba(255, 255, 255, 0.5) !important;
+            border: 1px solid rgba(200, 200, 255, 0.3) !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem !important;
+            width: 100%;
+            font-family: 'Outfit', sans-serif;
+            color: #1e293b;
+        }
+        .input-field:focus, input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            outline: none !important;
+            border-color: #4f46e5 !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2) !important;
+        }
+        .form-row { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .form-row > * { flex: 1; }
+        
+        /* Tab Buttons */
+        .form-tabs { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: white;
+            color: #4f46e5;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+            border-color: white;
+        }
+        .add-btn {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            border: 1px dashed rgba(79, 70, 229, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        .add-btn:hover { background: rgba(79, 70, 229, 0.15); }
+        .btn-primary {
+            background: #0f172a; color: white; padding: 1rem 2rem; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            border: none;
+        }
+        .btn-primary:hover { background: #1e293b; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .btn-secondary {
+            background: white; color: #334155; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 500; cursor: pointer;
+        }
+        
+        .mobile-blocked #mobile-warning { display: none; }
+        @media (max-width: 768px) {
+            .mobile-blocked #mobile-warning { display: flex; position: fixed; inset: 0; background: white; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+            .mobile-blocked main, .mobile-blocked header, .mobile-blocked footer, .mobile-blocked .container { display: none !important; }
+        }
+        .p-section-header h3 { font-size: 1.25rem; font-weight: 700; color: #1e293b; }
+        .form-section h3 { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; }
+        label { display: block; font-size: 0.875rem; font-weight: 600; color: #64748b; margin-bottom: 0.5rem; }
+    </style>
 </head>
+<body class="text-slate-800 min-h-screen flex flex-col relative mobile-blocked">
 
-<body id="top" class="mobile-blocked">
+    <!-- Glassy Mesh Background -->
+    <div class="animated-bg">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+    </div>
+
     <!-- Mobile Experience Warning Overlay -->
     <div id="mobile-warning">
-        <div class="mw-container">
-            <div class="mw-header">
-                <a href="/" class="mw-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-                    <span>TailoredResume.ai</span>
-                </a>
-            </div>
-
-            <div class="mw-hero">
-                <div class="mw-pulse-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <h2>Switch to Desktop</h2>
-                <p>The <i>Precision Scriptorium</i> editor requires a larger workspace for the high-fidelity agentic tailoring process. Please use a <b>Laptop or Desktop</b> for the best experience.</p>
-            </div>
-
-            <div class="mw-app-details">
-                <h3>What is TailoredResume.ai?</h3>
-                
-                <div class="mw-step">
-                    <div class="mw-step-num">01</div>
-                    <div class="mw-step-content">
-                        <h4>Expert Analysis</h4>
-                        <p>Our AI meticulously scans job descriptions to extract critical keywords and intent.</p>
-                    </div>
-                </div>
-
-                <div class="mw-step">
-                    <div class="mw-step-num Balancing">02</div>
-                    <div class="mw-step-content">
-                        <h4>Agentic Tailoring</h4>
-                        <p>We rewrite and reorder your profile to align perfectly with the target role.</p>
-                    </div>
-                </div>
-
-                <div class="mw-step">
-                    <div class="mw-step-num">03</div>
-                    <div class="mw-step-content">
-                        <h4>ATS Optimization</h4>
-                        <p>The result is a clean, ATS-compliant PDF designed to clear the initial screening.</p>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="mw-footer">
-                <p>Perfectly optimized for your career growth.</p>
-                <div class="code-policy">
-                    <span class="code-policy-sub">Designed & Developed by</span>
-                    <a href="https://portfolio-krish-chaudhary.vercel.app/" target="_blank" style="color: inherit; text-decoration: none;">Krish Chaudhary</a>
-                </div>
-                <div class="nav-links" style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
-                    <a href="https://github.com/krish1440/TailoredResume.ai" target="_blank" style="font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--outline);">GitHub Source</a>
-                    <a href="/privacy" style="font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--outline);">Privacy Policy</a>
-                </div>
-                <p style="font-size: 0.7rem; opacity: 0.6; margin-top: 2rem;">&copy; 2026. All rights reserved.</p>
-            </footer>
-        </div>
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Switch to Desktop</h2>
+        <p class="text-slate-500 mb-8">The builder requires a larger workspace for the high-fidelity tailoring process. Please use a Laptop or Desktop.</p>
     </div>
 
-    <div id="loading" class="loading-overlay">
-        <div class="loading-spinner"></div>
-        <p>TRANSFORMING YOUR NARRATIVE...</p>
-    </div>
-
-    <header>
-        <div class="header-inner">
-            <a href="/" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <line x1="10" y1="9" x2="8" y2="9" />
-                </svg>
-                <span>TailoredResume.ai</span>
-            </a>
-            <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/editor">JSON Editor</a>
-                <a href="/guide">Master Resume Guide</a>
+    <!-- Top Navigation Bar -->
+    <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto h-20">
+            <div class="text-2xl font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                TailoredResume.ai
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/">Home</a>
+                <a class="text-primary font-semibold border-b-2 border-primary pb-1" href="/input">New AI Tailoring</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/editor">JSON Editor</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/guide">Master Guide</a>
             </nav>
         </div>
     </header>
 
-    <div class="container">
+    <main class="flex-grow px-4 md:px-8 py-12 w-full max-w-5xl mx-auto space-y-8 container">
 
-        <section style="margin-bottom: 2rem;">
-            <div class="badge">Step 1</div>
-            <h1 style="font-size: 3rem;">Step 1: Your Master Repository.</h1>
-            <p style="color:var(--text-secondary); max-width: 600px;">Provide your full, multi-narrative profile. The AI will select the best stories for each job.</p>
+        <section class="mb-8">
+            <div class="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold mb-4 tracking-wider uppercase">Step 1</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">Your Master Repository.</h1>
+            <p class="text-lg text-slate-500 max-w-2xl leading-relaxed">Provide your full, multi-narrative profile. The AI will select the best stories for each job.</p>
         </section>
 
         <div class="form-tabs">
@@ -251,28 +259,51 @@
             </div>
         </form>
 
-        <footer>
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
-                <div>
-                    <p style="font-family: 'Newsreader', serif; font-size: 1.2rem; margin-bottom: 0.5rem;">
-                        TailoredResume.ai</p>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
-                        Designed and developed by <a href="https://portfolio-krish-chaudhary.vercel.app/"
-                            target="_blank"
-                            style="color: var(--primary-accent); text-decoration: none; font-weight: 600;">Krish Chaudhary</a>
-                    </p>
-                    <p>&copy; 2026 TailoredResume.ai. Built for the modern career.</p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-8 text-center text-slate-500 text-sm border-t border-slate-200/50 bg-white/30 backdrop-blur-md">
+        <p>© 2026 TailoredResume.ai. All rights reserved.</p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="fixed inset-0 bg-white/80 backdrop-blur-md z-[9999] flex flex-col items-center justify-center" style="display: none;">
+        <div class="glass-card flex flex-col items-center justify-center p-12 max-w-md w-full text-center">
+            <span class="material-symbols-outlined text-primary text-5xl animate-spin mb-6">sync</span>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">AI is Tailoring...</h2>
+            <p class="text-slate-500 mb-6">Optimizing your resume against the job description.</p>
+            <div class="w-full space-y-3">
+                <div class="loading-step flex items-center gap-3 text-slate-400" id="step-wait">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    <span class="font-medium text-sm">Initializing AI models...</span>
                 </div>
-                <div class="nav-links">
-                    <a href="https://github.com/krish1440/TailoredResume.ai" target="_blank">Code</a>
-                    <a href="/privacy">Privacy</a>
+                <div class="loading-step flex items-center gap-3 text-slate-400" id="step-load">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    <span class="font-medium text-sm">Loading your master resume...</span>
+                </div>
+                <div class="loading-step flex items-center gap-3 text-slate-400" id="step-parse">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    <span class="font-medium text-sm">Parsing job requirements...</span>
+                </div>
+                <div class="loading-step flex items-center gap-3 text-slate-400" id="step-core">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    <span class="font-medium text-sm">Selecting best narrative...</span>
+                </div>
+                <div class="loading-step flex items-center gap-3 text-slate-400" id="step-exp">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    <span class="font-medium text-sm">Rewriting bullet points...</span>
+                </div>
+                <div class="loading-step flex items-center gap-3 text-slate-400" id="step-other">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                    <span class="font-medium text-sm">Final ATS Optimization...</span>
                 </div>
             </div>
-        </footer>
-    <div id="loading" class="loading-overlay" style="display: none;">
-        <div style="text-align: center;">
-            <div class="loading-spinner"></div>
-            <p style="margin-top: 1.5rem; color: #fff; font-weight: 500; letter-spacing: 0.05em;">TAILORING YOUR FUTURE...</p>
+            <style>
+                .loading-step.active { color: #4f46e5; font-weight: 600; }
+                .loading-step.active .material-symbols-outlined { color: #4f46e5; animation: pulse 1.5s infinite; }
+                .loading-step.completed { color: #10b981; }
+                .loading-step.completed .material-symbols-outlined { color: #10b981; }
+            </style>
         </div>
     </div>
 

@@ -1,419 +1,209 @@
 <!DOCTYPE html>
-<!--
-  TailoredResume.ai - Frontend Architecture
-  ========================================
-  File: index.html
-  Purpose: Landing page and workflow overview for the agentic resume tailoring platform.
-  Author: Krish Chaudhary
-  Version: 1.1.0
--->
-<html lang="en" prefix="og: https://ogp.me/ns#">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="canonical" href="https://tailored-resume-ai.vercel.app/" />
-
-    <meta name="theme-color" content="#d97706">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>TailoredResume.ai | Elite AI Resume Tailoring & ATS Optimization 2026</title>
-    <meta name="description"
-        content="TailoredResume.ai: Master the art of career growth with our elite AI resume tailoring engine. Build ATS-optimized resumes from your job description in seconds using agentic AI by Krish Chaudhary.">
-    <meta name="keywords"
-        content="TailoredResume.ai, AI resume builder, resume tailoring tool 2026, ATS resume optimization, Krish Chaudhary, Agentic AI Resume, Precision Scriptorium, how to tailor resume for job description, pass ATS AI, best resume generator for students">
-    <meta name="author" content="Krish Chaudhary">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="google-site-verification" content="b8FcXXfzVZM5Fm8QyaUKzBOupUY1cHGkEXZclFeXeo0" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tailored-resume-ai.vercel.app/">
-    <meta property="og:title" content="TailoredResume.ai | Elite AI Resume Tailoring & ATS Optimization">
-    <meta property="og:description"
-        content="Revolutionize your job search with the Precision Scriptorium engine. Agentic AI that tailors your resume to every job description perfectly.">
-    <meta property="og:image" content="https://tailored-resume-ai.vercel.app/og-image.png">
-    <meta property="og:site_name" content="TailoredResume.ai">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://tailored-resume-ai.vercel.app/">
-    <meta property="twitter:title" content="Precision AI Resume Tailoring | Krish Chaudhary">
-    <meta property="twitter:description"
-        content="Elite agentic AI resume tailoring for modern students and professionals. Build ATS-optimized resumes in seconds.">
-    <meta property="twitter:image" content="https://tailored-resume-ai.vercel.app/og-image.png">
-    <meta property="twitter:creator" content="@krish_chaudhary">
-
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- Structured Data: SoftwareApplication -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "TailoredResume.ai",
-      "operatingSystem": "Web",
-      "applicationCategory": "BusinessApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Krish Chaudhary",
-        "url": "https://portfolio-krish-chaudhary.vercel.app/",
-        "sameAs": [
-            "https://github.com/krish1440",
-            "https://linkedin.com/in/krish-chaudhary"
-        ]
-      },
-      "description": "An elite agentic AI platform for precision resume tailoring and ATS optimization using the Precision Scriptorium engine.",
-      "softwareVersion": "1.1.0",
-      "screenshot": "https://tailored-resume-ai.vercel.app/og-image.png",
-      "featureList": "Agentic AI Tailoring, ATS Optimization, PDF Generation, JSON Profile Management",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "1200"
-      }
-    }
-    </script>
-
-    <!-- Structured Data: HowTo (Process) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Tailor Your Resume for Any Job with AI",
-      "description": "A 3-step guide to using TailoredResume.ai for perfect job alignment.",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "name": "Input Profile",
-          "text": "Upload your master resume data in JSON format to provide the AI with your professional source of truth.",
-          "url": "https://tailored-resume-ai.vercel.app/input"
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Paste Job Description",
-          "text": "Paste the target job description. Our AI identifies critical keywords and employer intent.",
-          "url": "https://tailored-resume-ai.vercel.app/input"
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Download Tailored PDF",
-          "text": "Instantly download your perfectly formatted, ATS-compliant PDF resume.",
-          "url": "https://tailored-resume-ai.vercel.app/input"
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TailoredResume.ai | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Outfit', 'sans-serif'],
+                },
+                colors: {
+                    primary: "#4f46e5",
+                    secondary: "#7c3aed",
+                }
+            }
         }
-      ],
-      "totalTime": "PT2M"
     }
-    </script>
-
-    <!-- Structured Data: WebSite & Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "url": "https://tailored-resume-ai.vercel.app/",
-      "name": "TailoredResume.ai",
-      "description": "Agentic AI Resume Tailoring & ATS Optimization Service",
-      "publisher": {
-        "@type": "Person",
-        "name": "Krish Chaudhary"
-      }
+</script>
+<style>
+    body {
+        font-family: 'Outfit', sans-serif;
     }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tailored-resume-ai.vercel.app/"
-      }]
+    .glass-card {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     }
-    </script>
-
-    <!-- Structured Data: FAQ -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "What is the best way to tailor a resume for an ATS in 2026?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The most effective way is using agentic AI to align your skills and experience with the specific keywords and intent of a job description, which TailoredResume.ai automates perfectly."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is TailoredResume.ai free to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, TailoredResume.ai is a free platform designed by Krish Chaudhary to help students and professionals optimize their resumes for modern job markets."
-        }
-      }]
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     }
-    </script>
+    .animated-bg {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: -1;
+        background: #f0f4f8;
+        overflow: hidden;
+    }
+    .bg-blob {
+        position: absolute;
+        filter: blur(90px);
+        opacity: 0.6;
+        border-radius: 50%;
+        animation: float 10s infinite ease-in-out alternate;
+    }
+    .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #e0e7ff; animation-delay: 0s; }
+    .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #f3e8ff; animation-delay: -2s; }
+    .blob-3 { top: 20%; left: 40%; width: 40vw; height: 40vw; background: #e0f2fe; animation-delay: -4s; }
+    
+    @keyframes float {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(30px, 50px) scale(1.1); }
+    }
+</style>
 </head>
+<body class="text-slate-800 min-h-screen flex flex-col relative">
 
-<body id="top" class="mobile-blocked">
-    <!-- Mobile Experience Warning Overlay -->
-    <div id="mobile-warning">
-        <div class="mw-container">
-            <div class="mw-header">
-                <a href="/" class="mw-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                        <line x1="10" y1="9" x2="8" y2="9" />
-                    </svg>
-                    <span>TailoredResume.ai</span>
-                </a>
-            </div>
-
-            <div class="mw-hero">
-                <div class="mw-pulse-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                        <line x1="8" y1="21" x2="16" y2="21" />
-                        <line x1="12" y1="17" x2="12" y2="21" />
-                    </svg>
-                </div>
-                <h2>Switch to Desktop</h2>
-                <p>The <i>Precision Scriptorium</i> editor requires a larger workspace for the high-fidelity agentic
-                    tailoring process. Please use a <b>Laptop or Desktop</b> for the best experience.</p>
-            </div>
-
-            <div class="mw-app-details">
-                <h3>What is TailoredResume.ai?</h3>
-
-                <div class="mw-step">
-                    <div class="mw-step-num">01</div>
-                    <div class="mw-step-content">
-                        <h4>Expert Analysis</h4>
-                        <p>Our AI meticulously scans job descriptions to extract critical keywords and intent.</p>
-                    </div>
-                </div>
-
-                <div class="mw-step">
-                    <div class="mw-step-num Balancing">02</div>
-                    <div class="mw-step-content">
-                        <h4>Agentic Tailoring</h4>
-                        <p>We rewrite and reorder your profile to align perfectly with the target role.</p>
-                    </div>
-                </div>
-
-                <div class="mw-step">
-                    <div class="mw-step-num">03</div>
-                    <div class="mw-step-content">
-                        <h4>ATS Optimization</h4>
-                        <p>The result is a clean, ATS-compliant PDF designed to clear the initial screening.</p>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="mw-footer">
-                <p>Perfectly optimized for your career growth.</p>
-                <div class="code-policy">
-                    <span class="code-policy-sub">Designed & Developed by</span>
-                    <a href="https://portfolio-krish-chaudhary.vercel.app/" target="_blank"
-                        style="color: inherit; text-decoration: none;">Krish Chaudhary</a>
-                </div>
-                <div class="nav-links" style="display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem;">
-                    <a href="https://github.com/krish1440/TailoredResume.ai" target="_blank"
-                        style="font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--outline);">GitHub
-                        Source</a>
-                    <a href="/privacy"
-                        style="font-size: 0.8rem; color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--outline);">Privacy
-                        Policy</a>
-                </div>
-                <p style="font-size: 0.7rem; opacity: 0.6; margin-top: 2rem;">&copy; 2026. All rights reserved.</p>
-            </footer>
-        </div>
+    <!-- Glassy Mesh Background -->
+    <div class="animated-bg">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
     </div>
 
-    <div id="loading">
-        <div class="spinner"></div>
-        <p style="margin-top:2rem; font-family:'Newsreader', serif; font-size: 1.2rem; font-style: italic;">Tailoring
-            your resume... Please wait.</p>
-    </div>
-
-    <header>
-        <div class="header-inner">
-            <a href="/" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <line x1="10" y1="9" x2="8" y2="9" />
-                </svg>
-                <span>TailoredResume.ai</span>
-            </a>
-            <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/editor">JSON Editor</a>
-                <a href="#how-it-works">How it Works</a>
-                <a href="/guide">Master Resume Guide</a>
+    <!-- Top Navigation Bar -->
+    <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto h-20">
+            <div class="text-2xl font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                TailoredResume.ai
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-primary font-semibold border-b-2 border-primary pb-1" href="/">Home</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/input">New AI Tailoring</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/editor">JSON Editor</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/guide">Master Guide</a>
             </nav>
+            <div class="flex items-center gap-4">
+                <button onclick="window.location.href='/input'" class="bg-primary text-white font-medium px-6 py-2.5 rounded-full hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all">
+                    Start Tailoring
+                </button>
+            </div>
         </div>
     </header>
 
-    <main class="container">
-
-        <section class="hero">
-            <div class="background-visuals">
-                <svg class="bg-shape bg-shape-1" width="100" height="100" viewBox="0 0 100 100" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M50 0L53.0612 37.7551L91.8367 40.8163L53.0612 43.8776L50 81.6327L46.9388 43.8776L8.16327 40.8163L46.9388 37.7551L50 0Z"
-                        fill="var(--primary-accent)" fill-opacity="0.12" />
-                </svg>
-                <svg class="bg-shape bg-shape-2" width="120" height="150" viewBox="0 0 120 150" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <rect x="10" y="10" width="100" height="130" rx="2" stroke="var(--primary-accent)"
-                        stroke-opacity="0.15" stroke-width="2" />
-                    <line x1="30" y1="40" x2="90" y2="40" stroke="var(--primary-accent)" stroke-opacity="0.15"
-                        stroke-width="2" />
-                    <line x1="30" y1="60" x2="90" y2="60" stroke="var(--primary-accent)" stroke-opacity="0.15"
-                        stroke-width="2" />
-                    <line x1="30" y1="80" x2="70" y2="80" stroke="var(--primary-accent)" stroke-opacity="0.15"
-                        stroke-width="2" />
-                </svg>
-                <svg class="bg-shape bg-shape-3" width="200" height="200" viewBox="0 0 200 200" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="40" cy="40" r="4" fill="var(--primary-accent)" fill-opacity="0.18" />
-                    <circle cx="160" cy="70" r="3" fill="var(--primary-accent)" fill-opacity="0.18" />
-                    <circle cx="100" cy="150" r="5" fill="var(--primary-accent)" fill-opacity="0.18" />
-                    <path d="M40 40L160 70 M160 70L100 150" stroke="var(--primary-accent)" stroke-opacity="0.12"
-                        stroke-width="1" stroke-dasharray="4 4" />
-                </svg>
-            </div>
-            <div class="badge">V1.0 LIVE</div>
-            <h1>Perfectly Tailored <span style="color:var(--primary-accent)">Resumes</span> in Seconds.</h1>
-            <p>Our AI analyzes your master profile and target job description to build an ATS-optimized resume that gets
-                you noticed.</p>
-
-            <div style="display: flex; gap: 1.5rem;">
-                <a href="/input" id="start-tailoring-btn" class="btn btn-primary">Start Tailoring Now</a>
-                <a href="/about" class="btn btn-secondary">Learn More</a>
-            </div>
-        </section>
-
-        <section id="how-it-works" style="padding: 10rem 0 6rem;">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <div class="badge">Workflow</div>
-                <h2 style="font-family: 'Newsreader', serif; font-size: 2.5rem;">How it Works</h2>
-            </div>
-            <div class="sections-grid">
-
-                <div class="stat-card">
-                    <div style="color:var(--primary-accent); margin-bottom: 1.5rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18V12"/><path d="M9 15l3-3 3 3"/></svg>
-                    </div>
-                    <h3>1. Input Profile</h3>
-                    <p>Upload your master resume data in JSON format. This is your source of truth.</p>
-                </div>
-                <div class="stat-card">
-                    <div style="color:var(--primary-accent); margin-bottom: 1.5rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21 11-8-8-8 8"/><path d="M13 3v7aa2 2 0 0 0 2 2h7"/><path d="M21 11v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"/><path d="M13 11v7"/></svg>
-                    </div>
-                    <h3>2. Paste JD</h3>
-                    <p>Paste the target job description. Our AI identifies exactly what they need.</p>
-                </div>
-                <div class="stat-card">
-                    <div style="color:var(--primary-accent); margin-bottom: 1.5rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    </div>
-                    <h3>3. Download</h3>
-                    <p>Download your perfectly formatted, ATS-compliant PDF resume instantly.</p>
-                </div>
-                <div class="stat-card" style="border: 1px dashed var(--primary-accent); background: rgba(217, 119, 6, 0.03);">
-                    <div style="color:var(--primary-accent); margin-bottom: 1.5rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13.5V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2h-5.5"/><polyline points="14 2 14 8 20 8"/><path d="M10.42 12.61a2.1 2.1 0 1 1 2.97 2.97L7.95 21 4 22l1-3.95 5.42-5.44Z"/></svg>
-                    </div>
-                    <h3>4. Edit & Export</h3>
-                    <p>Paste any resume JSON, make manual tweaks, and export to PDF instantly. <br><a href="/editor" style="color:var(--primary-accent); font-weight:600;">Open Editor ↗</a></p>
-                </div>
-
-            </div>
-        </section>
-
-        <footer style="display: flex; justify-content: space-between; align-items: flex-end;">
-
+    <main class="flex-grow px-4 md:px-8 py-12 w-full max-w-7xl mx-auto space-y-8">
+        
+        <!-- Dashboard Header -->
+        <div class="flex items-center justify-between mb-2">
             <div>
-                <div class="badge" style="margin-bottom: 0.5rem; background: var(--primary-accent); color: white;">V1.1 LIVE</div>
-                <p style="font-family: 'Newsreader', serif; font-size: 1.2rem; margin-bottom: 0.5rem;">TailoredResume.ai</p>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
-                    Designed and developed by <a href="https://portfolio-krish-chaudhary.vercel.app/" target="_blank"
-                        style="color: var(--primary-accent); text-decoration: none; font-weight: 600;">Krish
-                        Chaudhary</a>
-                </p>
-                <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.5rem;">&copy; 2026. All rights reserved. <br> Built for the modern career with Agentic AI.</p>
+                <h1 class="text-3xl font-bold text-slate-900 mb-1">Welcome back, Candidate</h1>
+                <p class="text-slate-500">Here's your real-time resume optimization overview.</p>
             </div>
-
-            <div class="nav-links">
-                <a href="https://github.com/krish1440/TailoredResume.ai" target="_blank">Code</a>
-                <a href="/privacy">Privacy</a>
-            </div>
-        </footer>
-        <div id="guide-modal" class="modal-overlay">
-            <div class="modal-card">
-                <div class="badge">Recommendation</div>
-                <h2>Wait, have you seen the <i>Guide</i>?</h2>
-                <p>Our AI requires a specific JSON format for your master profile to work its magic. We highly recommend
-                    viewing the guide first.</p>
-                <div style="display: flex; gap: 1rem; margin-top: 2.5rem;">
-                    <a href="/guide" class="btn btn-primary" style="flex:1">View Master Guide</a>
-                    <button onclick="closeModal()" class="btn btn-secondary" style="flex:1">I've Seen It</button>
-                </div>
+            <div class="flex gap-3">
+                <button class="glass-card px-5 py-2.5 rounded-full font-medium text-slate-700 flex items-center gap-2 hover:bg-white/80 transition-all">
+                    <span class="material-symbols-outlined text-[20px]">download</span> PDF Export
+                </button>
+                <button onclick="window.location.href='/input'" class="bg-slate-900 text-white px-5 py-2.5 rounded-full font-medium flex items-center gap-2 hover:bg-slate-800 transition-all shadow-md">
+                    <span class="material-symbols-outlined text-[20px]">auto_fix</span> Re-Optimize
+                </button>
             </div>
         </div>
 
+        <!-- Top Row Dashboard Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Target Role Analysis -->
+            <section class="glass-card p-6 rounded-2xl md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                            <h2 class="text-slate-500 text-sm uppercase tracking-wider font-semibold">Target Role Analysis</h2>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Senior Full Stack Engineer</h3>
+                        <p class="text-slate-500 mt-1">Stripe • San Francisco, CA</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-2xl">radar</span>
+                    </div>
+                </div>
+                
+                <div class="pt-6 border-t border-slate-200/50">
+                    <p class="text-sm text-slate-500 mb-3 font-medium">Matched Keywords</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">check</span> Python
+                        </span>
+                        <span class="px-4 py-1.5 bg-purple-100 text-purple-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">check</span> AWS
+                        </span>
+                        <span class="px-4 py-1.5 bg-blue-100 text-blue-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">check</span> React
+                        </span>
+                        <span class="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium">
+                            +4 more found
+                        </span>
+                    </div>
+                </div>
+            </section>
 
-        <button id="back-to-top" class="back-to-top" title="Go to top">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="18 15 12 9 6 15" />
-            </svg>
-        </button>
+            <!-- Optimization Score -->
+            <section class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center hover:-translate-y-1 transition-transform duration-300">
+                <h2 class="text-slate-500 text-sm uppercase tracking-wider font-semibold mb-6 w-full text-center">Match Score</h2>
+                
+                <div class="relative w-32 h-32 flex items-center justify-center mb-4">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle class="text-slate-200" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-width="8"></circle>
+                        <circle class="text-primary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.29" stroke-dashoffset="40.71" stroke-linecap="round" stroke-width="8" style="transition: stroke-dashoffset 1.5s ease-in-out;"></circle>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span class="text-4xl font-bold text-slate-900 leading-none">88<span class="text-2xl text-slate-400">%</span></span>
+                    </div>
+                </div>
+                
+                <p class="text-sm text-slate-500 text-center px-4 font-medium">Highly optimized for ATS screening.</p>
+            </section>
+        </div>
 
-        <script src="js/common.js"></script>
-        <script>
-            const startBtn = document.getElementById('start-tailoring-btn');
-            const modal = document.getElementById('guide-modal');
+        <!-- Main Section: Platform Features -->
+        <div class="mt-8">
+            <h2 class="text-xl font-bold text-slate-900 mb-6">Platform Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <button onclick="window.location.href='/input'" class="glass-card p-8 rounded-2xl flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 group shadow-sm">
+                    <div class="w-14 h-14 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">AI Tailoring Studio</h3>
+                    <p class="text-slate-500 leading-relaxed">Instantly optimize your resume against any job description using our advanced AI analysis engine.</p>
+                </button>
 
-            startBtn.addEventListener('click', function (e) {
-                if (!localStorage.getItem('guide_viewed')) {
-                    e.preventDefault();
-                    modal.classList.add('active');
-                }
-            });
+                <!-- Feature 2 -->
+                <button onclick="window.location.href='/editor'" class="glass-card p-8 rounded-2xl flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 group shadow-sm">
+                    <div class="w-14 h-14 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">data_object</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Advanced JSON Editor</h3>
+                    <p class="text-slate-500 leading-relaxed">Take full control of your resume data structure. Edit the underlying JSON for pixel-perfect PDF exports.</p>
+                </button>
 
-            function closeModal() {
-                localStorage.setItem('guide_viewed', 'true');
-                modal.classList.remove('active');
-                window.location.href = '/input';
-            }
-        </script>
+                <!-- Feature 3 -->
+                <button onclick="window.location.href='/guide'" class="glass-card p-8 rounded-2xl flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 group shadow-sm">
+                    <div class="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">school</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Master Guide</h3>
+                    <p class="text-slate-500 leading-relaxed">Learn the secrets of beating Applicant Tracking Systems (ATS) and write bullet points that guarantee interviews.</p>
+                </button>
+            </div>
+        </div>
+    </main>
 
+    <!-- Footer -->
+    <footer class="mt-auto py-8 text-center text-slate-500 text-sm border-t border-slate-200/50 bg-white/30 backdrop-blur-md">
+        <p>© 2026 TailoredResume.ai. All rights reserved.</p>
+    </footer>
 
 </body>
-
 </html>

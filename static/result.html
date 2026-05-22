@@ -210,9 +210,21 @@
             </div>
 
             <div class="sidebar">
-                <div class="score-display">
-                    <div class="score-circle" id="ats-score-val">0</div>
-                    <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">Optimization Score</p>
+                <div class="score-display" style="text-align: center;">
+                    <div class="score-ring-container">
+                        <svg>
+                            <defs>
+                                <linearGradient id="score-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#5e17eb" />
+                                    <stop offset="100%" stop-color="#0ea5e9" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="ring-bg" />
+                            <circle class="ring-progress" id="ats-score-ring" />
+                        </svg>
+                        <div class="score-text" id="ats-score-val">0</div>
+                    </div>
+                    <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); font-weight:600; margin-top: 1.5rem;">Optimization Score</p>
                 </div>
 
                 <div class="action-card">
@@ -301,8 +313,33 @@
             if (linksMeta.children.length === 1) linksMeta.style.display = 'none';
             
             // Populate Main Score
-            const score = sessionStorage.getItem('ats_score') || '0';
-            document.getElementById('ats-score-val').innerText = score + '%';
+            const scoreStr = sessionStorage.getItem('ats_score') || '0';
+            const score = parseInt(scoreStr, 10);
+            
+            // Animate ring and text counter
+            setTimeout(() => {
+                const ring = document.getElementById('ats-score-ring');
+                const text = document.getElementById('ats-score-val');
+                
+                if (ring && text) {
+                    let current = 0;
+                    const duration = 2000;
+                    const increment = score / (duration / 16); // 60fps
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current >= score) {
+                            text.innerText = score;
+                            ring.style.strokeDashoffset = 534 - (534 * score) / 100;
+                        } else {
+                            text.innerText = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        }
+                    };
+                    
+                    requestAnimationFrame(updateCounter);
+                }
+            }, 100);
             
             // Populate Detailed Metrics
             try {

@@ -74,7 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = '<span class="loading-spinner"></span> Tailoring Your Resume...';
 
             const loading = document.getElementById('loading');
-            loading.style.display = 'flex';
+            if (loading) {
+                loading.style.display = 'flex';
+                simulateLoadingSteps();
+            }
 
             const formData = new FormData();
             formData.append('master_json', masterJsonRaw);
@@ -410,3 +413,44 @@ async function loadSample() {
     }
 }
 // Version 1.2.1
+
+function simulateLoadingSteps() {
+    const steps = [
+        document.getElementById('step-wait'),
+        document.getElementById('step-load'),
+        document.getElementById('step-parse'),
+        document.getElementById('step-core'),
+        document.getElementById('step-exp'),
+        document.getElementById('step-other')
+    ];
+    
+    if (!steps[0]) return;
+
+    // Reset steps
+    steps.forEach(step => {
+        if(step) {
+            step.classList.remove('active', 'completed');
+        }
+    });
+
+    let currentStep = 0;
+    
+    function nextStep() {
+        if (currentStep > 0 && steps[currentStep - 1]) {
+            steps[currentStep - 1].classList.remove('active');
+            steps[currentStep - 1].classList.add('completed');
+        }
+        
+        if (currentStep < steps.length) {
+            if (steps[currentStep]) {
+                steps[currentStep].classList.add('active');
+            }
+            currentStep++;
+            // Sequence delay logic: 800ms to 1200ms per step
+            const delay = Math.floor(Math.random() * 400) + 800;
+            setTimeout(nextStep, delay);
+        }
+    }
+    
+    nextStep();
+}

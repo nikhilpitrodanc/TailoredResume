@@ -1,128 +1,116 @@
 <!DOCTYPE html>
-<!--
-  TailoredResume.ai - Frontend Architecture
-  ========================================
-  File: guide.html
-  Purpose: Documentation for the required JSON Master Resume format.
-  Author: Krish Chaudhary
--->
-<html lang="en" prefix="og: https://ogp.me/ns#">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Resume JSON Guide | Professional AI Tailoring Format 2026</title>
-    <meta name="description" content="Master the elite JSON resume format for the TailoredResume.ai engine. Step-by-step documentation for structured career data optimization by Krish Chaudhary.">
-    <meta name="keywords" content="TailoredResume.ai, Krish Chaudhary, Master Resume JSON, AI Resume Guide, Student Resume Format, Career Source Code">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tailored-resume-ai.vercel.app/guide">
-    <meta property="og:title" content="Master Resume Guide | TailoredResume.ai">
-    <meta property="og:description" content="Step-by-step guide to building your elite AI-ready master resume.">
-    <meta property="og:image" content="https://tailored-resume-ai.vercel.app/og-image.png">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Master Resume JSON Guide | Krish Chaudhary">
-    <meta property="twitter:image" content="https://tailored-resume-ai.vercel.app/og-image.png">
-
-    <link rel="canonical" href="https://tailored-resume-ai.vercel.app/guide" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- Structured Data: Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://tailored-resume-ai.vercel.app/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Master Guide",
-        "item": "https://tailored-resume-ai.vercel.app/guide"
-      }]
-    }
-    </script>
-
-    <!-- Structured Data: HowTo Guide -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Build a Master Resume JSON",
-      "description": "The elite standardized format for agentic AI resume tailoring and precision career growth.",
-      "author": {
-        "@type": "Person",
-        "name": "Krish Chaudhary"
-      },
-      "step": [
-        {
-          "@type": "HowToStep",
-          "name": "Structured Personal Data",
-          "text": "Organize your contact details and social profiles into the personal_info object."
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Project Narratives",
-          "text": "Add deep project stories in the master_narrative field to enable AI contextualization."
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Quantified Achievements",
-          "text": "Ensure all experience bullet points contain measurable metrics."
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Master Resume JSON Guide | TailoredResume.ai</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: "#4f46e5", secondary: "#7c3aed" }
+                }
+            }
         }
-      ]
-    }
     </script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: transparent; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+            border-radius: 1rem !important;
+            padding: 2rem !important;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .animated-bg {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: #f0f4f8; overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 10s infinite ease-in-out alternate;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #e0e7ff; animation-delay: 0s; }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #f3e8ff; animation-delay: -2s; }
+        .blob-3 { top: 20%; left: 40%; width: 40vw; height: 40vw; background: #e0f2fe; animation-delay: -4s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
+        
+        .btn-primary { background: #0f172a; color: white; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+        .btn-primary:hover { background: #1e293b; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .btn-secondary { background: white; color: #334155; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 999px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .btn-secondary:hover { background: #f8fafc; }
+        
+        .sections-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+        .stat-card {
+            background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.8); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 1rem;
+        }
+        .stat-card h4 { font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; }
+        .stat-card p { color: #64748b; font-size: 0.9rem; }
+        
+        @media (max-width: 1024px) { .sections-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
-<body id="top">
+<body class="text-slate-800 min-h-screen flex flex-col relative">
 
-    <header>
-        <div class="header-inner">
-            <a href="/" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-                <span>TailoredResume.ai</span>
-            </a>
-            <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/editor">JSON Editor</a>
-                <a href="/input">Tailor Now</a>
+    <!-- Glassy Mesh Background -->
+    <div class="animated-bg">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto h-20">
+            <div class="text-2xl font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                TailoredResume.ai
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/">Home</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/input">New AI Tailoring</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/editor">JSON Editor</a>
+                <a class="text-primary font-semibold border-b-2 border-primary pb-1" href="/guide">Master Guide</a>
             </nav>
         </div>
     </header>
 
-    <div class="container">
-
-        <section style="margin-bottom: 4rem;">
-            <div class="badge">Guide</div>
-            <h1 style="font-size: 3rem;">Master Resume <br><i>Guide</i>.</h1>
-            <p style="color:var(--text-secondary); max-width: 600px;">The AI needs a structured <b>JSON</b> "source of truth". Follow this format for best results.</p>
+    <main class="flex-grow px-4 md:px-8 py-12 w-full max-w-7xl mx-auto space-y-8 container">
+        <section class="mb-12">
+            <div class="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold mb-4 tracking-wider uppercase">Guide</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">Master Resume <br><i>Guide</i>.</h1>
+            <p class="text-lg text-slate-500 max-w-2xl leading-relaxed">The AI needs a structured <b>JSON</b> "source of truth". Follow this format for best results.</p>
         </section>
 
-        <div class="sections-grid" style="grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start;">
+        <div class="sections-grid">
             <div>
-                <h3>Key Tips</h3>
-                <br>
-                <div class="stat-card" style="margin-bottom: 3rem;">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6">Key Tips</h3>
+                <div class="stat-card mb-6">
                     <h4>1. Quantified Metrics</h4>
                     <p>Every project/experience bullet should have a number (%, $, count, time).</p>
                 </div>
-                <div class="stat-card" style="margin-bottom: 3rem;">
+                <div class="stat-card mb-6">
                     <h4>2. Project Narratives</h4>
                     <p>Include a "master_narrative" and "core_actions" list. The AI will weave these into unique bullets.</p>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card mb-8">
                     <h4>3. JSON Structure</h4>
                     <p>Paste the sample on the right into your local file and fill your details.</p>
                 </div>
-                <br><br>
-                <button onclick="copySample()" class="btn btn-primary" style="width:100%">Copy Sample Format</button>
+                <button onclick="copySample()" class="btn-primary w-full">Copy Sample Format</button>
             </div>
 
-            <div class="card" style="padding: 2rem; background: var(--surface-low); margin: 0; position: relative;">
+            <div class="glass-card m-0 relative">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                     <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Sample JSON Format</h3>
                     <button onclick="copySample()" class="btn btn-secondary" style="padding: 5px 12px; font-size: 0.75rem; border-radius: 6px;">Copy JSON 📋</button>
@@ -188,30 +176,12 @@
             </div>
         </div>
 
-        <footer>
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
-                <div>
-                    <p style="font-family: 'Newsreader', serif; font-size: 1.2rem; margin-bottom: 0.5rem;">TailoredResume.ai</p>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
-                        Designed and developed by <a href="https://portfolio-krish-chaudhary.vercel.app/" target="_blank" style="color: var(--primary-accent); text-decoration: none; font-weight: 600;">Krish Chaudhary</a>
-                    </p>
-                    <p>&copy; 2026 TailoredResume.ai. Built for the modern career.</p>
-                </div>
-                <div class="nav-links">
-                    <a href="https://github.com/krish1440/TailoredResume.ai" target="_blank">Code</a>
-                    <a href="/privacy">Privacy</a>
-                </div>
-            </div>
-        </footer>
-    </div>
+    </main>
 
-
-    <button id="back-to-top" class="back-to-top" title="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15" />
-        </svg>
-    </button>
+    <!-- Footer -->
+    <footer class="mt-auto py-8 text-center text-slate-500 text-sm border-t border-slate-200/50 bg-white/30 backdrop-blur-md">
+        <p>© 2026 TailoredResume.ai. All rights reserved.</p>
+    </footer>
 
     <script src="js/common.js"></script>
     <script src="js/scripts.js"></script>

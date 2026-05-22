@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<!--
-  TailoredResume.ai - JSON to PDF Editor
-  ========================================
-  File: editor.html
-  Purpose: Allows users to paste, edit JSON and instantly download/preview PDF.
-  Author: Krish Chaudhary
--->
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON to PDF Editor | Tailored Resume AI</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>JSON to PDF Editor | TailoredResume.ai</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: "#4f46e5", secondary: "#7c3aed" }
+                }
+            }
+        }
+    </script>
     <style>
+        body { font-family: 'Outfit', sans-serif; background: transparent; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+            border-radius: 1rem !important;
+            padding: 2rem !important;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .animated-bg {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background: #f0f4f8; overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 10s infinite ease-in-out alternate;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #e0e7ff; animation-delay: 0s; }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #f3e8ff; animation-delay: -2s; }
+        .blob-3 { top: 20%; left: 40%; width: 40vw; height: 40vw; background: #e0f2fe; animation-delay: -4s; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
+        
         .editor-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -21,95 +52,87 @@
             margin-top: 2rem;
             min-height: 700px;
         }
-
-        .json-editor-pane {
+        .dark-pane {
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 1rem;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 100%;
         }
-
+        .pane-header {
+            background: rgba(30, 41, 59, 0.9);
+            color: #e2e8f0;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
         #json-input {
             flex-grow: 1;
             font-family: 'Fira Code', 'Courier New', Courier, monospace;
             font-size: 0.9rem;
             padding: 1.5rem;
-            background: #1e1e1e;
-            color: #d4d4d4;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--outline);
-            resize: none;
-            line-height: 1.5;
-            outline: none;
-        }
-
-        #json-input:focus {
-            border-color: var(--primary-accent);
-        }
-
-        .preview-pane {
-            background: #525659;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--outline);
-        }
-
-        #pdf-preview {
-            width: 100%;
-            flex-grow: 1;
+            background: transparent;
+            color: #cbd5e1;
             border: none;
+            resize: none;
+            line-height: 1.6;
+            outline: none;
+            width: 100%;
         }
-
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .error-toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #ef4444;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-ambient);
-            display: none;
-            z-index: 1000;
-        }
-
-        @media (max-width: 1024px) {
-            .editor-container {
-                grid-template-columns: 1fr;
-            }
-            .preview-pane {
-                height: 600px;
-            }
-        }
+        #json-input:focus { background: rgba(255, 255, 255, 0.02); }
+        #json-input::placeholder { color: #64748b; }
+        #pdf-preview { width: 100%; flex-grow: 1; border: none; background: #525659; }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        
+        .btn-primary { background: #0f172a; color: white; padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+        .btn-primary:hover { background: #1e293b; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .btn-secondary { background: white; color: #334155; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 999px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .btn-secondary:hover { background: #f8fafc; }
+        
+        .error-toast { position: fixed; bottom: 2rem; right: 2rem; background: #ef4444; color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: none; z-index: 1000; }
+        @media (max-width: 1024px) { .editor-container { grid-template-columns: 1fr; } .dark-pane { height: 600px; } }
     </style>
 </head>
-<body class="mobile-blocked">
-    <header>
-        <div class="header-inner">
-            <a href="/" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-                <span>TailoredResume.ai</span>
-            </a>
-            <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/guide">Guide</a>
-                <a href="/input">Tailor Resume</a>
+<body class="text-slate-800 min-h-screen flex flex-col relative">
+
+    <!-- Glassy Mesh Background -->
+    <div class="animated-bg">
+        <div class="bg-blob blob-1"></div>
+        <div class="bg-blob blob-2"></div>
+        <div class="bg-blob blob-3"></div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div class="flex justify-between items-center px-8 w-full max-w-7xl mx-auto h-20">
+            <div class="text-2xl font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                TailoredResume.ai
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/">Home</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/input">New AI Tailoring</a>
+                <a class="text-primary font-semibold border-b-2 border-primary pb-1" href="/editor">JSON Editor</a>
+                <a class="text-slate-500 hover:text-primary transition-colors font-medium" href="/guide">Master Guide</a>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        <section style="margin-bottom: 2rem;">
-            <div class="badge">Utility</div>
-            <h1 style="font-size: 2.5rem;">JSON to PDF <br><i>Direct Converter</i>.</h1>
-            <p style="color:var(--text-secondary); max-width: 600px;">Paste your resume JSON below to instantly generate and preview your professional PDF. Perfect for manual edits.</p>
+    <main class="flex-grow px-4 md:px-8 py-12 w-full max-w-7xl mx-auto space-y-8 container">
+        <section class="mb-8">
+            <div class="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold mb-4 tracking-wider uppercase">Utility</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">JSON to PDF <br><i>Direct Converter</i>.</h1>
+            <p class="text-lg text-slate-500 max-w-2xl leading-relaxed">Paste your resume JSON below to instantly generate and preview your professional PDF. Perfect for manual edits.</p>
         </section>
 
         <div class="toolbar">
@@ -124,34 +147,28 @@
         </div>
 
         <div class="editor-container">
-            <div class="json-editor-pane">
+            <div class="dark-pane">
+                <div class="pane-header">
+                    <span class="material-symbols-outlined" style="font-size: 1.2rem; margin-right: 0.5rem;">code</span>
+                    JSON Source
+                </div>
                 <textarea id="json-input" placeholder="Paste your resume JSON here..." spellcheck="false"></textarea>
             </div>
-            <div class="preview-pane">
-                <div style="background: #323639; color: #fff; padding: 0.5rem 1rem; font-size: 0.8rem; border-bottom: 1px solid #444;">PDF Preview</div>
+            <div class="dark-pane">
+                <div class="pane-header">
+                    <span class="material-symbols-outlined" style="font-size: 1.2rem; margin-right: 0.5rem;">picture_as_pdf</span>
+                    PDF Preview
+                </div>
                 <iframe id="pdf-preview" src="about:blank"></iframe>
             </div>
         </div>
 
-        <footer>
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
-                <div>
-                    <p style="font-family: 'Newsreader', serif; font-size: 1.2rem; margin-bottom: 0.5rem;">TailoredResume.ai</p>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
-                        Developed by <a href="https://portfolio-krish-chaudhary.vercel.app/" target="_blank" style="color: var(--primary-accent); text-decoration: none; font-weight: 600;">Krish Chaudhary</a>
-                    </p>
-                    <p>&copy; 2026 TailoredResume.ai. Precision Utility.</p>
-                </div>
-            </div>
-        </footer>
     </main>
 
-    <button id="back-to-top" class="back-to-top" title="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15" />
-        </svg>
-    </button>
+    <!-- Footer -->
+    <footer class="mt-auto py-8 text-center text-slate-500 text-sm border-t border-slate-200/50 bg-white/30 backdrop-blur-md">
+        <p>© 2026 TailoredResume.ai. All rights reserved.</p>
+    </footer>
 
     <script src="js/common.js"></script>
     <script>
