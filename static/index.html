@@ -168,36 +168,116 @@
             </section>
         </div>
 
-        <!-- Main Section: Platform Features -->
-        <div class="mt-8">
-            <h2 class="text-xl font-bold text-slate-900 mb-6">Platform Features</h2>
+        <!-- How it Works Section -->
+        <div class="mt-16">
+            <div class="text-center mb-10">
+                <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Workflow</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-3">How it Works</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Step 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl">description</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">1. Input Profile</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Upload your master resume data in JSON format. This is your source of truth.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl">content_paste</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">2. Paste JD</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Paste the target job description. Our AI identifies exactly what they need.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl">memory</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">3. Agentic Tailoring</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">AI automatically rewrites bullet points, diversifies action verbs, and aligns skills.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl">analytics</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">4. ATS Score Audit</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Analyze keyword density, linguistic diversity, and impact metrics in real-time.</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border border-indigo-200 bg-indigo-50/30">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl">edit_document</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">5. Edit & Export</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Make fine-grained manual adjustments to the tailored JSON in our visual editor. <br><a href="/editor" class="text-indigo-600 font-semibold mt-1 inline-block hover:underline">Open Editor ↗</a></p>
+                </div>
+                <!-- Step 6 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-2xl">download</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">6. Download</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Download your perfectly formatted, ATS-compliant PDF resume instantly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rules & Guardrails Section -->
+        <div class="mt-20 pt-10 border-t border-slate-200/50">
+            <div class="text-center mb-10">
+                <span class="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Rules & Guardrails</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-3">Core ATS Optimization Directives</h2>
+                <p class="text-slate-500 mt-3 max-w-2xl mx-auto">Our agentic engine enforces strict design and content policies to ensure your resume scores in the top 1% of candidate filters.</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Feature 1 -->
-                <button onclick="window.location.href='/input'" class="glass-card p-8 rounded-2xl flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 group shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-                        <span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+                <!-- Rule 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm">
+                    <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-xl">123</span>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">AI Tailoring Studio</h3>
-                    <p class="text-slate-500 leading-relaxed">Instantly optimize your resume against any job description using our advanced AI analysis engine.</p>
-                </button>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">1. Quantification Requirement</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">The engine flags bullets lacking concrete metrics. Every achievement must be quantified (e.g., efficiency gain, query latency reduced, error margins cut) to demonstrate direct business impact.</p>
+                </div>
+                <!-- Rule 2 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm">
+                    <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-xl">spellcheck</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">2. Zero Action Verb Repetition</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Starting multiple experience bullets with the same action verb is prohibited. The AI automatically parses sentence structures and replaces duplicate starter verbs with diverse alternatives.</p>
+                </div>
+                <!-- Rule 3 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm">
+                    <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-xl">join_inner</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">3. Contextual Keyword Flow</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Instead of dense, spammy keyword stuffing, which modern ATS parsers flag, our algorithm distributes required skills organically into experience descriptions and professional summaries.</p>
+                </div>
+            </div>
 
-                <!-- Feature 2 -->
-                <button onclick="window.location.href='/editor'" class="glass-card p-8 rounded-2xl flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 group shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-                        <span class="material-symbols-outlined text-3xl">data_object</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <!-- Privacy -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col items-start shadow-sm bg-white/40">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-2xl text-blue-600">lock</span>
+                        <h4 class="text-lg font-bold text-slate-900">Session-Local Privacy Policy</h4>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Advanced JSON Editor</h3>
-                    <p class="text-slate-500 leading-relaxed">Take full control of your resume data structure. Edit the underlying JSON for pixel-perfect PDF exports.</p>
-                </button>
-
-                <!-- Feature 3 -->
-                <button onclick="window.location.href='/guide'" class="glass-card p-8 rounded-2xl flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 group shadow-sm">
-                    <div class="w-14 h-14 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-                        <span class="material-symbols-outlined text-3xl">school</span>
+                    <p class="text-slate-500 text-sm leading-relaxed">Your personal resume profile and job target entries are never permanently written to database storage or sold to external brokers. Data is processed in-memory for the duration of the tailoring cycle and exists purely within your local browser session.</p>
+                </div>
+                <!-- Resiliency -->
+                <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col items-start shadow-sm bg-white/40">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-2xl text-green-600">verified_user</span>
+                        <h4 class="text-lg font-bold text-slate-900">Multi-Model Fallback & Resiliency</h4>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Master Guide</h3>
-                    <p class="text-slate-500 leading-relaxed">Learn the secrets of beating Applicant Tracking Systems (ATS) and write bullet points that guarantee interviews.</p>
-                </button>
+                    <p class="text-slate-500 text-sm leading-relaxed">Our agentic pipeline is built on a resilient architecture using primary and fallback models (Gemini Flash & Pro versions). If a rate limit or API block occurs, the fallback model seamlessly takes over to ensure reliable, uninterrupted generation.</p>
+                </div>
             </div>
         </div>
     </main>
