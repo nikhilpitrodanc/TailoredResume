@@ -58,8 +58,9 @@
         backdrop-filter: blur(20px);
         z-index: 9999;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-center: center;
+        justify-content: center;
         transition: opacity 0.6s ease-out, visibility 0.6s;
     }
     #page-loader.hidden-loader {
@@ -350,6 +351,25 @@
     </footer>
 
     <script>
+        // Page Loader Transition
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('page-loader');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 600);
+            }
+            
+            // Scroll Reveals
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+
         document.addEventListener("DOMContentLoaded", () => {
             const existingDataStr = sessionStorage.getItem('tailored_resume');
             if (existingDataStr) {
