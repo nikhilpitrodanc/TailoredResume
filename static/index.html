@@ -98,12 +98,12 @@
         <!-- Dashboard Header -->
         <div class="flex items-center justify-between mb-2">
             <div>
-                <h1 class="text-3xl font-bold text-slate-900 mb-1">Welcome back, Candidate</h1>
-                <p class="text-slate-500">Here's your real-time resume optimization overview.</p>
+                <h1 id="greeting-title" class="text-3xl font-bold text-slate-900 mb-1">Welcome to TailoredResume.ai</h1>
+                <p id="greeting-subtitle" class="text-slate-500">Get started by generating your first optimized resume.</p>
             </div>
-            <div class="flex gap-3">
-                <button class="glass-card px-5 py-2.5 rounded-full font-medium text-slate-700 flex items-center gap-2 hover:bg-white/80 transition-all">
-                    <span class="material-symbols-outlined text-[20px]">download</span> PDF Export
+            <div id="dashboard-actions" class="flex gap-3 hidden">
+                <button onclick="window.location.href='/editor'" class="glass-card px-5 py-2.5 rounded-full font-medium text-slate-700 flex items-center gap-2 hover:bg-white/80 transition-all">
+                    <span class="material-symbols-outlined text-[20px]">edit_document</span> Edit JSON
                 </button>
                 <button onclick="window.location.href='/input'" class="bg-slate-900 text-white px-5 py-2.5 rounded-full font-medium flex items-center gap-2 hover:bg-slate-800 transition-all shadow-md">
                     <span class="material-symbols-outlined text-[20px]">auto_fix</span> Re-Optimize
@@ -111,18 +111,30 @@
             </div>
         </div>
 
-        <!-- Top Row Dashboard Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Empty State -->
+        <div id="empty-state" class="glass-card p-12 rounded-2xl text-center flex flex-col items-center justify-center">
+            <div class="w-16 h-16 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                <span class="material-symbols-outlined text-3xl">magic_button</span>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Ready to land your dream job?</h2>
+            <p class="text-slate-500 max-w-md mb-6">You haven't optimized any resumes yet. Start the AI tailoring process to get a personalized ATS analysis.</p>
+            <button onclick="window.location.href='/input'" class="bg-primary text-white font-medium px-8 py-3 rounded-full hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">auto_fix_high</span> Tailor My First Resume
+            </button>
+        </div>
+
+        <!-- Top Row Dashboard Grid (Hidden until data exists) -->
+        <div id="dashboard-data" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
             <!-- Target Role Analysis -->
             <section class="glass-card p-6 rounded-2xl md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
                 <div class="flex justify-between items-start mb-6">
                     <div>
                         <div class="flex items-center gap-2 mb-2">
                             <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                            <h2 class="text-slate-500 text-sm uppercase tracking-wider font-semibold">Target Role Analysis</h2>
+                            <h2 class="text-slate-500 text-sm uppercase tracking-wider font-semibold">Latest Optimization</h2>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900">Senior Full Stack Engineer</h3>
-                        <p class="text-slate-500 mt-1">Stripe • San Francisco, CA</p>
+                        <h3 id="target-role-title" class="text-2xl font-bold text-slate-900">AI Tailored Resume</h3>
+                        <p id="target-role-company" class="text-slate-500 mt-1">Ready for application</p>
                     </div>
                     <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
                         <span class="material-symbols-outlined text-2xl">radar</span>
@@ -131,19 +143,8 @@
                 
                 <div class="pt-6 border-t border-slate-200/50">
                     <p class="text-sm text-slate-500 mb-3 font-medium">Matched Keywords</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
-                            <span class="material-symbols-outlined text-[16px]">check</span> Python
-                        </span>
-                        <span class="px-4 py-1.5 bg-purple-100 text-purple-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
-                            <span class="material-symbols-outlined text-[16px]">check</span> AWS
-                        </span>
-                        <span class="px-4 py-1.5 bg-blue-100 text-blue-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
-                            <span class="material-symbols-outlined text-[16px]">check</span> React
-                        </span>
-                        <span class="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium">
-                            +4 more found
-                        </span>
+                    <div id="matched-keywords" class="flex flex-wrap gap-2">
+                        <!-- Filled by JS -->
                     </div>
                 </div>
             </section>
@@ -155,10 +156,10 @@
                 <div class="relative w-32 h-32 flex items-center justify-center mb-4">
                     <svg class="w-full h-full transform -rotate-90">
                         <circle class="text-slate-200" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-width="8"></circle>
-                        <circle class="text-primary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.29" stroke-dashoffset="40.71" stroke-linecap="round" stroke-width="8" style="transition: stroke-dashoffset 1.5s ease-in-out;"></circle>
+                        <circle id="score-circle" class="text-primary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.29" stroke-dashoffset="339.29" stroke-linecap="round" stroke-width="8" style="transition: stroke-dashoffset 1.5s ease-in-out;"></circle>
                     </svg>
                     <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <span class="text-4xl font-bold text-slate-900 leading-none">88<span class="text-2xl text-slate-400">%</span></span>
+                        <span class="text-4xl font-bold text-slate-900 leading-none"><span id="score-text">0</span><span class="text-2xl text-slate-400">%</span></span>
                     </div>
                 </div>
                 
@@ -205,5 +206,63 @@
         <p>© 2026 TailoredResume.ai. All rights reserved.</p>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const existingDataStr = sessionStorage.getItem('tailored_resume');
+            if (existingDataStr) {
+                try {
+                    const parsed = JSON.parse(existingDataStr);
+                    const resumeData = parsed.data;
+                    const score = Math.round(parsed.score) || 88;
+                    
+                    document.getElementById('empty-state').classList.add('hidden');
+                    document.getElementById('dashboard-data').classList.remove('hidden');
+                    document.getElementById('dashboard-actions').classList.remove('hidden');
+                    
+                    if (resumeData && resumeData.personal_info && resumeData.personal_info.name) {
+                        document.getElementById('greeting-title').innerText = `Welcome back, ${resumeData.personal_info.name.split(' ')[0]}`;
+                        document.getElementById('greeting-subtitle').innerText = "Here's your real-time resume optimization overview.";
+                    }
+
+                    if (resumeData && resumeData.personal_info && resumeData.personal_info.email) {
+                        document.getElementById('target-role-company').innerText = resumeData.personal_info.email;
+                    }
+
+                    document.getElementById('score-text').innerText = score;
+                    setTimeout(() => {
+                        const offset = 339.29 - (339.29 * (score / 100));
+                        document.getElementById('score-circle').style.strokeDashoffset = offset;
+                    }, 100);
+
+                    if (resumeData && resumeData.skills) {
+                        const matchedKeywords = document.getElementById('matched-keywords');
+                        matchedKeywords.innerHTML = '';
+                        let skillCount = 0;
+                        for (const cat in resumeData.skills) {
+                            for (const skill of resumeData.skills[cat]) {
+                                if (skillCount < 3) {
+                                    const colors = ['indigo', 'purple', 'blue'];
+                                    const color = colors[skillCount % 3];
+                                    matchedKeywords.innerHTML += `
+                                        <span class="px-4 py-1.5 bg-${color}-100 text-${color}-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
+                                            <span class="material-symbols-outlined text-[16px]">check</span> ${skill}
+                                        </span>
+                                    `;
+                                }
+                                skillCount++;
+                            }
+                        }
+                        if (skillCount > 3) {
+                            matchedKeywords.innerHTML += `
+                                <span class="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium">
+                                    +${skillCount - 3} more found
+                                </span>
+                            `;
+                        }
+                    }
+                } catch(e) {}
+            }
+        });
+    </script>
 </body>
 </html>
