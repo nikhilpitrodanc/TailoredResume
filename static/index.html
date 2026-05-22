@@ -174,9 +174,13 @@
                 <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Workflow</span>
                 <h2 class="text-3xl font-bold text-slate-900 mt-3">How it Works</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+                <!-- Connecting background line (visible on large screens only) -->
+                <div class="hidden lg:block absolute top-[4.5rem] left-[10%] w-[80%] border-t border-dashed border-indigo-200 -z-10"></div>
+                <div class="hidden lg:block absolute top-[19rem] left-[10%] w-[80%] border-t border-dashed border-indigo-200 -z-10"></div>
+
                 <!-- Step 1 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border-l-4 border-transparent hover:border-indigo-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl">description</span>
                     </div>
@@ -184,7 +188,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Upload your master resume data in JSON format. This is your source of truth.</p>
                 </div>
                 <!-- Step 2 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border-l-4 border-transparent hover:border-indigo-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl">content_paste</span>
                     </div>
@@ -192,7 +196,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Paste the target job description. Our AI identifies exactly what they need.</p>
                 </div>
                 <!-- Step 3 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border-l-4 border-transparent hover:border-indigo-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl">memory</span>
                     </div>
@@ -200,7 +204,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">AI automatically rewrites bullet points, diversifies action verbs, and aligns skills.</p>
                 </div>
                 <!-- Step 4 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border-l-4 border-transparent hover:border-indigo-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl">analytics</span>
                     </div>
@@ -208,7 +212,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Analyze keyword density, linguistic diversity, and impact metrics in real-time.</p>
                 </div>
                 <!-- Step 5 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border border-indigo-200 bg-indigo-50/30">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border-l-4 border-transparent hover:border-indigo-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl">edit_document</span>
                     </div>
@@ -216,7 +220,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Make fine-grained manual adjustments to the tailored JSON in our visual editor. <br><a href="/editor" class="text-indigo-600 font-semibold mt-1 inline-block hover:underline">Open Editor ↗</a></p>
                 </div>
                 <!-- Step 6 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-start text-left shadow-sm border-l-4 border-transparent hover:border-indigo-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-2xl">download</span>
                     </div>
@@ -234,9 +238,12 @@
                 <p class="text-slate-500 mt-3 max-w-2xl mx-auto">Our agentic engine enforces strict design and content policies to ensure your resume scores in the top 1% of candidate filters.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                <!-- Connecting line (visible on md+) -->
+                <div class="hidden md:block absolute top-[4rem] left-[16%] w-[68%] border-t border-dashed border-purple-200 -z-10"></div>
+
                 <!-- Rule 1 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm border-l-4 border-transparent hover:border-purple-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-xl">123</span>
                     </div>
@@ -244,7 +251,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">The engine flags bullets lacking concrete metrics. Every achievement must be quantified (e.g., efficiency gain, query latency reduced, error margins cut) to demonstrate direct business impact.</p>
                 </div>
                 <!-- Rule 2 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm border-l-4 border-transparent hover:border-purple-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-xl">spellcheck</span>
                     </div>
@@ -252,7 +259,7 @@
                     <p class="text-slate-500 text-sm leading-relaxed">Starting multiple experience bullets with the same action verb is prohibited. The AI automatically parses sentence structures and replaces duplicate starter verbs with diverse alternatives.</p>
                 </div>
                 <!-- Rule 3 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm">
+                <div class="glass-card p-6 rounded-2xl flex flex-col shadow-sm border-l-4 border-transparent hover:border-purple-600 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 cursor-default">
                     <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
                         <span class="material-symbols-outlined text-xl">join_inner</span>
                     </div>
