@@ -135,4 +135,4 @@ uvicorn main:app --reload --port 8000
 ## 📜 License & Contribution
 This project is open-source under the **MIT License**. Contributions to the Agentic Loop logic or the PDF rendering engine are welcome.
 
-*Developed with Strategic Engineering for High-Growth Roles by **Krish Chaudhary**.*
+*Developed with Strategic Engineering for High-Growth Roles by **Nikhil Pitroda**.*

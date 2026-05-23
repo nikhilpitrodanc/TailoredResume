@@ -6,7 +6,7 @@
  * the asynchronous communication with the FastAPI backend for resume tailoring.
  * 
  * Version: 1.2.0
- * Author: Krish Chaudhary
+ * Author: Nikhil Pitroda
  */
 
 // --- NOTIFICATION SYSTEM ---

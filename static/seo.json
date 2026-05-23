@@ -1,12 +1,12 @@
 {
   "project": "TailoredResume.ai",
-  "author": "Krish Chaudhary",
+  "author": "Nikhil Pitroda",
   "version": "1.1.0",
   "sitemap_url": "https://tailored-resume-ai.vercel.app/sitemap.xml",
   "robots_url": "https://tailored-resume-ai.vercel.app/robots.txt",
   "main_keywords": [
     "TailoredResume.ai",
-    "Krish Chaudhary",
+    "Nikhil Pitroda",
     "Agentic AI",
     "Precision Scriptorium",
     "ATS Resume Success",
@@ -21,7 +21,7 @@
   "status": "Production Live",
   "pages": [
 
-    {"url": "/", "title": "Home", "description": "Elite agentic AI resume tailoring by Krish Chaudhary."},
+    {"url": "/", "title": "Home", "description": "Elite agentic AI resume tailoring by Nikhil Pitroda."},
     {"url": "/guide", "title": "Master Guide", "description": "Master the JSON resume format for AI optimization."},
     {"url": "/about", "title": "About", "description": "Discover the architecture behind the Precision Scriptorium engine."},
     {"url": "/input", "title": "App", "description": "Tailor your resume against any job description in seconds."},

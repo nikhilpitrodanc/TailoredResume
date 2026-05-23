@@ -197,7 +197,7 @@
                             <div class="relative w-32 mt-2">
                                 <svg viewBox="0 0 100 55" class="w-full overflow-visible">
                                     <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#f1f5f9" stroke-width="9" stroke-linecap="round"></path>
-                                    <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#4f46e5" stroke-width="9" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="3"></path>
+                                    <path id="mockup-score-circle" d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#4f46e5" stroke-width="9" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="3" style="transition: stroke-dashoffset 1.5s ease-in-out;"></path>
                                 </svg>
                                 <div class="absolute bottom-0 left-0 w-full text-center translate-y-1">
                                     <span id="mockup-score" class="text-[2.75rem] font-black text-slate-800 leading-none tracking-tight">98</span>
@@ -268,51 +268,7 @@
             </div>
         </div>
 
-        <!-- Top Row Dashboard Grid (Hidden until data exists) -->
-        <div id="dashboard-wrapper" class="tilt-wrapper hidden">
-            <div id="dashboard-data" class="grid grid-cols-1 md:grid-cols-3 gap-6 tilt-target">
-                <!-- Target Role Analysis -->
-                <section class="glass-card p-6 rounded-2xl md:col-span-2 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                            <h2 class="text-slate-500 text-sm uppercase tracking-wider font-semibold">Latest Optimization</h2>
-                        </div>
-                        <h3 id="target-role-title" class="text-2xl font-bold text-slate-900">AI Tailored Resume</h3>
-                        <p id="target-role-company" class="text-slate-500 mt-1">Ready for application</p>
-                    </div>
-                    <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl">radar</span>
-                    </div>
-                </div>
-                
-                <div class="pt-6 border-t border-slate-200/50">
-                    <p class="text-sm text-slate-500 mb-3 font-medium">Matched Keywords</p>
-                    <div id="matched-keywords" class="flex flex-wrap gap-2">
-                        <!-- Filled by JS -->
-                    </div>
-                </div>
-            </section>
 
-            <!-- Optimization Score -->
-            <section class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center hover:-translate-y-1 transition-transform duration-300">
-                <h2 class="text-slate-500 text-sm uppercase tracking-wider font-semibold mb-6 w-full text-center">Match Score</h2>
-                
-                <div class="relative w-32 h-32 flex items-center justify-center mb-4">
-                    <svg class="w-full h-full transform -rotate-90">
-                        <circle class="text-slate-200" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-width="8"></circle>
-                        <circle id="score-circle" class="text-primary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.29" stroke-dashoffset="339.29" stroke-linecap="round" stroke-width="8" style="transition: stroke-dashoffset 1.5s ease-in-out;"></circle>
-                    </svg>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <span class="text-4xl font-bold text-slate-900 leading-none"><span id="score-text">0</span><span class="text-2xl text-slate-400">%</span></span>
-                    </div>
-                </div>
-                
-                <p class="text-sm text-slate-500 text-center px-4 font-medium">Highly optimized for ATS screening.</p>
-            </section>
-        </div>
-        </div>
 
         <!-- How it Works Section -->
         <div class="mt-16">
@@ -437,7 +393,7 @@
 
     <!-- Footer -->
     <footer class="mt-auto py-8 text-center text-slate-500 text-sm border-t border-slate-200/50 bg-white/30 backdrop-blur-md">
-        <p>© 2026 TailoredResume.ai. All rights reserved.</p>
+        <p class='mb-1'>Made by <a href='https://github.com/nikhilpitrodanc' target='_blank' class='font-medium hover:text-indigo-600 transition-colors'>Nikhil Pitroda</a></p><p>© 2026 TailoredResume.ai. All rights reserved.</p>
     </footer>
 
     <script>
@@ -468,12 +424,6 @@
                     const resumeData = parsed.data;
                     const score = Math.round(parsed.score) || 88;
                     
-                    const emptyState = document.getElementById('empty-state');
-                    if (emptyState) emptyState.classList.add('hidden');
-                    
-                    const dashboardWrapper = document.getElementById('dashboard-wrapper');
-                    if (dashboardWrapper) dashboardWrapper.classList.remove('hidden');
-                    
                     const dashboardActions = document.getElementById('dashboard-actions');
                     if (dashboardActions) dashboardActions.classList.remove('hidden');
                     
@@ -483,6 +433,14 @@
                         
                         const greetingSubtitle = document.getElementById('greeting-subtitle');
                         if (greetingSubtitle) greetingSubtitle.innerText = "Here's your real-time resume optimization overview.";
+                        
+                        // Update empty state text so it makes sense since it stays visible
+                        const emptyStateTitle = document.querySelector('#empty-state h2');
+                        const emptyStateP = document.querySelector('#empty-state p');
+                        const emptyStateBtn = document.querySelector('#empty-state button');
+                        if (emptyStateTitle) emptyStateTitle.innerText = "Resume Optimized!";
+                        if (emptyStateP) emptyStateP.innerText = "Your customized resume is ready. You can review your ATS performance in the preview cards, or tailor another one.";
+                        if (emptyStateBtn) emptyStateBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">auto_fix_high</span> Tailor Another Resume`;
                     }
 
                     if (resumeData && resumeData.personal_info && resumeData.personal_info.email) {
@@ -572,6 +530,14 @@
                     
                     const mockupScore = document.getElementById('mockup-score');
                     if (mockupScore) mockupScore.innerText = score;
+                    
+                    setTimeout(() => {
+                        const mockupScoreCircle = document.getElementById('mockup-score-circle');
+                        if (mockupScoreCircle) {
+                            const offset = 125.6 - (125.6 * (score / 100));
+                            mockupScoreCircle.style.strokeDashoffset = offset;
+                        }
+                    }, 100);
                 } catch(e) {}
             }
 

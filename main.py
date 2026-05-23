@@ -1,7 +1,7 @@
 """
 TailoredResume.ai - Agentic AI Resume Tailoring Backend
 ======================================================
-Author: Krish Chaudhary
+Author: Nikhil Pitroda
 Version: 1.1.0
 
 This module provides the core logic for an agentic AI-driven resume tailoring platform.
@@ -358,7 +358,7 @@ def create_pdf(data: dict, output_buffer, template="classic"):
                 for p in data[key]:
                     pname = p.get("name", "")
                     techs = ", ".join(p.get("technologies", []))
-                    github = p.get("github_link", "")
+                    github = p.get("github_link", "").strip()
                     right_text = ""
                     if github:
                         link = github if github.startswith("http") else f"https://{github}"
@@ -988,7 +988,7 @@ async def get_seo_sitemap():
         "seo_config": "https://tailored-resume-ai.vercel.app/seo.json",
         "sitemap": "https://tailored-resume-ai.vercel.app/sitemap.xml",
         "robots": "https://tailored-resume-ai.vercel.app/robots.txt",
-        "author": "Krish Chaudhary",
+        "author": "Nikhil Pitroda",
         "urls": [
             {"path": "/", "name": "WorkSpace (Home)", "priority": 1.0, "changefreq": "monthly"},
             {"path": "/guide", "name": "Master Resume Guide", "priority": 0.8, "changefreq": "monthly"},

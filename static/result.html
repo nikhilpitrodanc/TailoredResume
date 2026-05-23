@@ -255,7 +255,7 @@
                     <img src="/favicon.svg?v=2" alt="TailoredResume.ai Logo" class="w-5 h-5 drop-shadow-sm" />
                     TailoredResume.ai
                 </a>
-                <p class="text-slate-500 text-sm">Designed and developed by <a href="https://portfolio-krish-chaudhary.vercel.app/" class="text-primary hover:underline font-medium" target="_blank">Krish Chaudhary</a></p>
+                <p class="text-slate-500 text-sm">Designed and developed by <a href="#" class="text-primary hover:underline font-medium" target="_blank">Nikhil Pitroda</a></p>
                 <p class="text-slate-400 text-xs mt-1">&copy; 2026 TailoredResume.ai. Built for the modern career.</p>
             </div>
             <div class="flex gap-6 text-sm font-semibold text-slate-600">
@@ -365,11 +365,15 @@
             const linksMeta = document.getElementById('project-links-meta');
             (tailoredData.data.projects || []).forEach(p => {
                 if (p.github_link) {
+                    let href = p.github_link.trim();
+                    if (!href.startsWith('http://') && !href.startsWith('https://')) {
+                        href = 'https://' + href;
+                    }
                     const div = document.createElement('div');
                     div.className = 'mb-2';
                     div.innerHTML = `
                         <p class="m-0 text-sm font-medium text-slate-800">${p.name}</p>
-                        <a href="${p.github_link}" target="_blank" class="text-xs text-primary hover:underline flex items-center gap-1">GitHub Repo <span class="material-symbols-outlined text-[12px]">open_in_new</span></a>
+                        <a href="${href}" target="_blank" class="text-xs text-primary hover:underline flex items-center gap-1">GitHub Repo <span class="material-symbols-outlined text-[12px]">open_in_new</span></a>
                     `;
                     linksMeta.appendChild(div);
                 }
