@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const loading = document.getElementById('loading');
             if (loading) {
                 loading.style.display = 'flex';
-                simulateLoadingSteps();
+                updateLoadingStep('step-wait');
             }
 
             const formData = new FormData();
@@ -90,19 +90,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (!response.ok) {
-                    const errData = await response.json();
-                    throw new Error(errData.error || 'Server error occurred');
+                    throw new Error('Server error occurred');
                 }
 
-                const result = await response.json();
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
 
-                if (result.success) {
-                    sessionStorage.setItem('tailored_resume', JSON.stringify(result));
-                    sessionStorage.setItem('ats_score', result.score);
-                    sessionStorage.setItem('ats_metrics', JSON.stringify(result.metrics || {}));
-                    window.location.href = '/result';
-                } else {
-                    showNotify('Tailoring failed: ' + result.error, 'error');
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop(); // Keep the last incomplete line
+
+                    for (const line of lines) {
+                        if (!line.trim()) continue;
+                        const result = JSON.parse(line);
+
+                        if (result.step) {
+                            updateLoadingStep(result.step);
+                        } else if (result.success !== undefined) {
+                            if (result.success) {
+                                // Once completed, ensure all steps are visually completed
+                                updateLoadingStep('completed-all');
+                                sessionStorage.setItem('tailored_resume', JSON.stringify(result));
+                                sessionStorage.setItem('ats_score', result.score);
+                                sessionStorage.setItem('ats_metrics', JSON.stringify(result.metrics || {}));
+                                window.location.href = '/result';
+                            } else {
+                                showNotify('Tailoring failed: ' + result.error, 'error');
+                            }
+                        }
+                    }
                 }
             } catch (error) {
                 console.error('Submission failed:', error);
@@ -414,43 +435,43 @@ async function loadSample() {
 }
 // Version 1.2.1
 
-function simulateLoadingSteps() {
+function updateLoadingStep(stepId) {
     const steps = [
-        document.getElementById('step-wait'),
-        document.getElementById('step-load'),
-        document.getElementById('step-parse'),
-        document.getElementById('step-core'),
-        document.getElementById('step-exp'),
-        document.getElementById('step-other')
+        'step-wait',
+        'step-load',
+        'step-parse',
+        'step-core',
+        'step-exp',
+        'step-other'
     ];
     
-    if (!steps[0]) return;
+    // Check if we want to mark all as completed
+    if (stepId === 'completed-all') {
+        steps.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.remove('active');
+                el.classList.add('completed');
+            }
+        });
+        return;
+    }
 
-    // Reset steps
-    steps.forEach(step => {
-        if(step) {
-            step.classList.remove('active', 'completed');
+    const currentIndex = steps.indexOf(stepId);
+    if (currentIndex === -1) return;
+
+    steps.forEach((id, index) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        
+        if (index < currentIndex) {
+            el.classList.remove('active');
+            el.classList.add('completed');
+        } else if (index === currentIndex) {
+            el.classList.add('active');
+            el.classList.remove('completed');
+        } else {
+            el.classList.remove('active', 'completed');
         }
     });
-
-    let currentStep = 0;
-    
-    function nextStep() {
-        if (currentStep > 0 && steps[currentStep - 1]) {
-            steps[currentStep - 1].classList.remove('active');
-            steps[currentStep - 1].classList.add('completed');
-        }
-        
-        if (currentStep < steps.length) {
-            if (steps[currentStep]) {
-                steps[currentStep].classList.add('active');
-            }
-            currentStep++;
-            // Sequence delay logic: 800ms to 1200ms per step
-            const delay = Math.floor(Math.random() * 400) + 800;
-            setTimeout(nextStep, delay);
-        }
-    }
-    
-    nextStep();
 }

@@ -112,11 +112,9 @@
 
     <!-- Page Transition Loader -->
     <div id="page-loader">
-        <div class="flex flex-col items-center">
-            <span class="material-symbols-outlined text-5xl text-indigo-600 animate-bounce mb-4">auto_awesome</span>
-            <div class="h-1 w-24 bg-indigo-100 rounded-full overflow-hidden">
-                <div class="h-full bg-indigo-600 animate-pulse rounded-full w-full"></div>
-            </div>
+        <div class="relative inline-block">
+            <span class="material-symbols-outlined text-6xl text-indigo-600 mb-4">document_scanner</span>
+            <div class="scanner-laser"></div>
         </div>
     </div>
 
@@ -202,7 +200,7 @@
                                     <path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#4f46e5" stroke-width="9" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="3"></path>
                                 </svg>
                                 <div class="absolute bottom-0 left-0 w-full text-center translate-y-1">
-                                    <span class="text-[2.75rem] font-black text-slate-800 leading-none tracking-tight">98</span>
+                                    <span id="mockup-score" class="text-[2.75rem] font-black text-slate-800 leading-none tracking-tight">98</span>
                                 </div>
                             </div>
                             <span class="text-[10px] font-bold text-emerald-500 mt-4 tracking-widest uppercase">ATS Match Score</span>
@@ -239,24 +237,24 @@
                         <hr class="border-slate-100 mb-4">
                         
                         <div class="text-center mb-5">
-                            <h4 class="font-black text-slate-800 text-[17px] leading-none mb-1" style="font-family: 'Newsreader', serif;">KRISH CHAUDHARY</h4>
-                            <p class="text-[9px] font-bold text-indigo-600 uppercase tracking-widest">AI & MLOPS ENGINEER</p>
+                            <h4 id="mockup-name" class="font-black text-slate-800 text-[17px] leading-none mb-1" style="font-family: 'Newsreader', serif;">KRISH CHAUDHARY</h4>
+                            <p id="mockup-role" class="text-[9px] font-bold text-indigo-600 uppercase tracking-widest">AI & MLOPS ENGINEER</p>
                         </div>
 
                         <div class="mb-4">
                             <h5 class="text-[8px] font-bold text-slate-400 tracking-widest mb-1.5">SUMMARY</h5>
-                            <p class="text-[9px] text-slate-600 leading-relaxed">Driven AI Engineer and Data Analyst specializing in Generative AI, RAG, and MLOps. Skilled in building autonomous agentic workflows using LangGraph and deploying scalable backend services via FastAPI.</p>
+                            <p id="mockup-summary" class="text-[9px] text-slate-600 leading-relaxed line-clamp-4">Driven AI Engineer and Data Analyst specializing in Generative AI, RAG, and MLOps. Skilled in building autonomous agentic workflows using LangGraph and deploying scalable backend services via FastAPI.</p>
                         </div>
 
                         <div class="mb-4">
                             <h5 class="text-[8px] font-bold text-slate-400 tracking-widest mb-1.5">EXPERIENCE</h5>
-                            <p class="text-[10px] font-bold text-slate-700">Abhay Engineering — Business Analyst <span class="font-normal text-slate-400 text-[9px] float-right">2025</span></p>
-                            <p class="text-[9px] text-slate-600 leading-relaxed mt-1">• Transformed manual billing records into structured technical roadmaps for an automated BI platform, aligning 100% of operational gaps.</p>
+                            <p id="mockup-exp-title" class="text-[10px] font-bold text-slate-700 truncate">Abhay Engineering — Business Analyst <span class="font-normal text-slate-400 text-[9px] float-right">2025</span></p>
+                            <p id="mockup-exp-bullet" class="text-[9px] text-slate-600 leading-relaxed mt-1 line-clamp-3">• Transformed manual billing records into structured technical roadmaps for an automated BI platform, aligning 100% of operational gaps.</p>
                         </div>
 
                         <div>
                             <h5 class="text-[8px] font-bold text-slate-400 tracking-widest mb-1.5">TAILORED SKILLS</h5>
-                            <div class="flex flex-wrap gap-1.5">
+                            <div id="mockup-skills-container" class="flex flex-wrap gap-1.5">
                                 <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">LangGraph</span>
                                 <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">Gemini 2.5 Flash</span>
                                 <span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">FastAPI</span>
@@ -470,51 +468,110 @@
                     const resumeData = parsed.data;
                     const score = Math.round(parsed.score) || 88;
                     
-                    document.getElementById('empty-state').classList.add('hidden');
-                    document.getElementById('dashboard-wrapper').classList.remove('hidden');
-                    document.getElementById('dashboard-actions').classList.remove('hidden');
+                    const emptyState = document.getElementById('empty-state');
+                    if (emptyState) emptyState.classList.add('hidden');
+                    
+                    const dashboardWrapper = document.getElementById('dashboard-wrapper');
+                    if (dashboardWrapper) dashboardWrapper.classList.remove('hidden');
+                    
+                    const dashboardActions = document.getElementById('dashboard-actions');
+                    if (dashboardActions) dashboardActions.classList.remove('hidden');
                     
                     if (resumeData && resumeData.personal_info && resumeData.personal_info.name) {
-                        document.getElementById('greeting-title').innerText = `Welcome back, ${resumeData.personal_info.name.split(' ')[0]}`;
-                        document.getElementById('greeting-subtitle').innerText = "Here's your real-time resume optimization overview.";
+                        const greetingTitle = document.getElementById('greeting-title');
+                        if (greetingTitle) greetingTitle.innerText = `Welcome back, ${resumeData.personal_info.name.split(' ')[0]}`;
+                        
+                        const greetingSubtitle = document.getElementById('greeting-subtitle');
+                        if (greetingSubtitle) greetingSubtitle.innerText = "Here's your real-time resume optimization overview.";
                     }
 
                     if (resumeData && resumeData.personal_info && resumeData.personal_info.email) {
-                        document.getElementById('target-role-company').innerText = resumeData.personal_info.email;
+                        const targetRole = document.getElementById('target-role-company');
+                        if (targetRole) targetRole.innerText = resumeData.personal_info.email;
                     }
 
-                    document.getElementById('score-text').innerText = score;
+                    const scoreText = document.getElementById('score-text');
+                    if (scoreText) scoreText.innerText = score;
+                    
                     setTimeout(() => {
-                        const offset = 339.29 - (339.29 * (score / 100));
-                        document.getElementById('score-circle').style.strokeDashoffset = offset;
+                        const scoreCircle = document.getElementById('score-circle');
+                        if (scoreCircle) {
+                            const offset = 339.29 - (339.29 * (score / 100));
+                            scoreCircle.style.strokeDashoffset = offset;
+                        }
                     }, 100);
 
                     if (resumeData && resumeData.skills) {
                         const matchedKeywords = document.getElementById('matched-keywords');
-                        matchedKeywords.innerHTML = '';
-                        let skillCount = 0;
-                        for (const cat in resumeData.skills) {
-                            for (const skill of resumeData.skills[cat]) {
-                                if (skillCount < 3) {
-                                    const colors = ['indigo', 'purple', 'blue'];
-                                    const color = colors[skillCount % 3];
-                                    matchedKeywords.innerHTML += `
-                                        <span class="px-4 py-1.5 bg-${color}-100 text-${color}-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
-                                            <span class="material-symbols-outlined text-[16px]">check</span> ${skill}
-                                        </span>
-                                    `;
+                        if (matchedKeywords) {
+                            matchedKeywords.innerHTML = '';
+                            let skillCount = 0;
+                            for (const cat in resumeData.skills) {
+                                for (const skill of resumeData.skills[cat]) {
+                                    if (skillCount < 3) {
+                                        const colors = ['indigo', 'purple', 'blue'];
+                                        const color = colors[skillCount % 3];
+                                        matchedKeywords.innerHTML += `
+                                            <span class="px-4 py-1.5 bg-${color}-100 text-${color}-700 rounded-lg text-sm font-semibold flex items-center gap-1.5">
+                                                <span class="material-symbols-outlined text-[16px]">check</span> ${skill}
+                                            </span>
+                                        `;
+                                    }
+                                    skillCount++;
                                 }
-                                skillCount++;
+                            }
+                            if (skillCount > 3) {
+                                matchedKeywords.innerHTML += `
+                                    <span class="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium">
+                                        +${skillCount - 3} more found
+                                    </span>
+                                `;
                             }
                         }
-                        if (skillCount > 3) {
-                            matchedKeywords.innerHTML += `
-                                <span class="px-4 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium">
-                                    +${skillCount - 3} more found
-                                </span>
-                            `;
+                    }
+                    // Populate Hero Mockups
+                    if (resumeData) {
+                        if (resumeData.personal_info && resumeData.personal_info.name) {
+                            const mockupName = document.getElementById('mockup-name');
+                            if (mockupName) mockupName.innerText = resumeData.personal_info.name.toUpperCase();
+                        }
+                        
+                        if (resumeData.experience && resumeData.experience.length > 0) {
+                            const exp = resumeData.experience[0];
+                            const mockupRole = document.getElementById('mockup-role');
+                            if (mockupRole && exp.role) mockupRole.innerText = exp.role.toUpperCase();
+                            
+                            const mockupExpTitle = document.getElementById('mockup-exp-title');
+                            if (mockupExpTitle) mockupExpTitle.innerHTML = `${exp.company} — ${exp.role} <span class="font-normal text-slate-400 text-[9px] float-right">${exp.end_date || 'Present'}</span>`;
+                            
+                            const mockupExpBullet = document.getElementById('mockup-exp-bullet');
+                            if (mockupExpBullet && exp.bullet_points && exp.bullet_points.length > 0) mockupExpBullet.innerText = '• ' + exp.bullet_points[0];
+                        }
+                        
+                        if (resumeData.professional_summaries && resumeData.professional_summaries.length > 0) {
+                            const mockupSum = document.getElementById('mockup-summary');
+                            if (mockupSum) mockupSum.innerText = resumeData.professional_summaries[0];
+                        }
+                        
+                        if (resumeData.skills) {
+                            const mockupSkills = document.getElementById('mockup-skills-container');
+                            if (mockupSkills) {
+                                mockupSkills.innerHTML = '';
+                                let count = 0;
+                                for (const cat in resumeData.skills) {
+                                    for (const skill of resumeData.skills[cat]) {
+                                        if (count < 6) {
+                                            mockupSkills.innerHTML += `<span class="px-2 py-0.5 rounded border border-indigo-200/60 bg-indigo-50/50 text-[9px] font-bold text-indigo-600">${skill}</span>`;
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
+                    
+                    const mockupScore = document.getElementById('mockup-score');
+                    if (mockupScore) mockupScore.innerText = score;
                 } catch(e) {}
             }
 

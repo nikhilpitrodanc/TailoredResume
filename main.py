@@ -57,7 +57,7 @@ MODELS_TO_TRY = [
 
 import io
 
-def create_pdf(data: dict, output_buffer):
+def create_pdf(data: dict, output_buffer, template="classic"):
     """Generates an ATS-optimized PDF resume from structured JSON data.
 
     This function uses the ReportLab library to build a professional resume layout.
@@ -90,29 +90,74 @@ def create_pdf(data: dict, output_buffer):
         pagesize=letter,
         rightMargin=22,
         leftMargin=22,
-        topMargin=13,
-        bottomMargin=10
+        topMargin=12,
+        bottomMargin=5
     )
 
     styles = getSampleStyleSheet()
     
-    # Custom styles
-    styles.add(ParagraphStyle(name='CompName', parent=styles['Heading1'], fontSize=15, spaceAfter=0, alignment=1))
-    styles.add(ParagraphStyle(name='CompContact', parent=styles['Normal'], fontSize=8.5, spaceAfter=3, alignment=1, textColor=Color(0.15, 0.15, 0.15)))
-    styles.add(ParagraphStyle(name='CompSectionHeader', parent=styles['Heading2'], fontSize=10, spaceAfter=0.2, spaceBefore=2, textColor=Color(0, 0, 0)))
-    styles.add(ParagraphStyle(name='CompSummary', parent=styles['Normal'], fontSize=9, spaceAfter=1, leading=10))
-    styles.add(ParagraphStyle(name='CompItemTitle', parent=styles['Normal'], fontSize=9.5, spaceAfter=0.2, spaceBefore=0.8))
-    styles.add(ParagraphStyle(name='CompItemDate', parent=styles['Normal'], fontSize=8.5, alignment=2, textColor=Color(0.2, 0.2, 0.2)))
-    styles.add(ParagraphStyle(name='CompResumeBullet', parent=styles['Normal'], fontSize=8.8, leading=9.8, leftIndent=10, bulletIndent=3, spaceAfter=0.5))
-    styles.add(ParagraphStyle(name='CompContent', parent=styles['Normal'], fontSize=8.8, leading=9.8))
+    # Determine styles based on template
+    font_name = "Helvetica"
+    font_bold = "Helvetica-Bold"
+    font_italic = "Helvetica-Oblique"
+    line_color = Color(0, 0, 0)
+    
+    if template == "modern":
+        line_color = Color(0.2, 0.4, 0.8)
+    elif template == "creative":
+        line_color = Color(0.5, 0.2, 0.7)
+    elif template == "executive":
+        font_name = "Times-Roman"
+        font_bold = "Times-Bold"
+        font_italic = "Times-Italic"
+        line_color = Color(0.15, 0.25, 0.45)
+    elif template == "split":
+        line_color = Color(0.2, 0.4, 0.5)
+
+    styles.add(ParagraphStyle(
+        name='CompName', 
+        parent=styles['Heading1'], 
+        fontName=font_bold,
+        fontSize=24 if template == "creative" else (21 if template == "executive" else (22 if template == "modern" else 18)), 
+        spaceAfter=2, 
+        alignment=0 if template in ["modern", "split"] else 1, 
+        textColor=line_color
+    ))
+    
+    styles.add(ParagraphStyle(
+        name='CompSectionHeader', 
+        parent=styles['Heading2'], 
+        fontName=font_bold,
+        fontSize=11 if template in ["modern", "creative", "split"] else 10.5, 
+        spaceAfter=0.2, 
+        spaceBefore=3, 
+        textColor=line_color
+    ))
+    
+    styles.add(ParagraphStyle(
+        name='CompContact', 
+        parent=styles['Normal'], 
+        fontName=font_name,
+        fontSize=8.5, 
+        spaceAfter=3, 
+        alignment=0 if template in ["modern", "split"] else 1, 
+        textColor=Color(0.15, 0.15, 0.15)
+    ))
+    
+    styles.add(ParagraphStyle(name='CompSummary', parent=styles['Normal'], fontName=font_name, fontSize=9, spaceAfter=0.5, leading=10))
+    styles.add(ParagraphStyle(name='CompItemTitle', parent=styles['Normal'], fontName=font_bold, fontSize=9.5, spaceAfter=0.2, spaceBefore=0.5))
+    styles.add(ParagraphStyle(name='CompItemDate', parent=styles['Normal'], fontName=font_italic, fontSize=8.5, alignment=2, textColor=Color(0.2, 0.2, 0.2)))
+    styles.add(ParagraphStyle(name='CompResumeBullet', parent=styles['Normal'], fontName=font_name, fontSize=8.6, leading=9.6, leftIndent=10, bulletIndent=3, spaceAfter=0.3))
+    styles.add(ParagraphStyle(name='CompContent', parent=styles['Normal'], fontName=font_name, fontSize=8.6, leading=9.6))
 
     elements = []
-    line = HRFlowable(width="100%", thickness=0.8, color=Color(0, 0, 0), spaceAfter=1.5, spaceBefore=0)
+    line = HRFlowable(width="100%", thickness=1.0, color=line_color, spaceAfter=1.5, spaceBefore=0.5)
 
-    def create_header_table(left_text, right_text):
+    def create_header_table(left_text, right_text, left_w=None, right_w=None):
+        col_widths = ['78%', '22%'] if (left_w is None or right_w is None) else [left_w, right_w]
         t = Table(
             [[Paragraph(left_text, styles['CompItemTitle']), Paragraph(right_text, styles['CompItemDate'])]], 
-            colWidths=['78%', '22%']
+            colWidths=col_widths
         )
         t.setStyle(TableStyle([
             ('LEFTPADDING', (0,0), (-1,-1), 0),
@@ -143,75 +188,196 @@ def create_pdf(data: dict, output_buffer):
             else:
                 contacts.append(val)
     
-    elements.append(Paragraph(" | ".join(contacts), styles['CompContact']))
+    if template == "executive":
+        # Add a top line above contact details
+        elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=2.5, spaceBefore=2))
+        elements.append(Paragraph(" | ".join(contacts), styles['CompContact']))
+        # Add a bottom line below contact details
+        elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=6, spaceBefore=1.5))
+    else:
+        elements.append(Paragraph(" | ".join(contacts), styles['CompContact']))
 
-    sections_keys = ["summary", "skills", "experience", "projects", "education", "certifications"]
-    sections_titles = ["PROFESSIONAL SUMMARY", "TECHNICAL SKILLS", "EXPERIENCE", "PROJECTS", "EDUCATION", "CERTIFICATIONS"]
-
-    for i, key in enumerate(sections_keys):
-        if not data.get(key): continue
+    if template == "split":
+        # Two-column layout
+        left_elements = []
+        right_elements = []
         
-        elements.append(Paragraph(f"<b>{sections_titles[i]}</b>", styles['CompSectionHeader']))
-        elements.append(line)
+        # Build Left Side (Sidebar)
+        # 1. Contact info listed vertically
+        left_elements.append(Paragraph("<b>CONTACT</b>", styles['CompSectionHeader']))
+        left_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
         
-        if key == "summary":
-            elements.append(Paragraph(data[key], styles['CompSummary']))
-        elif key == "skills":
-            skills_data = []
-            if isinstance(data[key], dict):
-                for cat, items in data[key].items():
+        if pi.get("location"):
+            left_elements.append(Paragraph(f"<b>Location:</b> {pi.get('location')}", styles['CompContact']))
+        if pi.get("phone"):
+            left_elements.append(Paragraph(f"<b>Phone:</b> {pi.get('phone')}", styles['CompContact']))
+        if pi.get("email"):
+            left_elements.append(Paragraph(f'<b>Email:</b> <a href="mailto:{pi.get("email")}">{pi.get("email")}</a>', styles['CompContact']))
+        
+        for field in ["linkedin", "github", "portfolio", "kaggle"]:
+            val = pi.get(field)
+            if val:
+                link = val if val.startswith("http") else f"https://{val}"
+                display = val.replace("https://", "").replace("www.", "")
+                if len(display) > 26:
+                    display = display[:23] + "..."
+                left_elements.append(Paragraph(f'<b>{field.capitalize()}:</b> <a href="{link}">{display}</a>', styles['CompContact']))
+                
+        left_elements.append(Spacer(1, 8))
+        
+        # 2. Education
+        if data.get("education"):
+            left_elements.append(Paragraph("<b>EDUCATION</b>", styles['CompSectionHeader']))
+            left_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
+            for edu in data["education"]:
+                inst = edu.get('institution', '')
+                deg = edu.get('degree', '')
+                dates = f"{edu.get('start_date', '')} - {edu.get('end_date', '')}"
+                gpa = edu.get('cgpa') or edu.get('gpa')
+                
+                left_elements.append(Paragraph(f"<b>{inst}</b>", styles['CompSummary']))
+                left_elements.append(Paragraph(deg, styles['CompContact']))
+                if gpa:
+                    left_elements.append(Paragraph(f"GPA: {gpa}", styles['CompContact']))
+                left_elements.append(Paragraph(f"<i>{dates}</i>", styles['CompContact']))
+                left_elements.append(Spacer(1, 4))
+                
+        # 3. Skills
+        if data.get("skills"):
+            left_elements.append(Paragraph("<b>TECHNICAL SKILLS</b>", styles['CompSectionHeader']))
+            left_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
+            if isinstance(data["skills"], dict):
+                for cat, items in data["skills"].items():
                     label = cat.replace('_', ' ')
-                    skills_data.append([
-                        Paragraph(f"<b>{label}:</b>", styles['CompSummary']),
-                        Paragraph(", ".join(items), styles['CompSummary'])
-                    ])
+                    left_elements.append(Paragraph(f"<b>{label}:</b>", styles['CompSummary']))
+                    left_elements.append(Paragraph(", ".join(items), styles['CompContact']))
+                    left_elements.append(Spacer(1, 3))
+            left_elements.append(Spacer(1, 4))
             
-            # Create a table for the skills section to align domains on the left
-            # Total width is 612 (letter) - 22*2 (margins) = 568
-            # Domain column: 135, Skills column: 433
-            s_table = Table(skills_data, colWidths=[135, 433])
-            s_table.setStyle(TableStyle([
-                ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                ('LEFTPADDING', (0,0), (-1,-1), 0),
-                ('RIGHTPADDING', (0,0), (-1,-1), 0),
-                ('TOPPADDING', (0,0), (-1,-1), 0.5),
-                ('BOTTOMPADDING', (0,0), (-1,-1), 0.5),
-            ]))
-            elements.append(Indenter(left=10))
-            elements.append(s_table)
-            elements.append(Indenter(left=-10))
-            elements.append(Spacer(1, 1))
-        elif key == "experience":
-            for exp in data[key]:
-                left = f"<b>{exp.get('company', '')}</b> | {exp.get('role', '')}"
-                right = f"<i>{exp.get('start_date', '')} - {exp.get('end_date', '')}</i>"
-                elements.append(create_header_table(left, right))
+        # 4. Certifications
+        if data.get("certifications"):
+            left_elements.append(Paragraph("<b>CERTIFICATIONS</b>", styles['CompSectionHeader']))
+            left_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
+            for cert in data["certifications"]:
+                left_elements.append(Paragraph(f"• {cert}", styles['CompContact']))
+                left_elements.append(Spacer(1, 2))
+                
+        # Build Right Side (Main Content)
+        # 1. Summary
+        if data.get("summary"):
+            right_elements.append(Paragraph("<b>PROFESSIONAL SUMMARY</b>", styles['CompSectionHeader']))
+            right_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
+            right_elements.append(Paragraph(data["summary"], styles['CompSummary']))
+            right_elements.append(Spacer(1, 8))
+            
+        # 2. Experience
+        if data.get("experience"):
+            right_elements.append(Paragraph("<b>EXPERIENCE</b>", styles['CompSectionHeader']))
+            right_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
+            for exp in data["experience"]:
+                left_txt = f"<b>{exp.get('company', '')}</b> | {exp.get('role', '')}"
+                right_txt = f"<i>{exp.get('start_date', '')} - {exp.get('end_date', '')}</i>"
+                right_elements.append(create_header_table(left_txt, right_txt, 275, 95))
                 for b in exp.get("bullet_points", []):
-                    elements.append(Paragraph(f"• {b}", styles['CompResumeBullet']))
-        elif key == "projects":
-            for p in data[key]:
+                    right_elements.append(Paragraph(f"• {b}", styles['CompResumeBullet']))
+                right_elements.append(Spacer(1, 2))
+                
+        # 3. Projects
+        if data.get("projects"):
+            right_elements.append(Paragraph("<b>PROJECTS</b>", styles['CompSectionHeader']))
+            right_elements.append(HRFlowable(width="100%", thickness=0.8, color=line_color, spaceAfter=3, spaceBefore=1))
+            for p in data["projects"]:
                 pname = p.get("name", "")
                 techs = ", ".join(p.get("technologies", []))
                 github = p.get("github_link", "")
-                right_text = ""
+                right_txt = ""
                 if github:
                     link = github if github.startswith("http") else f"https://{github}"
-                    right_text = f'<a href="{link}"><i>GitHub</i></a>'
-                elements.append(create_header_table(f"<b>{pname}</b> | <i>{techs}</i>", right_text))
+                    right_txt = f'<a href="{link}"><i>GitHub</i></a>'
+                right_elements.append(create_header_table(f"<b>{pname}</b> | <i>{techs}</i>", right_txt, 275, 95))
                 for b in p.get("bullet_points", []):
-                    elements.append(Paragraph(f"• {b}", styles['CompResumeBullet']))
-        elif key == "education":
-            for edu in data[key]:
-                left = f"<b>{edu.get('institution', '')}</b> | {edu.get('location', '')}"
-                right = f"<i>{edu.get('start_date', '')} - {edu.get('end_date', '')}</i>"
-                elements.append(create_header_table(left, right))
-                deg = f"{edu.get('degree', '')}"
-                gpa = edu.get('cgpa') or edu.get('gpa')
-                if gpa: deg += f" | GPA: {gpa}"
-                elements.append(Paragraph(deg, styles['CompContent']))
-                elements.append(Spacer(1, 2))
-        elif key == "certifications":
-            elements.append(Paragraph(", ".join(data[key]), styles['CompSummary']))
+                    right_elements.append(Paragraph(f"• {b}", styles['CompResumeBullet']))
+                right_elements.append(Spacer(1, 2))
+                
+        # Assemble into Table
+        grid_table = Table([[left_elements, Spacer(1, 1), right_elements]], colWidths=[175, 15, 378])
+        grid_table.setStyle(TableStyle([
+            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+            ('LEFTPADDING', (0,0), (-1,-1), 0),
+            ('RIGHTPADDING', (0,0), (-1,-1), 0),
+            ('TOPPADDING', (0,0), (-1,-1), 0),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 0),
+        ]))
+        elements.append(grid_table)
+    else:
+        # Single column layout (classic, modern, creative, executive)
+        sections_keys = ["summary", "skills", "experience", "projects", "education", "certifications"]
+        sections_titles = ["PROFESSIONAL SUMMARY", "TECHNICAL SKILLS", "EXPERIENCE", "PROJECTS", "EDUCATION", "CERTIFICATIONS"]
+
+        for i, key in enumerate(sections_keys):
+            if not data.get(key): continue
+            
+            elements.append(Paragraph(f"<b>{sections_titles[i]}</b>", styles['CompSectionHeader']))
+            elements.append(line)
+            
+            if key == "summary":
+                elements.append(Paragraph(data[key], styles['CompSummary']))
+            elif key == "skills":
+                skills_data = []
+                if isinstance(data[key], dict):
+                    for cat, items in data[key].items():
+                        label = cat.replace('_', ' ')
+                        skills_data.append([
+                            Paragraph(f"<b>{label}:</b>", styles['CompSummary']),
+                            Paragraph(", ".join(items), styles['CompSummary'])
+                        ])
+                
+                # Create a table for the skills section to align domains on the left
+                # Total width is 612 (letter) - 22*2 (margins) = 568
+                # Domain column: 135, Skills column: 433
+                s_table = Table(skills_data, colWidths=[135, 433])
+                s_table.setStyle(TableStyle([
+                    ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                    ('LEFTPADDING', (0,0), (-1,-1), 0),
+                    ('RIGHTPADDING', (0,0), (-1,-1), 0),
+                    ('TOPPADDING', (0,0), (-1,-1), 0.5),
+                    ('BOTTOMPADDING', (0,0), (-1,-1), 0.5),
+                ]))
+                elements.append(Indenter(left=10))
+                elements.append(s_table)
+                elements.append(Indenter(left=-10))
+                elements.append(Spacer(1, 1))
+            elif key == "experience":
+                for exp in data[key]:
+                    left = f"<b>{exp.get('company', '')}</b> | {exp.get('role', '')}"
+                    right = f"<i>{exp.get('start_date', '')} - {exp.get('end_date', '')}</i>"
+                    elements.append(create_header_table(left, right))
+                    for b in exp.get("bullet_points", []):
+                        elements.append(Paragraph(f"• {b}", styles['CompResumeBullet']))
+            elif key == "projects":
+                for p in data[key]:
+                    pname = p.get("name", "")
+                    techs = ", ".join(p.get("technologies", []))
+                    github = p.get("github_link", "")
+                    right_text = ""
+                    if github:
+                        link = github if github.startswith("http") else f"https://{github}"
+                        right_text = f'<a href="{link}"><i>GitHub</i></a>'
+                    elements.append(create_header_table(f"<b>{pname}</b> | <i>{techs}</i>", right_text))
+                    for b in p.get("bullet_points", []):
+                        elements.append(Paragraph(f"• {b}", styles['CompResumeBullet']))
+            elif key == "education":
+                for edu in data[key]:
+                    left = f"<b>{edu.get('institution', '')}</b> | {edu.get('location', '')}"
+                    right = f"<i>{edu.get('start_date', '')} - {edu.get('end_date', '')}</i>"
+                    elements.append(create_header_table(left, right))
+                    deg = f"{edu.get('degree', '')}"
+                    gpa = edu.get('cgpa') or edu.get('gpa')
+                    if gpa: deg += f" | GPA: {gpa}"
+                    elements.append(Paragraph(deg, styles['CompContent']))
+                    elements.append(Spacer(1, 1))
+            elif key == "certifications":
+                elements.append(Paragraph(", ".join(data[key]), styles['CompSummary']))
 
     def add_meta(canvas, doc):
         canvas.setTitle(f"Tailored Resume - TailoredResume.ai")
@@ -673,58 +839,67 @@ async def tailor_endpoint(master_json: str = Form(...), jd: str = Form(...)):
         dict: A success payload containing the best tailored JSON data, 
             the final ATS score, and detailed performance metrics.
     """
-    # ... logic starts here ...
-    try:
-        master_data = json.loads(master_json)
-        analysis = analyze_jd(jd)
-        if not analysis: raise Exception("JD Analysis failed.")
+    async def event_generator():
+        try:
+            yield json.dumps({"step": "step-wait"}) + "\n"
+            master_data = json.loads(master_json)
+            yield json.dumps({"step": "step-load"}) + "\n"
             
-        best_data = None
-        max_attempts = 3
-        current_attempt = 1
-        feedback = None
-        final_report = {"score": 0}
+            analysis = analyze_jd(jd)
+            if not analysis: raise Exception("JD Analysis failed.")
+            yield json.dumps({"step": "step-parse"}) + "\n"
+                
+            best_data = None
+            max_attempts = 3
+            current_attempt = 1
+            feedback = None
+            final_report = {"score": 0}
 
-        while current_attempt <= max_attempts:
-            tailored_data = tailor_resume_attempt(master_data, jd, analysis, feedback)
-            if not tailored_data:
-                current_attempt += 1
-                continue
+            while current_attempt <= max_attempts:
+                yield json.dumps({"step": "step-core"}) + "\n"
+                tailored_data = tailor_resume_attempt(master_data, jd, analysis, feedback)
+                if not tailored_data:
+                    current_attempt += 1
+                    continue
+                
+                yield json.dumps({"step": "step-exp"}) + "\n"
+                report = score_resume_internal(tailored_data, analysis)
+                final_report = report
+                yield json.dumps({"step": "step-other"}) + "\n"
             
-            report = score_resume_internal(tailored_data, analysis)
-            final_report = report
-            
-            # HARD-CODED FAIL-SAFE: Enforce exact layout count
-            tailored_data['experience'] = tailored_data.get('experience', [])[:2]
-            tailored_data['projects'] = tailored_data.get('projects', [])[:3]
-            
-            for exp in tailored_data.get('experience', []):
-                exp['bullet_points'] = exp['bullet_points'][:3]
-            for proj in tailored_data.get('projects', []):
-                proj['bullet_points'] = proj['bullet_points'][:4]
+                # HARD-CODED FAIL-SAFE: Enforce exact layout count
+                tailored_data['experience'] = tailored_data.get('experience', [])[:2]
+                tailored_data['projects'] = tailored_data.get('projects', [])[:3]
+                
+                for exp in tailored_data.get('experience', []):
+                    exp['bullet_points'] = exp['bullet_points'][:3]
+                for proj in tailored_data.get('projects', []):
+                    proj['bullet_points'] = proj['bullet_points'][:4]
 
-            if report['score'] >= 95.0:
-                best_data = tailored_data
-                break
-            else:
-                feedback = ". ".join(report['feedback'])
-                if not best_data or report['score'] > final_report.get('score', 0):
+                if report['score'] >= 95.0:
                     best_data = tailored_data
-                current_attempt += 1
+                    break
+                else:
+                    feedback = ". ".join(report['feedback'])
+                    if not best_data or report['score'] > final_report.get('score', 0):
+                        best_data = tailored_data
+                    current_attempt += 1
 
-        if not best_data: raise Exception("Iterative tailoring failed.")
+            if not best_data: raise Exception("Iterative tailoring failed.")
 
-        return {
-            "success": True,
-            "data": best_data,
-            "score": final_report['score'],
-            "metrics": final_report.get('metrics', {})
-        }
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"success": False, "error": str(e)})
+            yield json.dumps({
+                "success": True,
+                "data": best_data,
+                "score": final_report['score'],
+                "metrics": final_report.get('metrics', {})
+            }) + "\n"
+        except Exception as e:
+            yield json.dumps({"success": False, "error": str(e)}) + "\n"
+
+    return StreamingResponse(event_generator(), media_type="application/x-ndjson")
 
 @app.post("/api/download")
-async def download_pdf_direct(data: dict):
+async def download_pdf_direct(data: dict, template: str = "classic"):
     """API endpoint to generate and stream a PDF resume.
 
     Args:
@@ -735,7 +910,7 @@ async def download_pdf_direct(data: dict):
     """
     try:
         buffer = io.BytesIO()
-        create_pdf(data, buffer)
+        create_pdf(data, buffer, template)
         buffer.seek(0)
         
         filename = f"Tailored_Resume_{datetime.now().strftime('%Y%m%d%H%M')}.pdf"

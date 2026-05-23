@@ -1,56 +1,79 @@
 {
   "personal_info": {
-    "name": "Your Full Name",
-    "location": "City, State",
-    "email": "email@address.com",
-    "phone": "+91 0000000000",
-    "linkedin": "linkedin.com/in/username",
-    "github": "github.com/username"
+    "name": "Alex Candidate",
+    "location": "San Francisco, CA",
+    "email": "alex.candidate@example.com",
+    "phone": "+1 555-019-8372",
+    "linkedin": "linkedin.com/in/alexcandidate",
+    "github": "github.com/alexcandidate"
   },
-  "professional_summaries": [
-    "Experienced Data Analyst specializing in Python and SQL...",
-    "Aspiring ML Engineer with a focus on NLP and Deep Learning..."
-  ],
+  "summary": "Results-driven Software Engineer with 3+ years of experience in designing scalable backend systems and developing machine learning pipelines. Adept at leveraging modern cloud infrastructure to reduce costs and improve system latency. Proven track record of spearheading high-impact projects from conception to production in fast-paced environments.",
   "skills": {
-    "languages": ["Python", "Java", "SQL"],
-    "frameworks": ["FastAPI", "React", "TensorFlow"],
-    "data_science": ["Pandas", "Scikit-learn"]
+    "Languages": ["Python", "JavaScript", "TypeScript", "SQL", "Go", "C++"],
+    "Frameworks & Libraries": ["FastAPI", "React.js", "Node.js", "TensorFlow", "PyTorch", "Pandas"],
+    "Cloud & DevOps": ["AWS (EC2, S3, Lambda)", "Docker", "Kubernetes", "CI/CD", "Git"],
+    "Databases": ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch"]
   },
   "experience": [
     {
-      "company": "Tech Corp",
-      "role": "Data Analyst Intern",
-      "start_date": "Jan 2024",
-      "end_date": "May 2024",
+      "company": "Tech Innovations Inc.",
+      "role": "Software Engineer II",
+      "start_date": "Aug 2022",
+      "end_date": "Present",
       "bullet_points": [
-        "Reduced query latency by 45% using optimized SQL indexing.",
-        "Delivered 12+ BI dashboards to executive leadership."
+        "Architected and deployed a microservices-based recommendation engine, serving over 2M daily active users with 99.9% uptime.",
+        "Optimized legacy SQL database queries, reducing average API response times by 45% and saving $1,200 monthly in compute costs.",
+        "Mentored 3 junior developers and established automated CI/CD pipelines, increasing deployment frequency by 3x."
+      ]
+    },
+    {
+      "company": "DataFlow Analytics",
+      "role": "Data Engineering Intern",
+      "start_date": "Jan 2021",
+      "end_date": "Jul 2022",
+      "bullet_points": [
+        "Built automated ETL pipelines using Python and Apache Airflow to process 500GB of daily user event data.",
+        "Developed interactive Tableau dashboards used by executive leadership, driving a 15% increase in actionable insights.",
+        "Implemented real-time data streaming with Kafka, cutting data processing latency from 4 hours to under 2 minutes."
       ]
     }
   ],
   "projects": [
     {
-      "name": "Project Name",
-      "github_link": "github.com/username/project",
-      "tech_stack": ["Python", "FastAPI"],
-      "master_narrative": "Detailed story of your project...",
-      "quantified_impact": [
-        "Saved 20 hours a week.",
-        "Increased accuracy by 30%."
-      ],
-      "core_actions": [
-        "Architected a scalable backend.",
-        "Implemented real-time monitoring."
+      "name": "AI-Powered Threat Detection",
+      "github_link": "github.com/alexcandidate/threat-detect",
+      "technologies": ["Python", "PyTorch", "AWS Sagemaker", "React"],
+      "bullet_points": [
+        "Engineered a deep learning model to identify network anomalies, achieving a 94% accuracy rate on real-time traffic.",
+        "Designed a responsive React dashboard for security analysts to monitor threats, reducing incident response time by 30%.",
+        "Scaled the inference engine using Docker and AWS Lambda to handle bursts of up to 10,000 requests per minute.",
+        "Published findings at a regional tech conference, receiving the 'Best Student Innovation' award."
+      ]
+    },
+    {
+      "name": "E-Commerce Optimization Engine",
+      "github_link": "github.com/alexcandidate/ecommerce-opt",
+      "technologies": ["Node.js", "Redis", "MongoDB", "Stripe API"],
+      "bullet_points": [
+        "Developed a custom cart abandonment recovery system, resulting in a 12% increase in monthly recovered revenue.",
+        "Integrated Stripe API for seamless international payments, expanding customer reach to 5 new countries.",
+        "Implemented Redis caching for product catalog, improving page load speeds by 60% during peak holiday traffic.",
+        "Automated inventory tracking alerts, cutting stock-out incidents by 25% over a 6-month period."
       ]
     }
   ],
   "education": [
     {
-      "institution": "University Name",
-      "degree": "B.Tech in CS",
-      "start_date": "2021",
-      "end_date": "2025",
-      "gpa": "9.0"
+      "institution": "University of California, Berkeley",
+      "degree": "B.S. in Computer Science",
+      "location": "Berkeley, CA",
+      "start_date": "Aug 2018",
+      "end_date": "May 2022",
+      "gpa": "3.8/4.0"
     }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect – Associate",
+    "Deep Learning Specialization – Coursera"
   ]
 }

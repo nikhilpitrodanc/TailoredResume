@@ -42,9 +42,9 @@
 
     <!-- Page Transition Loader -->
     <div id="page-loader">
-        <span class="material-symbols-outlined text-5xl text-indigo-600 animate-bounce mb-4">auto_awesome</span>
-        <div class="h-1 w-24 bg-indigo-100 rounded-full overflow-hidden">
-            <div class="h-full bg-indigo-600 animate-pulse rounded-full w-full"></div>
+        <div class="relative inline-block">
+            <span class="material-symbols-outlined text-6xl text-indigo-600 mb-4">document_scanner</span>
+            <div class="scanner-laser"></div>
         </div>
     </div>
 
@@ -143,9 +143,88 @@
                     </div>
                 </div>
 
-                <!-- Actions -->
+                <!-- Actions & Templates -->
                 <div class="glass-card p-6 rounded-2xl shadow-sm space-y-3">
-                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Actions</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Template Selection</h3>
+                    </div>
+                    <div class="grid grid-cols-1 gap-3 mb-4">
+                        <!-- Classic -->
+                        <div class="template-card border-2 border-primary bg-indigo-50/50 rounded-xl p-3 cursor-pointer transition-all flex items-center gap-3" onclick="selectTemplate('classic', this)">
+                            <div class="w-10 h-12 bg-white rounded border border-slate-200 shadow-sm flex flex-col items-center justify-start p-1.5 gap-1">
+                                <div class="w-4 h-1 bg-slate-800 rounded-sm"></div>
+                                <div class="w-full h-px bg-slate-300"></div>
+                                <div class="w-6 h-0.5 bg-slate-400 rounded-sm"></div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 leading-tight">Classic</h4>
+                                <p class="text-[10px] text-slate-500 mt-0.5">Standard ATS layout</p>
+                            </div>
+                        </div>
+                        <!-- Modern -->
+                        <div class="template-card hidden border border-slate-200 hover:border-indigo-300 rounded-xl p-3 cursor-pointer transition-all flex items-center gap-3" onclick="selectTemplate('modern', this)">
+                            <div class="w-10 h-12 bg-white rounded border border-slate-200 shadow-sm flex flex-col items-start justify-start p-1.5 gap-1">
+                                <div class="w-5 h-1 bg-blue-600 rounded-sm"></div>
+                                <div class="w-full h-px bg-blue-300"></div>
+                                <div class="w-4 h-0.5 bg-slate-400 rounded-sm"></div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 leading-tight">Modern</h4>
+                                <p class="text-[10px] text-slate-500 mt-0.5">Blue accent, left-aligned</p>
+                            </div>
+                        </div>
+                        <!-- Creative -->
+                        <div class="template-card hidden border border-slate-200 hover:border-indigo-300 rounded-xl p-3 cursor-pointer transition-all flex items-center gap-3" onclick="selectTemplate('creative', this)">
+                            <div class="w-10 h-12 bg-white rounded border border-slate-200 shadow-sm flex flex-col items-center justify-start p-1.5 gap-1">
+                                <div class="w-5 h-1.5 bg-purple-600 rounded-sm"></div>
+                                <div class="w-full h-px bg-purple-300"></div>
+                                <div class="w-5 h-0.5 bg-slate-400 rounded-sm"></div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 leading-tight">Creative</h4>
+                                <p class="text-[10px] text-slate-500 mt-0.5">Purple, large font</p>
+                            </div>
+                        </div>
+                        <!-- Executive -->
+                        <div class="template-card hidden border border-slate-200 hover:border-indigo-300 rounded-xl p-3 cursor-pointer transition-all flex items-center gap-3" onclick="selectTemplate('executive', this)">
+                            <div class="w-10 h-12 bg-white rounded border border-slate-200 shadow-sm flex flex-col items-center justify-start p-1.5 gap-1">
+                                <div class="w-5 h-1 bg-slate-700 rounded-sm"></div>
+                                <div class="w-full h-px bg-slate-200"></div>
+                                <div class="w-5 h-0.5 bg-slate-400 rounded-sm"></div>
+                                <div class="w-full h-px bg-slate-200"></div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 leading-tight">Executive</h4>
+                                <p class="text-[10px] text-slate-500 mt-0.5">Times Roman serif font, Navy slate</p>
+                            </div>
+                        </div>
+                        <!-- Split Column -->
+                        <div class="template-card hidden border border-slate-200 hover:border-indigo-300 rounded-xl p-3 cursor-pointer transition-all flex items-center gap-3" onclick="selectTemplate('split', this)">
+                            <div class="w-10 h-12 bg-white rounded border border-slate-200 shadow-sm flex gap-1 p-1">
+                                <div class="w-[30%] h-full bg-slate-200 rounded-sm flex flex-col gap-1 p-0.5">
+                                    <div class="w-full h-1 bg-slate-400 rounded-sm"></div>
+                                    <div class="w-full h-0.5 bg-slate-300 rounded-sm"></div>
+                                    <div class="w-full h-0.5 bg-slate-300 rounded-sm"></div>
+                                </div>
+                                <div class="w-[70%] h-full flex flex-col gap-1">
+                                    <div class="w-full h-1 bg-slate-600 rounded-sm"></div>
+                                    <div class="w-full h-0.5 bg-slate-300 rounded-sm"></div>
+                                    <div class="w-full h-0.5 bg-slate-300 rounded-sm"></div>
+                                    <div class="w-full h-0.5 bg-slate-300 rounded-sm"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800 leading-tight">Split Column</h4>
+                                <p class="text-[10px] text-slate-500 mt-0.5">Asymmetric 2-column sidebar</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openSamplesModal()" id="more-templates-btn" class="w-full bg-slate-50 border border-slate-200 text-slate-600 font-medium px-4 py-2 rounded-xl hover:bg-slate-100 transition-all flex justify-center items-center gap-2 text-sm mt-[-10px] mb-4">
+                        More Templates <span class="material-symbols-outlined text-[18px]">preview</span>
+                    </button>
+                    <input type="hidden" id="template-select" value="classic">
+
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 mt-4">Actions</h3>
                     <button onclick="downloadPDF()" class="w-full bg-primary text-white font-medium px-4 py-3 rounded-xl hover:bg-indigo-700 hover:shadow-lg transition-all active:scale-95 flex justify-center items-center gap-2">
                         <span class="material-symbols-outlined text-[20px]">download</span> Download PDF
                     </button>
@@ -158,7 +237,6 @@
                 <div id="metadata-card" class="glass-card p-6 rounded-2xl bg-indigo-50/50 border border-indigo-100/50 shadow-sm">
                     <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Tailoring Metadata</h3>
                     <div class="text-sm text-slate-600 space-y-3">
-                        <p><strong>Base Role:</strong> <span id="res-title" class="text-slate-900">...</span></p>
                         <div id="project-links-meta" class="pt-3 border-t border-indigo-100">
                             <p class="font-semibold text-slate-900 mb-2">Project Repositories:</p>
                         </div>
@@ -186,6 +264,52 @@
             </div>
         </div>
     </footer>
+
+
+
+    <!-- Template Samples Modal -->
+    <div id="samples-modal" class="fixed inset-0 z-[100] hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-8">
+        <div class="bg-white w-full max-w-6xl h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden transform transition-all">
+            <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                <h2 class="text-xl font-bold text-slate-800">Template Sample Previews</h2>
+                <button onclick="closeSamplesModal()" class="text-slate-400 hover:text-slate-600 bg-slate-200 hover:bg-slate-300 rounded-full p-1.5 transition-colors">
+                    <span class="material-symbols-outlined text-[20px] block">close</span>
+                </button>
+            </div>
+            <div class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 p-6 overflow-y-auto bg-slate-100">
+                <!-- Classic -->
+                <div class="w-full h-[600px] flex flex-col items-center">
+                    <h3 class="font-bold text-slate-700 text-sm mb-1.5">Classic Professional</h3>
+                    <iframe id="sample-classic" class="w-full flex-grow bg-white border border-slate-200 rounded-xl shadow-sm mb-2"></iframe>
+                    <button onclick="selectTemplateFromModal('classic')" class="w-full bg-slate-800 text-white text-xs font-semibold py-2 rounded-lg hover:bg-slate-700 transition-colors">Select Classic</button>
+                </div>
+                <!-- Modern -->
+                <div class="w-full h-[600px] flex flex-col items-center">
+                    <h3 class="font-bold text-blue-700 text-sm mb-1.5">Modern Minimalist</h3>
+                    <iframe id="sample-modern" class="w-full flex-grow bg-white border border-blue-200 rounded-xl shadow-sm mb-2"></iframe>
+                    <button onclick="selectTemplateFromModal('modern')" class="w-full bg-blue-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-blue-700 transition-colors">Select Modern</button>
+                </div>
+                <!-- Creative -->
+                <div class="w-full h-[600px] flex flex-col items-center">
+                    <h3 class="font-bold text-purple-700 text-sm mb-1.5">Creative Tech</h3>
+                    <iframe id="sample-creative" class="w-full flex-grow bg-white border border-purple-200 rounded-xl shadow-sm mb-2"></iframe>
+                    <button onclick="selectTemplateFromModal('creative')" class="w-full bg-purple-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-purple-700 transition-colors">Select Creative</button>
+                </div>
+                <!-- Executive -->
+                <div class="w-full h-[600px] flex flex-col items-center">
+                    <h3 class="font-bold text-slate-900 text-sm mb-1.5">Executive Serif</h3>
+                    <iframe id="sample-executive" class="w-full flex-grow bg-white border border-slate-300 rounded-xl shadow-sm mb-2"></iframe>
+                    <button onclick="selectTemplateFromModal('executive')" class="w-full bg-slate-900 text-white text-xs font-semibold py-2 rounded-lg hover:bg-slate-800 transition-colors">Select Executive</button>
+                </div>
+                <!-- Split -->
+                <div class="w-full h-[600px] flex flex-col items-center">
+                    <h3 class="font-bold text-teal-700 text-sm mb-1.5">Split Sidebar</h3>
+                    <iframe id="sample-split" class="w-full flex-grow bg-white border border-teal-200 rounded-xl shadow-sm mb-2"></iframe>
+                    <button onclick="selectTemplateFromModal('split')" class="w-full bg-teal-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-teal-700 transition-colors">Select Split</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Notifications Container -->
     <div id="notification-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
@@ -238,7 +362,6 @@
             loadPDFPreview();
             
             // Populate Metadata Sidebar
-            document.getElementById('res-title').innerText = tailoredData.data.personal_info.name.split(' ')[0] || 'Target Role';
             const linksMeta = document.getElementById('project-links-meta');
             (tailoredData.data.projects || []).forEach(p => {
                 if (p.github_link) {
@@ -313,7 +436,8 @@
             showNotify('Generating PDF... Please wait.');
 
             try {
-                const response = await fetch('/api/download', {
+                const template = document.getElementById('template-select').value;
+                const response = await fetch(`/api/download?template=${template}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(res.data)
@@ -342,7 +466,8 @@
             if (!res) return;
 
             try {
-                const response = await fetch('/api/download', {
+                const template = document.getElementById('template-select').value;
+                const response = await fetch(`/api/download?template=${template}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(res.data)
@@ -363,6 +488,79 @@
             navigator.clipboard.writeText(JSON.stringify(data, null, 2)).then(() => {
                 showNotify('JSON exported to clipboard successfully!');
             });
+        }
+
+        function selectTemplate(templateName, element) {
+            
+            // Remove active classes from all cards and hide unselected ones
+            document.querySelectorAll('.template-card').forEach(card => {
+                if (card === element || card.getAttribute('onclick').includes(`'${templateName}'`)) {
+                    card.classList.remove('hidden');
+                    card.classList.remove('border', 'border-slate-200');
+                    card.classList.add('border-2', 'border-primary', 'bg-indigo-50/50');
+                } else {
+                    card.classList.add('hidden');
+                    card.classList.remove('border-2', 'border-primary', 'bg-indigo-50/50');
+                    card.classList.add('border', 'border-slate-200');
+                }
+            });
+            
+            // Reload PDF
+            loadPDFPreview();
+        }
+
+        async function openSamplesModal() {
+            document.getElementById('samples-modal').classList.remove('hidden');
+            // Load iframes if not already loaded
+            if (!document.getElementById('sample-classic').getAttribute('src')) {
+                try {
+                    const tailoredData = JSON.parse(sessionStorage.getItem('tailored_resume'));
+                    if (!tailoredData || !tailoredData.data) {
+                        showNotify('Error: No resume data found to preview.');
+                        return;
+                    }
+                    const sampleData = tailoredData.data;
+                    
+                    const templates = ['classic', 'modern', 'creative', 'executive', 'split'];
+                    for (const t of templates) {
+                        const dlRes = await fetch(`/api/download?template=${t}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(sampleData)
+                        });
+                        if (dlRes.ok) {
+                            const blob = await dlRes.blob();
+                            const url = window.URL.createObjectURL(blob);
+                            document.getElementById(`sample-${t}`).src = url + '#toolbar=0&navpanes=0&scrollbar=0';
+                        }
+                    }
+                } catch (e) {
+                    console.error("Failed to load samples", e);
+                }
+            }
+        }
+
+        function closeSamplesModal() {
+            document.getElementById('samples-modal').classList.add('hidden');
+        }
+
+        function selectTemplateFromModal(templateName) {
+            // Find the visual card corresponding to this template to simulate a click
+            const cards = document.querySelectorAll('.template-card');
+            let targetCard = null;
+            cards.forEach(c => {
+                if(c.getAttribute('onclick').includes(`'${templateName}'`)) {
+                    targetCard = c;
+                }
+            });
+            if (targetCard) {
+                selectTemplate(templateName, targetCard);
+            } else {
+                // Fallback if card isn't found
+                document.getElementById('template-select').value = templateName;
+                loadPDFPreview();
+            }
+            closeSamplesModal();
         }
     </script>
 </body>
