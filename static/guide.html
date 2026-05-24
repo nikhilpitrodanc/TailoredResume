@@ -14,12 +14,15 @@
     <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Newsreader', 'serif']
+                    },
                     colors: { primary: "#4f46e5", secondary: "#7c3aed" }
                 }
             }
@@ -206,6 +209,7 @@
             </div>
         </div>
 
+        </div>
     </main>
 
     <!-- Footer -->

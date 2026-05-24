@@ -14,13 +14,14 @@
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
 <script>
     tailwind.config = {
         theme: {
             extend: {
                 fontFamily: {
                     sans: ['Outfit', 'sans-serif'],
+                    serif: ['Newsreader', 'serif'],
                 },
                 colors: {
                     primary: "#4f46e5",
@@ -204,15 +205,32 @@
         <div id="empty-state" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             <!-- Left Side: Call to Action -->
-            <div class="glass-card p-8 md:p-12 rounded-2xl text-left flex flex-col items-start justify-center h-full shadow-sm hover:shadow-md transition-shadow">
-                <div class="w-14 h-14 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 shadow-inner">
-                    <span class="material-symbols-outlined text-3xl">magic_button</span>
+            <div class="text-left flex flex-col items-start justify-center h-full pt-4 md:pt-10">
+                <!-- Badge -->
+                <div class="bg-slate-100 text-slate-500 font-bold text-[12px] tracking-widest px-3 py-1.5 rounded mb-8 uppercase flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span> V1.1 LIVE
                 </div>
-                <h2 class="text-3xl font-bold text-slate-900 mb-3 leading-tight">Ready to land your dream job?</h2>
-                <p class="text-slate-500 mb-8 text-base">You haven't optimized any resumes yet. Start the AI tailoring process to get a personalized ATS analysis.</p>
-                <button onclick="window.location.href='/input'" class="bg-primary text-white font-medium px-8 py-3.5 rounded-full hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[20px]">auto_fix_high</span> Tailor My First Resume
-                </button>
+                
+                <!-- Headline -->
+                <h2 class="text-[3.5rem] md:text-[4.75rem] leading-[1.05] font-serif text-slate-900 mb-6 tracking-tight">
+                    Perfectly Tailored <br>
+                    <span class="text-primary">Resumes</span> in Seconds.
+                </h2>
+                
+                <!-- Subheadline -->
+                <p class="text-slate-600 mb-10 text-lg md:text-[1.3rem] leading-relaxed max-w-[480px]">
+                    Our AI analyzes your master profile and target job description to build an ATS-optimized resume that gets you noticed.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                    <button onclick="window.location.href='/input'" class="bg-primary text-white font-medium px-10 py-4 rounded-md hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all text-lg w-full sm:w-auto">
+                        Start Tailoring Now
+                    </button>
+                    <button onclick="document.getElementById('learn-more').scrollIntoView({behavior: 'smooth'})" class="bg-transparent border border-slate-200 text-slate-700 font-medium px-10 py-4 rounded-md hover:bg-slate-50 hover:border-slate-300 active:scale-95 duration-200 transition-all text-lg w-full sm:w-auto text-center">
+                        Learn More
+                    </button>
+                </div>
             </div>
 
             <!-- Right Side: Mockup Cards -->
@@ -305,6 +323,39 @@
         </div>
 
 
+
+        <!-- Architecture Section (Learn More) -->
+        <div id="learn-more" class="mt-24 pt-16 border-t border-slate-200/50">
+            <section class="mb-12">
+                <div class="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold mb-4 tracking-wider uppercase">Architecture</div>
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">Why Choose <br><i class="text-primary font-serif">TailoredResume.ai</i>.</h2>
+                <p class="text-lg text-slate-500 max-w-2xl leading-relaxed">Our mission is to bridge the gap between human talent and digital screening algorithms through intelligent, ethical AI tailoring.</p>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-12">
+                <div class="bg-transparent group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">85%+ ATS Score</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed">Our agentic pipeline is designed specifically to meet the high scores demanded by modern Applicant Tracking Systems (ATS) while maintaining human-readable professional excellence.</p>
+                </div>
+                <div class="bg-transparent group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">Powered by Gemini</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed">We leverage Google's most capable AI models to analyze job descriptions and optimize your master resume into a laser-focused application.</p>
+                </div>
+                <div class="bg-transparent group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">Privacy First</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed">Your data is processed in-memory and never stored on our servers. We generate your resume on-the-fly and stream it directly to your device.</p>
+                </div>
+                <div class="bg-transparent group">
+                    <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">Hassle-Free PDF</h3>
+                    <p class="text-slate-500 text-sm md:text-base leading-relaxed">No more formatting nightmares. Our system builds professional, single-page PDF resumes using high-standard industry layouts automatically.</p>
+                </div>
+            </div>
+
+            <section class="mt-24 mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-8">Ready to upgrade your career?</h2>
+                <a href="/input" class="bg-primary text-white font-medium px-10 py-4 rounded-md hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 duration-200 transition-all inline-block text-lg">Start Tailoring for Free</a>
+            </section>
+        </div>
 
         <!-- How it Works Section -->
         <div class="mt-16">
