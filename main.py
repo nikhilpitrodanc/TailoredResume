@@ -19,7 +19,8 @@ import os
 import json
 import re
 import time
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
@@ -50,7 +51,9 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 api_key = os.getenv("GEMINI_API_KEY")
 if api_key:
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
+else:
+    client = genai.Client()
 
 MODELS_TO_TRY = [
     'gemini-2.0-flash',
@@ -553,8 +556,11 @@ def analyze_jd(jd_text: str) -> Optional[Dict[str, Any]]:
     """
     for model_name in MODELS_TO_TRY:
         try:
-            model = genai.GenerativeModel(model_name, generation_config={"response_mime_type": "application/json"})
-            response = model.generate_content(prompt)
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(response_mime_type="application/json")
+            )
             if not response.text:
                 print(f">>> EMPTY RESPONSE from {model_name}")
                 continue
@@ -814,8 +820,12 @@ Return ONLY this JSON object with no extra text, no markdown fences:
 """
     for model_name in MODELS_TO_TRY:
         try:
-            model = genai.GenerativeModel(model_name, generation_config={"response_mime_type": "application/json"})
-            return json.loads(model.generate_content(prompt).text)
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(response_mime_type="application/json")
+            )
+            return json.loads(response.text)
         except: continue
     return None
 
