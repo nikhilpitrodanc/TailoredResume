@@ -186,11 +186,8 @@
     <main class="flex-grow px-4 md:px-8 py-12 w-full max-w-7xl mx-auto space-y-8">
         
         <!-- Dashboard Header -->
-        <div class="flex items-center justify-between mb-2">
-            <div>
-                <h1 id="greeting-title" class="text-3xl font-bold text-slate-900 mb-1">Welcome to TailoredResume.ai</h1>
-                <p id="greeting-subtitle" class="text-slate-500">Get started by generating your first optimized resume.</p>
-            </div>
+        <div class="flex items-center justify-end mb-2">
+            <!-- Removed greeting text -->
             <div id="dashboard-actions" class="flex gap-3 hidden">
                 <button onclick="window.location.href='/editor'" class="glass-card px-5 py-2.5 rounded-full font-medium text-slate-700 flex items-center gap-2 hover:bg-white/80 transition-all">
                     <span class="material-symbols-outlined text-[20px]">edit_document</span> Edit JSON
@@ -205,7 +202,7 @@
         <div id="empty-state" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             <!-- Left Side: Call to Action -->
-            <div class="text-left flex flex-col items-start justify-center h-full pt-4 md:pt-10">
+            <div class="text-left flex flex-col items-start justify-center h-full pt-0">
                 <!-- Badge -->
                 <div class="bg-slate-100 text-slate-500 font-bold text-[12px] tracking-widest px-3 py-1.5 rounded mb-8 uppercase flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span> V1.1 LIVE

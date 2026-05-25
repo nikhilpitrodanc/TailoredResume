@@ -6,3 +6,4 @@ reportlab
 pydantic
 python-multipart
 aiofiles
+python-docx

@@ -433,7 +433,49 @@ async function loadSample() {
         }
     }
 }
-// Version 1.2.1
+
+function saveProfile() {
+    const jsonInput = document.getElementById('master_json');
+    if (!jsonInput) return;
+    
+    const jsonStr = jsonInput.value;
+    if (jsonStr.trim()) {
+        try {
+            JSON.parse(jsonStr); // Validate JSON
+            localStorage.setItem('saved_master_profile', jsonStr);
+            showNotify('Profile saved securely! 💾');
+        } catch (e) {
+            showNotify('Cannot save: Invalid JSON format.', 'error');
+        }
+    } else {
+        showNotify('Nothing to save.', 'error');
+    }
+}
+
+function resetProfile() {
+    if (confirm('Are you sure you want to clear your saved profile?')) {
+        localStorage.removeItem('saved_master_profile');
+        const jsonInput = document.getElementById('master_json');
+        if (jsonInput) {
+            jsonInput.value = '';
+            syncJsonToForm();
+        }
+        showNotify('Profile cleared. 🗑️');
+    }
+}
+
+window.addEventListener('load', () => {
+    const saved = localStorage.getItem('saved_master_profile');
+    const jsonInput = document.getElementById('master_json');
+    if (saved && jsonInput) {
+        jsonInput.value = saved;
+        try {
+            syncJsonToForm();
+        } catch(e) {}
+    }
+});
+
+// Version 1.2.2
 
 function updateLoadingStep(stepId) {
     const steps = [

@@ -261,9 +261,14 @@
                     <input type="hidden" id="template-select" value="classic">
 
                     <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 mt-4">Actions</h3>
-                    <button onclick="downloadPDF()" class="w-full bg-primary text-white font-medium px-4 py-3 rounded-xl hover:bg-indigo-700 hover:shadow-lg transition-all active:scale-95 flex justify-center items-center gap-2">
-                        <span class="material-symbols-outlined text-[20px]">download</span> Download PDF
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="downloadPDF()" class="w-full bg-primary text-white font-medium px-4 py-3 rounded-xl hover:bg-indigo-700 hover:shadow-lg transition-all active:scale-95 flex justify-center items-center gap-2 text-sm">
+                            <span class="material-symbols-outlined text-[18px]">picture_as_pdf</span> PDF
+                        </button>
+                        <button onclick="downloadDocx()" class="w-full bg-blue-600 text-white font-medium px-4 py-3 rounded-xl hover:bg-blue-700 hover:shadow-lg transition-all active:scale-95 flex justify-center items-center gap-2 text-sm">
+                            <span class="material-symbols-outlined text-[18px]">description</span> Word
+                        </button>
+                    </div>
                     <button onclick="copyJSON()" class="w-full bg-white border border-slate-200 text-slate-700 font-medium px-4 py-3 rounded-xl hover:bg-slate-50 transition-all active:scale-95 flex justify-center items-center gap-2">
                         <span class="material-symbols-outlined text-[20px]">content_copy</span> Copy JSON
                     </button>
@@ -494,6 +499,37 @@
                     window.URL.revokeObjectURL(url);
                 } else {
                     showNotify('PDF generation failed.', 'error');
+                }
+            } catch (err) {
+                console.error(err);
+                showNotify('Technical error during download.', 'error');
+            }
+        }
+
+        async function downloadDocx() {
+            const res = JSON.parse(sessionStorage.getItem('tailored_resume'));
+            if (!res) return;
+
+            showNotify('Generating Word Document... Please wait.');
+
+            try {
+                const response = await fetch(`/api/download_docx`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(res.data)
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `Tailored_Resume_${new Date().getTime()}.docx`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    showNotify('Word generation failed.', 'error');
                 }
             } catch (err) {
                 console.error(err);

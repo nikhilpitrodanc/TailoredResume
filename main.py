@@ -33,6 +33,10 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable,
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.colors import Color
 
+from docx import Document
+from docx.shared import Pt, Inches
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+
 load_dotenv()
 
 app = FastAPI(
@@ -850,7 +854,7 @@ async def tailor_endpoint(master_json: str = Form(...), jd: str = Form(...)):
             yield json.dumps({"step": "step-parse"}) + "\n"
                 
             best_data = None
-            max_attempts = 3
+            max_attempts = 1
             current_attempt = 1
             feedback = None
             final_report = {"score": 0}
@@ -917,6 +921,148 @@ async def download_pdf_direct(data: dict, template: str = "classic"):
         return StreamingResponse(
             buffer, 
             media_type="application/pdf",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+def create_docx(data: dict, output_buffer):
+    """Generates a DOCX resume from structured JSON data."""
+    doc = Document()
+    
+    # Margins
+    for section in doc.sections:
+        section.top_margin = Inches(0.6)
+        section.bottom_margin = Inches(0.6)
+        section.left_margin = Inches(0.6)
+        section.right_margin = Inches(0.6)
+
+    p_info = data.get("personal_info", {})
+    title = doc.add_paragraph()
+    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = title.add_run(p_info.get("name", "Name"))
+    run.bold = True
+    run.font.size = Pt(22)
+
+    contact_parts = []
+    if p_info.get("email"): contact_parts.append(p_info["email"])
+    if p_info.get("phone"): contact_parts.append(p_info["phone"])
+    if p_info.get("location"): contact_parts.append(p_info["location"])
+    if p_info.get("linkedin"): contact_parts.append(p_info["linkedin"])
+    if p_info.get("github"): contact_parts.append(p_info["github"])
+    
+    if contact_parts:
+        contact_p = doc.add_paragraph()
+        contact_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        contact_run = contact_p.add_run(" | ".join(contact_parts))
+        contact_run.font.size = Pt(10)
+
+    def add_header(text):
+        doc.add_paragraph()
+        p = doc.add_paragraph()
+        run = p.add_run(text.upper())
+        run.bold = True
+        run.font.size = Pt(12)
+        p.paragraph_format.space_after = Pt(4)
+
+    if data.get("summary"):
+        add_header("Professional Summary")
+        p = doc.add_paragraph(data["summary"])
+        p.style.font.size = Pt(10)
+
+    if data.get("skills"):
+        add_header("Technical Skills")
+        skills = data["skills"]
+        skills_p = doc.add_paragraph()
+        skills_p.style.font.size = Pt(10)
+        if isinstance(skills, dict):
+            for k, v in skills.items():
+                if v:
+                    r = skills_p.add_run(f"{k.replace('_', ' ').title()}: ")
+                    r.bold = True
+                    r.font.size = Pt(10)
+                    r2 = skills_p.add_run(", ".join(v) + "\n")
+                    r2.font.size = Pt(10)
+        elif isinstance(skills, list):
+            r = skills_p.add_run(", ".join(skills))
+            r.font.size = Pt(10)
+
+    if data.get("experience"):
+        add_header("Experience")
+        for exp in data["experience"]:
+            p = doc.add_paragraph()
+            p.paragraph_format.space_after = Pt(2)
+            r1 = p.add_run(exp.get("company", ""))
+            r1.bold = True
+            r1.font.size = Pt(11)
+            
+            r2 = p.add_run(f" | {exp.get('role', '')}")
+            r2.italic = True
+            r2.font.size = Pt(11)
+            
+            date_str = ""
+            if exp.get("start_date") and exp.get("end_date"):
+                date_str = f"{exp['start_date']} - {exp['end_date']}"
+            if date_str:
+                r3 = p.add_run(f"  [{date_str}]")
+                r3.font.size = Pt(10)
+            
+            for bullet in exp.get("bullet_points", []):
+                bp = doc.add_paragraph(bullet, style='List Bullet')
+                bp.paragraph_format.space_after = Pt(2)
+                for run in bp.runs:
+                    run.font.size = Pt(10)
+
+    if data.get("projects"):
+        add_header("Projects")
+        for proj in data["projects"]:
+            p = doc.add_paragraph()
+            p.paragraph_format.space_after = Pt(2)
+            r1 = p.add_run(proj.get("name", ""))
+            r1.bold = True
+            r1.font.size = Pt(11)
+            
+            if proj.get("tech_stack"):
+                r2 = p.add_run(f" | {', '.join(proj['tech_stack'])}")
+                r2.italic = True
+                r2.font.size = Pt(11)
+            
+            for bullet in proj.get("bullet_points", []):
+                bp = doc.add_paragraph(bullet, style='List Bullet')
+                bp.paragraph_format.space_after = Pt(2)
+                for run in bp.runs:
+                    run.font.size = Pt(10)
+
+    if data.get("education"):
+        add_header("Education")
+        for edu in data["education"]:
+            p = doc.add_paragraph()
+            p.paragraph_format.space_after = Pt(2)
+            r1 = p.add_run(edu.get("institution", ""))
+            r1.bold = True
+            r1.font.size = Pt(11)
+            
+            r2 = p.add_run(f" | {edu.get('degree', '')}")
+            r2.font.size = Pt(11)
+            
+            if edu.get("end_date"):
+                r3 = p.add_run(f" ({edu.get('end_date')})")
+                r3.font.size = Pt(11)
+
+    doc.save(output_buffer)
+
+@app.post("/api/download_docx")
+async def download_docx_direct(data: dict):
+    """API endpoint to generate and stream a DOCX resume."""
+    try:
+        buffer = io.BytesIO()
+        create_docx(data, buffer)
+        buffer.seek(0)
+        
+        filename = f"Tailored_Resume_{datetime.now().strftime('%Y%m%d%H%M')}.docx"
+        return StreamingResponse(
+            buffer, 
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             headers={"Content-Disposition": f"attachment; filename={filename}"}
         )
     except Exception as e:

@@ -298,7 +298,11 @@
                     <div class="input-group">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <label style="margin-bottom: 0;">Master Resume (JSON Format)</label>
-                            <button type="button" class="btn btn-secondary" onclick="loadSample()" style="padding: 6px 15px; font-size: 0.8rem; border-radius: 6px;">Load Sample Data 📋</button>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button type="button" class="btn btn-secondary" onclick="saveProfile()" style="padding: 6px 15px; font-size: 0.8rem; border-radius: 6px;">Save 💾</button>
+                                <button type="button" class="btn btn-secondary" onclick="resetProfile()" style="padding: 6px 15px; font-size: 0.8rem; border-radius: 6px; color: #ef4444; border-color: #fca5a5;">Reset 🗑️</button>
+                                <button type="button" class="btn btn-secondary" onclick="loadSample()" style="padding: 6px 15px; font-size: 0.8rem; border-radius: 6px;">Sample 📋</button>
+                            </div>
                         </div>
                         <textarea id="master_json" required placeholder="Master Resume JSON" rows="18"></textarea>
                     </div>

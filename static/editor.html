@@ -172,7 +172,8 @@
             </div>
             <div style="display: flex; gap: 1rem;">
                 <button onclick="updatePreview()" class="btn btn-secondary">Refresh Preview</button>
-                <button onclick="downloadPDF()" class="btn btn-primary">Download PDF</button>
+                <button onclick="downloadPDF()" class="btn btn-primary" style="margin-right: 0.5rem;">Download PDF</button>
+                <button onclick="downloadDocx()" class="btn btn-secondary">Download Word</button>
             </div>
         </div>
 
@@ -261,6 +262,35 @@
                     a.click();
                     window.URL.revokeObjectURL(url);
                     showNotify("PDF downloaded successfully!");
+                } else {
+                    showNotify("Download failed.", "error");
+                }
+            } catch (e) {
+                showNotify("Cannot download: Invalid JSON format.", "error");
+            }
+        }
+
+        async function downloadDocx() {
+            try {
+                const data = JSON.parse(jsonInput.value);
+                showNotify("Generating Word Document...");
+                
+                const response = await fetch('/api/download_docx', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `Resume_Edit_${new Date().getTime()}.docx`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    showNotify("Word Document downloaded successfully!");
                 } else {
                     showNotify("Download failed.", "error");
                 }
