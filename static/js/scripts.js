@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('master_json', masterJsonRaw);
             formData.append('jd', jd);
 
+            let isSuccess = false;
             try {
                 const response = await fetch('/api/tailor', {
                     method: 'POST',
@@ -118,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 sessionStorage.setItem('tailored_resume', JSON.stringify(result));
                                 sessionStorage.setItem('ats_score', result.score);
                                 sessionStorage.setItem('ats_metrics', JSON.stringify(result.metrics || {}));
+                                isSuccess = true;
                                 window.location.href = '/result';
                             } else {
                                 showNotify('Tailoring failed: ' + result.error, 'error');
@@ -129,8 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Submission failed:', error);
                 showNotify('Technical error: ' + error.message, 'error');
             } finally {
-                loading.style.display = 'none';
-                submitBtn.disabled = false;
+                if (!isSuccess) {
+                    loading.style.display = 'none';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
             }
         });
     }
