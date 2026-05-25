@@ -56,7 +56,11 @@ else:
     client = genai.Client()
 
 MODELS_TO_TRY = [
+    'gemini-2.5-flash',
     'gemini-2.0-flash',
+    'gemini-2.0-flash-lite-preview-02-05',
+    'gemini-1.5-flash-002',
+    'gemini-1.5-pro-002',
     'gemini-1.5-flash',
     'gemini-1.5-pro'
 ]
@@ -566,7 +570,10 @@ def analyze_jd(jd_text: str) -> Optional[Dict[str, Any]]:
                 continue
             return json.loads(response.text)
         except Exception as e:
-            print(f">>> Gemini Error with {model_name}: {e}")
+            error_str = str(e)
+            print(f">>> Gemini Error with {model_name}: {error_str}")
+            if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
+                raise Exception("API Rate Limit Exceeded. Please wait 1 minute and try again.")
             continue
     return None
 
@@ -826,7 +833,11 @@ Return ONLY this JSON object with no extra text, no markdown fences:
                 config=types.GenerateContentConfig(response_mime_type="application/json")
             )
             return json.loads(response.text)
-        except: continue
+        except Exception as e:
+            error_str = str(e)
+            if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
+                raise Exception("API Rate Limit Exceeded. Please wait 1 minute and try again.")
+            continue
     return None
 
 @app.post("/api/tailor")
