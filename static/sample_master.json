@@ -1,79 +1,196 @@
 {
   "personal_info": {
-    "name": "Alex Candidate",
-    "location": "San Francisco, CA",
-    "email": "alex.candidate@example.com",
-    "phone": "+1 555-019-8372",
-    "linkedin": "linkedin.com/in/alexcandidate",
-    "github": "github.com/alexcandidate"
+    "name": "Nikhil Bharatbhai Pitroda",
+    "location": "Vaghodia, Gujarat, India",
+    "email": "nikhilpitrodanc@gmail.com",
+    "phone": "+91-7304997021",
+    "linkedin": "linkedin.com/in/nikhilpitrodanc",
+    "github": "github.com/nikhilpitrodanc"
   },
-  "summary": "Results-driven Software Engineer with 3+ years of experience in designing scalable backend systems and developing machine learning pipelines. Adept at leveraging modern cloud infrastructure to reduce costs and improve system latency. Proven track record of spearheading high-impact projects from conception to production in fast-paced environments.",
+  "professional_summaries": [
+    "AI Engineer and Full-Stack Developer with hands-on experience building LLM-integrated applications, scalable FastAPI backends, and production-ready AI systems. Skilled in machine learning, NLP, cloud deployment, and full-stack product engineering using React, Python, and modern AI tooling. Experienced in developing agentic AI workflows, optimizing ML inference pipelines, and architecting responsive applications for real-world use cases.",
+    "Results-driven AI Engineer specializing in agentic pipeline design, NLP-powered applications, and cloud-deployed ML systems. Proficient in integrating large language models via OpenAI and Google Gemini APIs, building modular FastAPI backends, and delivering responsive React frontends. Passionate about solving real-world problems through end-to-end AI product engineering."
+  ],
   "skills": {
-    "Languages": ["Python", "JavaScript", "TypeScript", "SQL", "Go", "C++"],
-    "Frameworks & Libraries": ["FastAPI", "React.js", "Node.js", "TensorFlow", "PyTorch", "Pandas"],
-    "Cloud & DevOps": ["AWS (EC2, S3, Lambda)", "Docker", "Kubernetes", "CI/CD", "Git"],
-    "Databases": ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch"]
+    "programming_languages": [
+      "Python",
+      "JavaScript (ES6+)",
+      "Java",
+      "C",
+      "SQL"
+    ],
+    "frameworks_libraries": [
+      "FastAPI",
+      "React (TypeScript)",
+      "Node.js",
+      "TensorFlow",
+      "PyTorch",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+      "TailwindCSS"
+    ],
+    "ai_specializations": [
+      "NLP",
+      "LLM Integration",
+      "Prompt Engineering",
+      "Agentic AI Workflows",
+      "Computer Vision",
+      "Neural Networks",
+      "Feature Engineering",
+      "Supervised Learning",
+      "Google Gemini API",
+      "OpenAI API"
+    ],
+    "cloud_devops": [
+      "AWS EC2",
+      "AWS S3",
+      "IAM",
+      "VPC",
+      "Firebase",
+      "Vercel",
+      "Git",
+      "GitHub",
+      "Postman"
+    ],
+    "core_strengths": [
+      "Agentic AI Pipeline Design",
+      "ML Inference Optimization",
+      "Full-Stack AI Development",
+      "REST API Architecture"
+    ]
   },
+  "education": [
+    {
+      "institution": "Parul University",
+      "location": "Vadodara, Gujarat, India",
+      "degree": "B.Tech in Computer Science Engineering - Artificial Intelligence",
+      "start_date": "Aug 2023",
+      "end_date": "May 2027",
+      "gpa": "7.78"
+    }
+  ],
+  "certifications": [
+    "Google – Generative AI Fundamentals",
+    "Machine Learning Specialization – Coursera (In Progress)",
+    "AWS Cloud Services Lab – AWS Academy"
+  ],
   "experience": [
     {
-      "company": "Tech Innovations Inc.",
-      "role": "Software Engineer II",
-      "start_date": "Aug 2022",
-      "end_date": "Present",
+      "company": "Remote – Mumbai-based Agency",
+      "role": "Freelance Video Editor & Graphic Designer",
+      "start_date": "2023",
+      "end_date": "2024",
       "bullet_points": [
-        "Architected and deployed a microservices-based recommendation engine, serving over 2M daily active users with 99.9% uptime.",
-        "Optimized legacy SQL database queries, reducing average API response times by 45% and saving $1,200 monthly in compute costs.",
-        "Mentored 3 junior developers and established automated CI/CD pipelines, increasing deployment frequency by 3x."
+        "Delivered 30+ creative assets across multiple client engagements while managing concurrent project timelines with zero missed deadlines.",
+        "Optimized content production workflows by standardizing editing and design tool selection, reducing average delivery time by approximately 20%."
       ]
     },
     {
-      "company": "DataFlow Analytics",
-      "role": "Data Engineering Intern",
-      "start_date": "Jan 2021",
-      "end_date": "Jul 2022",
+      "company": "SCOPE, Parul University",
+      "role": "Content Editor – Video & Graphic Design",
+      "start_date": "Jan 2024",
+      "end_date": "Mar 2024",
       "bullet_points": [
-        "Built automated ETL pipelines using Python and Apache Airflow to process 500GB of daily user event data.",
-        "Developed interactive Tableau dashboards used by executive leadership, driving a 15% increase in actionable insights.",
-        "Implemented real-time data streaming with Kafka, cutting data processing latency from 4 hours to under 2 minutes."
+        "Produced video assets and promotional creatives for university campaigns across multiple departments under strict deadlines.",
+        "Managed end-to-end post-production workflows and ensured 100% on-time delivery for banners, posters, and digital media assets."
       ]
     }
   ],
   "projects": [
     {
-      "name": "AI-Powered Threat Detection",
-      "github_link": "github.com/alexcandidate/threat-detect",
-      "technologies": ["Python", "PyTorch", "AWS Sagemaker", "React"],
-      "bullet_points": [
-        "Engineered a deep learning model to identify network anomalies, achieving a 94% accuracy rate on real-time traffic.",
-        "Designed a responsive React dashboard for security analysts to monitor threats, reducing incident response time by 30%.",
-        "Scaled the inference engine using Docker and AWS Lambda to handle bursts of up to 10,000 requests per minute.",
-        "Published findings at a regional tech conference, receiving the 'Best Student Innovation' award."
+      "name": "TailoredResume.ai",
+      "github_link": "https://github.com/nikhilpitrodanc",
+      "tech_stack": [
+        "Python",
+        "FastAPI",
+        "React",
+        "OpenAI API",
+        "NLP"
+      ],
+      "master_narrative": "Engineered an AI-powered resume tailoring platform that automates ATS-optimized resume generation by matching candidate profiles against job descriptions using advanced NLP. The system features a scalable FastAPI backend, real-time semantic analysis, and a responsive React dashboard to streamline the entire job application workflow end-to-end.",
+      "quantified_impact": [
+        "Reduced manual resume customization time by 80% by engineering scalable FastAPI backend APIs to process and transform document uploads.",
+        "Improved ATS compatibility scores by 60% by applying advanced NLP techniques via OpenAI API for intelligent keyword matching and optimization.",
+        "Achieved 95% accuracy in matching candidate profiles with technical job requirements through semantic analysis workflows.",
+        "Improved navigation speed and interaction efficiency by 40% by building responsive React dashboards with optimized UX flows."
+      ],
+      "core_actions": [
+        "Engineered scalable FastAPI backend APIs to handle document uploads, parsing, and AI-driven resume transformation workflows.",
+        "Applied advanced NLP techniques using OpenAI API for keyword extraction, semantic matching, and ATS compatibility optimization.",
+        "Implemented semantic analysis workflows achieving 95% accuracy in aligning candidate profiles with job description requirements.",
+        "Built responsive React dashboards improving navigation speed and interaction efficiency for an end-to-end user experience."
       ]
     },
     {
-      "name": "E-Commerce Optimization Engine",
-      "github_link": "github.com/alexcandidate/ecommerce-opt",
-      "technologies": ["Node.js", "Redis", "MongoDB", "Stripe API"],
-      "bullet_points": [
-        "Developed a custom cart abandonment recovery system, resulting in a 12% increase in monthly recovered revenue.",
-        "Integrated Stripe API for seamless international payments, expanding customer reach to 5 new countries.",
-        "Implemented Redis caching for product catalog, improving page load speeds by 60% during peak holiday traffic.",
-        "Automated inventory tracking alerts, cutting stock-out incidents by 25% over a 6-month period."
+      "name": "VisionAssist – AI for Dementia Care",
+      "github_link": "https://github.com/nikhilpitrodanc/Ai-for-dementia-care",
+      "tech_stack": [
+        "Python",
+        "FastAPI",
+        "Google Gemini API",
+        "React (TypeScript)",
+        "Scikit-learn",
+        "TensorFlow"
+      ],
+      "master_narrative": "Developed an end-to-end agentic AI healthcare platform integrating Google Gemini API with structured prompt workflows to assist dementia patients and caregivers. The system features a Random Forest classifier for early cognitive decline detection, a TensorFlow-powered computer vision module for real-time face and object recognition, and a role-based React TypeScript frontend with critical patient safety features including SOS alerts and medication reminders.",
+      "quantified_impact": [
+        "Achieved 75–80% accuracy for early cognitive decline detection by training and deploying a Scikit-learn Random Forest classifier on a 10,000+ record dataset.",
+        "Improved TensorFlow computer vision recognition speed by 38% and reduced inference latency by 50% through optimized pipeline engineering.",
+        "Delivered a fully agentic AI pipeline by integrating Google Gemini API with structured prompt workflows and confidence-based response processing.",
+        "Architected FastAPI backend services with modular REST APIs supporting authentication, AI inference, reminders, and patient activity management.",
+        "Engineered a React TypeScript frontend with role-based routing and patient-safety features including SOS alerts and medication reminders."
+      ],
+      "core_actions": [
+        "Developed an end-to-end agentic AI pipeline integrating Google Gemini API with structured prompt workflows and confidence-based response processing.",
+        "Trained and deployed a Scikit-learn Random Forest classifier on a 10,000+ record dataset for early cognitive decline detection.",
+        "Optimized TensorFlow computer vision inference pipelines, improving recognition speed by 38% and reducing latency by 50%.",
+        "Architected modular FastAPI backend REST APIs supporting authentication, AI inference, reminders, and patient activity management.",
+        "Engineered a React TypeScript frontend with role-based routing, SOS alerts, and medication reminder patient-safety features."
+      ]
+    },
+    {
+      "name": "Cosmo Storage",
+      "github_link": "https://github.com/nikhilpitrodanc/cosmo-storage",
+      "tech_stack": [
+        "React",
+        "TailwindCSS",
+        "Firebase",
+        "JavaScript"
+      ],
+      "master_narrative": "Designed and deployed a production-ready cloud storage web application featuring a responsive, animated UI hosted on Vercel. Integrated Firebase for authentication and real-time file synchronization, with a mobile-first layout and a custom animation system to deliver a polished, high-usability cross-device experience.",
+      "quantified_impact": [
+        "Deployed a production-ready cloud storage interface on Vercel with reusable animated UI components and a responsive mobile-first architecture.",
+        "Enabled real-time file synchronization and secure user authentication by deeply integrating Firebase authentication and storage systems.",
+        "Improved cross-device usability and perceived performance by developing custom animation systems and optimizing the responsive frontend architecture."
+      ],
+      "core_actions": [
+        "Designed and deployed a production-ready cloud storage interface using React with reusable animated UI components hosted on Vercel.",
+        "Integrated Firebase authentication and storage systems with responsive mobile-first layouts and real-time file synchronization.",
+        "Developed custom animation systems and optimized responsive frontend architecture for improved cross-device usability."
+      ]
+    },
+    {
+      "name": "AWS Cloud Services Lab",
+      "github_link": "https://github.com/nikhilpitrodanc",
+      "tech_stack": [
+        "AWS EC2",
+        "AWS S3",
+        "IAM",
+        "VPC",
+        "Security Groups"
+      ],
+      "master_narrative": "Provisioned and configured a complete AWS infrastructure lab simulating real-world production deployment environments. The project covers EC2 instance lifecycle management, secure S3 storage with least-privilege IAM policies, and full VPC networking architecture design including route tables, internet gateways, and subnet configurations.",
+      "quantified_impact": [
+        "Simulated production deployment environments by provisioning AWS EC2 infrastructure with SSH access, Elastic IPs, and security groups.",
+        "Enforced cloud security best practices by configuring secure S3 storage systems and least-privilege IAM policies across multiple access management scenarios.",
+        "Designed complete VPC networking architectures including route tables, internet gateways, and subnet configurations for scalable, isolated cloud infrastructure."
+      ],
+      "core_actions": [
+        "Provisioned AWS EC2 infrastructure with SSH access, Elastic IPs, and security groups to simulate production deployment environments.",
+        "Configured secure S3 storage systems and least-privilege IAM policies across multiple cloud access management scenarios.",
+        "Designed complete VPC networking architectures including route tables, internet gateways, and subnet configurations."
       ]
     }
-  ],
-  "education": [
-    {
-      "institution": "University of California, Berkeley",
-      "degree": "B.S. in Computer Science",
-      "location": "Berkeley, CA",
-      "start_date": "Aug 2018",
-      "end_date": "May 2022",
-      "gpa": "3.8/4.0"
-    }
-  ],
-  "certifications": [
-    "AWS Certified Solutions Architect – Associate",
-    "Deep Learning Specialization – Coursera"
   ]
 }

@@ -1,372 +1,195 @@
 {
   "personal_info": {
-    "name": "Krish Chaudhary",
-    "location": "Vadodara, Gujarat",
-    "email": "krishchaudhary144@gmail.com",
-    "phone": "+91 6353530662",
-    "linkedin": "linkedin.com/in/krish-chaudhary-krc8252/",
-    "github": "github.com/krish1440",
-    "portfolio": "portfolio-krish-chaudhary.vercel.app",
-    "kaggle": "kaggle.com/krishchaudhary14"
+    "name": "Nikhil Bharatbhai Pitroda",
+    "location": "Vaghodia, Gujarat, India",
+    "email": "nikhilpitrodanc@gmail.com",
+    "phone": "+91-7304997021",
+    "linkedin": "linkedin.com/in/nikhilpitrodanc",
+    "github": "github.com/nikhilpitrodanc"
   },
   "professional_summaries": [
-    "Computer Science undergraduate specializing in Agentic AI, MLOps, and Business Intelligence. Proficient in architecting state-machine workflows with LangGraph, deploying scalable AI services via FastAPI/Docker, and optimizing LLMs through fine-tuning and quantization. Proven track record in converting complex data into strategic insights that drive revenue and operational efficiency.",
-    "Driven AI Engineer and Data Analyst with expertise in Generative AI, RAG-based systems, and MLOps. Skilled in building autonomous agentic pipelines, conducting deep statistical audits, and deploying production-grade ML models. Focused on leveraging cutting-edge technology like MCP and Transformers to solve high-impact business problems."
+    "AI Engineer and Full-Stack Developer with hands-on experience building LLM-integrated applications, scalable FastAPI backends, and production-ready AI systems. Skilled in machine learning, NLP, cloud deployment, and full-stack product engineering using React, Python, and modern AI tooling. Experienced in developing agentic AI workflows, optimizing ML inference pipelines, and architecting responsive applications for real-world use cases.",
+    "Results-driven AI Engineer specializing in agentic pipeline design, NLP-powered applications, and cloud-deployed ML systems. Proficient in integrating large language models via OpenAI and Google Gemini APIs, building modular FastAPI backends, and delivering responsive React frontends. Passionate about solving real-world problems through end-to-end AI product engineering."
   ],
   "skills": {
     "programming_languages": [
       "Python",
+      "JavaScript (ES6+)",
       "Java",
-      "C/C++",
-      "JavaScript",
+      "C",
       "SQL"
     ],
-    "data_science_ml": [
-      "Statistical Modeling",
-      "Hypothesis Testing",
-      "EDA",
-      "Feature Engineering",
-      "Time-Series Forecasting",
-      "Scikit-learn",
-      "XGBoost",
-      "LightGBM",
-      "CatBoost"
-    ],
-    "ai_specializations": [
-      "Generative AI",
-      "Large Language Models (LLMs)",
-      "LangChain",
-      "LangGraph",
-      "Agentic AI Pipelines",
-      "MCP (Model Context Protocol)",
-      "RAG-based systems",
-      "Prompt Engineering",
-      "Semantic Search"
-    ],
-    "deep_learning_cv": [
+    "frameworks_libraries": [
+      "FastAPI",
+      "React (TypeScript)",
+      "Node.js",
       "TensorFlow",
       "PyTorch",
-      "Transformers (Hugging Face)",
-      "Fine-tuning (PEFT/LoRA/QLoRA)",
-      "LLM Quantization",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+      "TailwindCSS"
+    ],
+    "ai_specializations": [
+      "NLP",
+      "LLM Integration",
+      "Prompt Engineering",
+      "Agentic AI Workflows",
       "Computer Vision",
-      "OpenCV"
+      "Neural Networks",
+      "Feature Engineering",
+      "Supervised Learning",
+      "Google Gemini API",
+      "OpenAI API"
     ],
-    "data_visualization_bi": [
-      "Matplotlib",
-      "Seaborn",
-      "Plotly",
-      "Power BI",
-      "Tableau",
-      "Looker Studio",
-      "Streamlit"
-    ],
-    "model_deployment_mlops": [
-      "FastAPI",
-      "Flask",
-      "Docker",
-      "Kubernetes",
-      "MLflow",
-      "Weights & Biases (W&B)",
-      "DVC",
-      "CI/CD (GitHub Actions)",
-      "Model Monitoring",
-      "Cloud Deployment (AWS/GCP/Vercel)",
-      "Git/GitHub",
-      "RESTful APIs"
-    ],
-    "development_tools": [
-      "Jupyter Notebook",
-      "VS Code",
-      "Postman",
-      "PySpark",
-      "Anaconda"
-    ],
-    "Vector Databases": [
-      "Pinecone",
-      "ChromaDB",
-      "Milvus",
-      "FAISS"
+    "cloud_devops": [
+      "AWS EC2",
+      "AWS S3",
+      "IAM",
+      "VPC",
+      "Firebase",
+      "Vercel",
+      "Git",
+      "GitHub",
+      "Postman"
     ],
     "core_strengths": [
-      "Agentic Workflow Design",
-      "Data Pipeline Engineering",
-      "Full-stack AI Development",
-      "Business Intelligence"
+      "Agentic AI Pipeline Design",
+      "ML Inference Optimization",
+      "Full-Stack AI Development",
+      "REST API Architecture"
     ]
   },
   "education": [
     {
       "institution": "Parul University",
-      "location": "Vadodara, Gujarat",
-      "degree": "BTech Computer Science Engineering - Artificial Intelligence",
-      "start_date": "June 2023",
-      "end_date": "2027",
-      "gpa": "8.05"
+      "location": "Vadodara, Gujarat, India",
+      "degree": "B.Tech in Computer Science Engineering - Artificial Intelligence",
+      "start_date": "Aug 2023",
+      "end_date": "May 2027",
+      "gpa": "7.78"
     }
   ],
   "certifications": [
-    "IBM Data Analyst (Coursera)",
-    "Multidimensional Data Modeling (Infosys)",
-    "Accenture Job Simulation (Forage)",
-    "Generative AI for Business (IIM Mumbai)"
+    "Google – Generative AI Fundamentals",
+    "Machine Learning Specialization – Coursera (In Progress)",
+    "AWS Cloud Services Lab – AWS Academy"
   ],
   "experience": [
     {
-      "company": "Abhay Engineering",
-      "role": "Business Analyst",
-      "start_date": "April 2025",
-      "end_date": "May 2025",
+      "company": "Remote – Mumbai-based Agency",
+      "role": "Freelance Video Editor & Graphic Designer",
+      "start_date": "2023",
+      "end_date": "2024",
       "bullet_points": [
-        "Analyzed 6+ months of historical sales and credit records to identify an 18% discrepancy rate caused by inconsistent manual data entry across multiple legacy spreadsheets.",
-        "Conducted field interviews and process walkthroughs with 5+ key personnel to map out the 'order-to-delivery' lifecycle, identifying 3 major bottlenecks in manual inventory tracking.",
-        "Transformed manual billing requirements into a structured technical roadmap for an automated BI platform, ensuring the system addressed 100% of the core operational gaps."
+        "Delivered 30+ creative assets across multiple client engagements while managing concurrent project timelines with zero missed deadlines.",
+        "Optimized content production workflows by standardizing editing and design tool selection, reducing average delivery time by approximately 20%."
       ]
     },
     {
-      "company": "iNeuron",
-      "role": "Data Analyst",
-      "start_date": "June 2024",
-      "end_date": "July 2024",
+      "company": "SCOPE, Parul University",
+      "role": "Content Editor – Video & Graphic Design",
+      "start_date": "Jan 2024",
+      "end_date": "Mar 2024",
       "bullet_points": [
-        "Executed granular statistical audits across 15+ major crop variants including Sugarcane and Wheat, identifying localized production strengths and soil-specific yield variations.",
-        "Devised a multi-stage data validation framework for multi-unit standardization (Hectares/Tonnes), reducing total dataset preprocessing time by ~60% through Python automation.",
-        "Authored 10+ pages of high-level and low-level technical documentation (HLD/LLD), detailing the architectural design and statistical methodologies used for agricultural analysis."
+        "Produced video assets and promotional creatives for university campaigns across multiple departments under strict deadlines.",
+        "Managed end-to-end post-production workflows and ensured 100% on-time delivery for banners, posters, and digital media assets."
       ]
     }
   ],
   "projects": [
     {
-      "name": "Email Automator & AI Sales Agent",
-      "github_link": "https://github.com/krish1440/LangGraph-Email-Automator",
+      "name": "TailoredResume.ai",
+      "github_link": "https://github.com/nikhilpitrodanc",
       "tech_stack": [
         "Python",
-        "LangGraph",
-        "Google Workspace APIs",
-        "OAuth 2.0",
-        "Agentic AI Pipelines",
-        "GitHub Actions",
-        "State Machine Architecture"
-      ],
-      "master_narrative": "Constructed an advanced, dual-purpose agentic email automation engine powered by LangGraph and Google Gemini 2.5 Flash, designed to act as a 24/7 intelligent responder for both a personal AI/ML portfolio and a live B2B engineering business (Abhay Engineering). The system leverages a state-machine architecture with conditional LLM-based routing to deliver contextually accurate, knowledge-grounded replies autonomously, using a serverless GitHub Actions deployment pipeline.",
-      "quantified_impact": [
-        "Eliminated 100% of manual email triage effort by deploying a fully autonomous LangGraph state-machine that classifies, routes, and responds to inbound inquiries without human intervention.",
-        "Achieved zero-cost 24/7 operation by provisioning a serverless GitHub Actions cron pipeline that triggers the full AI workflow every 15 minutes across both live production domains.",
-        "Reduced average lead response time from hours to under 15 minutes by automating contextual B2B sales reply generation with professional office CC-routing logic.",
-        "Maintained 100% reply accuracy across 2 distinct knowledge domains by constructing separate Markdown-based knowledge bases for precise product, pricing, and project-level retrieval.",
-        "Scaled the system to handle dual-site inquiry volumes simultaneously by architecting a modular, node-based LangGraph pipeline with isolated processing stages per domain."
-      ],
-      "core_actions": [
-        "Constructed a stateful agentic pipeline using LangGraph's StateGraph, defining modular nodes for email fetching, LLM-based intent parsing, knowledge retrieval, reply generation, and Gmail dispatch.",
-        "Formulated a dual-persona AI routing system with conditional edges that distinguish between B2B sales inquiries and personal portfolio outreach, applying domain-specific response policies to each.",
-        "Provisioned a serverless CI/CD automation workflow via GitHub Actions with a 15-minute cron schedule, enabling zero-infrastructure continuous operation in production.",
-        "Assembled two structured Markdown knowledge bases encoding product specifications, pricing policies, project details, and persona-specific communication guidelines for grounded LLM response generation.",
-        "Orchestrated the full email lifecycle — from inbox monitoring and entity extraction to AI-driven reply synthesis and automated dispatch — using LangChain and Gmail API v1."
-      ]
-    },
-    {
-      "name": "TailoredResume.ai",
-      "github_link": "https://github.com/krish1440/TailoredResume.ai",
-      "tech_stack": [
-        "Python 3.12",
         "FastAPI",
-        "Google Gemini 1.5 Pro/Flash",
-        "ReportLab (PDF)",
-        "Pydantic (Validation)",
-        "Asynchronous Programming",
-        "dotenv",
-        "HTML5/CSS3/JS"
+        "React",
+        "OpenAI API",
+        "NLP"
       ],
-      "master_narrative": "Designed and architected a high-performance, agentic AI resume tailoring platform that automates the generation of ATS-optimized resumes. The system features a sophisticated iterative refinement loop that scores resumes against job descriptions, achieving a 95%+ match rate. I focused on building a robust backend with FastAPI and a specialized PDF generation engine that enforces strict industry-standard formatting and keyword density requirements.",
+      "master_narrative": "Engineered an AI-powered resume tailoring platform that automates ATS-optimized resume generation by matching candidate profiles against job descriptions using advanced NLP. The system features a scalable FastAPI backend, real-time semantic analysis, and a responsive React dashboard to streamline the entire job application workflow end-to-end.",
       "quantified_impact": [
-        "Achieved a 85%+ ATS match score for freshers by implementing an iterative agentic refinement loop using Gemini models.",
-        "Ensured 90% keyword coverage for 'must-have' skills by engineering a multi-tier keyword absorption layer in the summary and skills sections.",
-        "Reduced resume generation and formatting time by ~90% through automated data synthesis and high-fidelity PDF orchestration.",
-        "Maintained zero-repetition action verb governance across all 15 resume bullets using a custom-built NLP scoring engine.",
-        "Integrated a fallback multi-model architecture (Gemini 1.5 Pro/Flash) to ensure 99.9% system availability and processing reliability."
+        "Reduced manual resume customization time by 80% by engineering scalable FastAPI backend APIs to process and transform document uploads.",
+        "Improved ATS compatibility scores by 60% by applying advanced NLP techniques via OpenAI API for intelligent keyword matching and optimization.",
+        "Achieved 95% accuracy in matching candidate profiles with technical job requirements through semantic analysis workflows.",
+        "Improved navigation speed and interaction efficiency by 40% by building responsive React dashboards with optimized UX flows."
       ],
       "core_actions": [
-        "Architected an agentic AI pipeline using FastAPI and Google Gemini to automate context-aware resume tailoring.",
-        "Engineered a high-fidelity PDF generation engine using ReportLab, enforcing strict margin, font, and layout constraints for ATS.",
-        "Developed a custom scoring algorithm to evaluate resume quality based on quantification, verb diversity, and keyword density.",
-        "Implemented an iterative refinement loop that utilizes AI feedback to self-correct and improve ATS scores in real-time.",
-        "Designed a responsive, premium web interface to manage master profile uploads and real-time tailoring progress visualization."
+        "Engineered scalable FastAPI backend APIs to handle document uploads, parsing, and AI-driven resume transformation workflows.",
+        "Applied advanced NLP techniques using OpenAI API for keyword extraction, semantic matching, and ATS compatibility optimization.",
+        "Implemented semantic analysis workflows achieving 95% accuracy in aligning candidate profiles with job description requirements.",
+        "Built responsive React dashboards improving navigation speed and interaction efficiency for an end-to-end user experience."
       ]
     },
     {
-      "name": "OrderEazy Analytics",
-      "github_link": "https://github.com/krish1440/OrderEasy",
+      "name": "VisionAssist – AI for Dementia Care",
+      "github_link": "https://github.com/nikhilpitrodanc/Ai-for-dementia-care",
       "tech_stack": [
-        "React 18+",
-        "TypeScript",
+        "Python",
         "FastAPI",
-        "PostgreSQL (Supabase)",
-        "Google Gemini Pro",
-        "Pandas",
-        "Framer Motion",
-        "Recharts",
-        "Tailwind CSS",
-        "ReportLab",
-        "OpenPyXL"
+        "Google Gemini API",
+        "React (TypeScript)",
+        "Scikit-learn",
+        "TensorFlow"
       ],
-      "master_narrative": "Developed a comprehensive, full-stack business intelligence platform designed to replace manual MSME operations with an AI-driven, automated workflow. The system features a high-performance React/Vite dashboard for real-time data visualization and a scalable FastAPI backend. I integrated large language models (Gemini Pro) to transform raw operational data into strategic business insights, while implementing advanced data science modules for customer segmentation and predictive sales forecasting.",
+      "master_narrative": "Developed an end-to-end agentic AI healthcare platform integrating Google Gemini API with structured prompt workflows to assist dementia patients and caregivers. The system features a Random Forest classifier for early cognitive decline detection, a TensorFlow-powered computer vision module for real-time face and object recognition, and a role-based React TypeScript frontend with critical patient safety features including SOS alerts and medication reminders.",
       "quantified_impact": [
-        "Achieved a 90% reduction in manual billing errors and credit discrepancies by automating core invoice generation and document tracking workflows.",
-        "Cut executive reporting time by 70% by integrating an 'AI Business Analyst' module that synthesizes complex metrics into actionable plain-English insights using Gemini Pro.",
-        "Drove a 20% increase in customer retention and 35% growth in monthly revenue by implementing RFM (Recency, Frequency, Monetary) segmentation and time-series forecasting.",
-        "Improved perceived application performance and user engagement by 40% using skeleton loading states, Framer Motion micro-interactions, and optimized asynchronous API handling.",
-        "Reduced business data retrieval and report generation time from minutes to milliseconds by migrating legacy spreadsheets to a unified Supabase/PostgreSQL architecture."
+        "Achieved 75–80% accuracy for early cognitive decline detection by training and deploying a Scikit-learn Random Forest classifier on a 10,000+ record dataset.",
+        "Improved TensorFlow computer vision recognition speed by 38% and reduced inference latency by 50% through optimized pipeline engineering.",
+        "Delivered a fully agentic AI pipeline by integrating Google Gemini API with structured prompt workflows and confidence-based response processing.",
+        "Architected FastAPI backend services with modular REST APIs supporting authentication, AI inference, reminders, and patient activity management.",
+        "Engineered a React TypeScript frontend with role-based routing and patient-safety features including SOS alerts and medication reminders."
       ],
       "core_actions": [
-        "Architected a high-speed, asynchronous RESTful API using FastAPI with JWT authentication and secure CORS protection.",
-        "Engineered a responsive, mobile-first frontend dashboard with interactive BI visualizations using Recharts and custom draggable UI logic.",
-        "Developed custom Python-based math engines and regression models for automated customer grouping and revenue forecasting.",
-        "Implemented a secure multi-format export system (PDF/Excel) using ReportLab and OpenPyXL for professional business documentation.",
-        "Utilized Framer Motion and skeleton loaders to create a premium, high-performance user experience focused on operational clarity."
+        "Developed an end-to-end agentic AI pipeline integrating Google Gemini API with structured prompt workflows and confidence-based response processing.",
+        "Trained and deployed a Scikit-learn Random Forest classifier on a 10,000+ record dataset for early cognitive decline detection.",
+        "Optimized TensorFlow computer vision inference pipelines, improving recognition speed by 38% and reducing latency by 50%.",
+        "Architected modular FastAPI backend REST APIs supporting authentication, AI inference, reminders, and patient activity management.",
+        "Engineered a React TypeScript frontend with role-based routing, SOS alerts, and medication reminder patient-safety features."
       ]
     },
     {
-      "name": "AI Stock News Sentiment Analysis",
-      "github_link": "https://github.com/krish1440/AI-Stock-News-Sentiment",
-      "tech_stack": [
-        "Python 3.12",
-        "FastAPI",
-        "NLP (FinBERT)",
-        "spaCy (NER)",
-        "Streamlit",
-        "SQLAlchemy",
-        "yfinance",
-        "Plotly",
-        "BeautifulSoup4",
-        "Ruff",
-        "Black"
-      ],
-      "master_narrative": "Engineered an autonomous, event-driven sentiment engine tailored specifically for the Indian stock market (NSE/BSE). The system monitors live news streams from major financial outlets, extracts company entities using custom NLP pipelines, and synthesizes market sentiment using financial-grade transformer models. I architected the platform to handle high-frequency news discovery in the background, ensuring a zero-noise experience for tracking legitimate listed companies in real-time.",
-      "quantified_impact": [
-        "Achieved 100% accuracy in ticker identification by designing a custom market validation layer that filters raw news data against valid .NS and .BO tickers.",
-        "Integrated specialized financial-grade transformers (FinBERT) to increase sentiment precision by 45% over standard NLP models, distinguishing complex market nuances.",
-        "Eliminated application latency by 80% by architecting a decoupled system using FastAPI BackgroundTasks for heavy NLP and web scraping workloads.",
-        "Processed and analyzed 1,000+ live financial headlines daily from premium sources like MoneyControl and Economic Times with near-real-time feedback.",
-        "Established a zero-noise data pipeline for NSE/BSE listed companies, providing investors with pure signal detection amidst large-scale financial news streams."
-      ],
-      "core_actions": [
-        "Architected an autonomous discovery engine to scan and normalize live RSS feeds from multiple high-volume Indian financial outlets.",
-        "Developed a specialized NLP pipeline using spaCy for Named Entity Recognition (NER) to automate the discovery of listed companies within raw text.",
-        "Built a professional analytics dashboard using Streamlit and Plotly to visualize sentiment distribution and historical market trends.",
-        "Managed a high-performance database schema with SQLAlchemy to provide rapid access to ticker-level sentiment metrics.",
-        "Enforced industry-standard code quality using Black for formatting and Ruff for advanced linting within a Python 3.12 environment."
-      ]
-    },
-    {
-      "name": "EasyInterview ",
+      "name": "Cosmo Storage",
+      "github_link": "https://github.com/nikhilpitrodanc/cosmo-storage",
       "tech_stack": [
         "React",
-        "Google Gemini 2.5 Multimodal AI",
-        "WebRTC",
-        "MediaStream API",
-        "Web Speech API (STT/TTS)",
-        "NLP",
-        "Vector Skill Scoring",
-        "Data Analytics"
-      ],
-      "master_narrative": "Engineered an immersive, 24/7 AI-driven mock interview platform that simulates realistic professional environments using multimodal intelligence. The system utilizes Google Gemini 2.5 to process simultaneous voice, video, and text streams, providing real-time behavioral analysis and contextual coaching. I focused on building a hands-free, low-latency interview experience that dynamically adapts to a candidate's resume and job description to deliver personalized performance roadmaps.",
-      "quantified_impact": [
-        "Achieved near-zero latency (less than 500ms) for multimodal AI responses, ensuring a natural, human-like conversation flow during interview simulations.",
-        "Boosted candidate confidence scores by ~60% through iterative, real-time coaching alerts for body posture, eye contact, and verbal clarity.",
-        "Identified and bridged ~40 critical keyword gaps in user resumes by implementing an ATS-aligned diagnostic engine with role-skill heatmaps.",
-        "Processed 10+ concurrent data signals (voice, gaze, posture, expression, context) in real-time to generate highly accurate performance analytics.",
-        "Improved non-verbal communication effectiveness by ~50% for users by providing live, AI-driven visual behavior corrections during mock sessions."
-      ],
-      "core_actions": [
-        "Architected a multimodal AI orchestration layer using Google Gemini 2.5 to synchronize real-time voice, video, and text analysis.",
-        "Integrated WebRTC and MediaStream APIs to handle high-frequency webcam and microphone data streams for continuous behavioral monitoring.",
-        "Developed a specialized speech processing pipeline featuring low-latency STT/TTS for seamless, hands-free interview interaction.",
-        "Engineered a visual intelligence engine to track eye-gaze stability, head pose, and facial micro-expressions with live feedback loops.",
-        "Designed an automated resume-parsing and job-alignment engine to generate role-specific technical and behavioral scenarios dynamically."
-      ]
-    },
-    {
-      "name": "Smart Notes Application",
-      "github_link": "https://github.com/krish1440/Smart-Notes",
-      "tech_stack": [
-        "Python",
-        "Flask",
-        "Google Gemini 1.5 Flash",
-        "Hugging Face",
-        "Pinecone (Vector DB)",
-        "Supabase",
-        "PyMuPDF",
-        "Cloudinary",
-        "ReportLab"
-      ],
-      "master_narrative": "Engineered an intelligent document interaction platform that transforms static PDFs into dynamic learning companions. The application utilizes a RAG (Retrieval-Augmented Generation) architecture to enable semantic search and context-aware conversation. I focused on building a secure, scalable ecosystem with industry-standard JWT authentication and a sophisticated AI pipeline that allows users to instantly summarize, query, and organize their research notes.",
-      "quantified_impact": [
-        "Reduced manual document review time by ~70% for research-intensive academic workflows by generating structured, AI-driven summaries instantly upon upload.",
-        "Maintained 100% data access security by implementing JWT session management and OTP-based email verification via Supabase for all user onboarding.",
-        "Enforced a 20-chat / 5-upload daily quota to sustain concurrent multi-user performance and optimize system availability during peak traffic.",
-        "Eliminated screen-capture dependency for 100% of sharing workflows by developing a professional PDF export module using ReportLab for summaries and chat histories.",
-        "Maintained zero data-loss integrity across 100% of document management actions, including renaming, soft-deletion, and cloud-based metadata synchronization."
-      ],
-      "core_actions": [
-        "Architected a Flask-based backend to manage complex document processing workflows and RAG-based AI interactions.",
-        "Integrated Gemini 1.5 Flash to enable high-speed summarization and conversational tutoring capabilities based on uploaded PDF content.",
-        "Developed a professional PDF export module using ReportLab to allow users to generate well-styled offline summaries and chat histories.",
-        "Engineered a semantic search pipeline utilizing Hugging Face embeddings and Pinecone vector database for intelligent 'Chat with PDF' functionality.",
-        "Orchestrated cloud-based storage and database interactions for secure document handling with automated usage quota enforcement."
-      ]
-    },
-    {
-      "name": "FaceGeo Attendance System",
-      "tech_stack": [
-        "Python",
-        "Flask",
-        "Supabase",
-        "Biometric AI (Facial Recognition)",
-        "Geolocation API",
-        "HTML",
-        "CSS",
+        "TailwindCSS",
+        "Firebase",
         "JavaScript"
       ],
-      "master_narrative": "Engineered a secure, dual-verification attendance ecosystem that eliminates biometric fraud by combining real-time facial recognition with precise geo-fencing. The system uses a scalable Flask backend to manage organization-level controls and user-specific workflows. I designed an automated pipeline for real-time identity and location checks, providing organizations with a fraud-proof method for tracking workforce presence across multiple geographic zones.",
+      "master_narrative": "Designed and deployed a production-ready cloud storage web application featuring a responsive, animated UI hosted on Vercel. Integrated Firebase for authentication and real-time file synchronization, with a mobile-first layout and a custom animation system to deliver a polished, high-usability cross-device experience.",
       "quantified_impact": [
-        "Eliminated proxy attendance and 'buddy punching' attempts by implementing near-perfect, AI-powered facial recognition for every check-in event.",
-        "Achieved zero-fraud attendance records across all authorized enterprise locations by integrating a geo-fencing validation layer for location verification.",
-        "Significantly optimized administrative oversight by automating the entire attendance lifecycle, from real-time capture to analytical report generation.",
-        "Maintained absolute data integrity for manual requests by establishing a clear administrative audit trail with secure, role-based override controls.",
-        "Ensured maximum spoofing reliability for all check-in events by enforcing a strict dual-layer authentication (Face + Location) protocol."
+        "Deployed a production-ready cloud storage interface on Vercel with reusable animated UI components and a responsive mobile-first architecture.",
+        "Enabled real-time file synchronization and secure user authentication by deeply integrating Firebase authentication and storage systems.",
+        "Improved cross-device usability and perceived performance by developing custom animation systems and optimizing the responsive frontend architecture."
       ],
       "core_actions": [
-        "Architected a robust Flask backend to handle concurrent biometric verification requests and organization dashboard data management.",
-        "Integrated advanced facial recognition algorithms to provide real-time identity verification with high-precision signal detection.",
-        "Developed a geo-fencing module to allow organizations to define authorized check-in zones with high geographic precision.",
-        "Engineered comprehensive dashboards for organizations (user management, zone setup) and individuals (attendance tracking, reporting).",
-        "Orchestrated a secure Supabase schema for real-time attendance logging, location metadata synchronization, and role-based authentication."
+        "Designed and deployed a production-ready cloud storage interface using React with reusable animated UI components hosted on Vercel.",
+        "Integrated Firebase authentication and storage systems with responsive mobile-first layouts and real-time file synchronization.",
+        "Developed custom animation systems and optimized responsive frontend architecture for improved cross-device usability."
       ]
     },
     {
-      "name": "Crop Production Analysis",
+      "name": "AWS Cloud Services Lab",
+      "github_link": "https://github.com/nikhilpitrodanc",
       "tech_stack": [
-        "Python (Pandas, NumPy)",
-        "Power BI",
-        "Exploratory Data Analysis (EDA)",
-        "Statistics",
-        "ETL Pipelines",
-        "Time-Series Analysis"
+        "AWS EC2",
+        "AWS S3",
+        "IAM",
+        "VPC",
+        "Security Groups"
       ],
-      "master_narrative": "Conducted a large-scale exploration of Indian agricultural trends, processing a dataset of over 1.5 million records to uncover regional yield variations and production patterns across two decades. I developed a comprehensive analytical framework using Python for complex data validation and Power BI for interactive dashboarding. This project provides a structured look at the post-2010 agricultural landscape, identifying high-yield crop clusters and seasonal shifts to guide data-driven resource allocation.",
+      "master_narrative": "Provisioned and configured a complete AWS infrastructure lab simulating real-world production deployment environments. The project covers EC2 instance lifecycle management, secure S3 storage with least-privilege IAM policies, and full VPC networking architecture design including route tables, internet gateways, and subnet configurations.",
       "quantified_impact": [
-        "Validated and normalized over 1.5 million agricultural records across 646+ districts to ensure data integrity for long-term time-series analysis.",
-        "Identified a significant 35% decline in total cultivation area and production metrics post-2010, highlighting critical trends for agricultural policy review.",
-        "Discovered that over 75% of total coconut production is concentrated in Kerala, enabling precise regional supply chain and logistics optimizations.",
-        "Detected and analyzed a massive production growth spike during the 2007-2008 cycle, correlating yields with seasonal monsoon and sowing patterns.",
-        "Improved analytical visibility by ~80% by architecting a structured crop categorization system for Rabi, Kharif, and Whole-Year seasonal trends."
+        "Simulated production deployment environments by provisioning AWS EC2 infrastructure with SSH access, Elastic IPs, and security groups.",
+        "Enforced cloud security best practices by configuring secure S3 storage systems and least-privilege IAM policies across multiple access management scenarios.",
+        "Designed complete VPC networking architectures including route tables, internet gateways, and subnet configurations for scalable, isolated cloud infrastructure."
       ],
       "core_actions": [
-        "Engineered a multi-stage Python ETL pipeline for unit standardization (hectares/tonnes) and time-series date conversion.",
-        "Developed interactive, drill-down dashboards in Power BI to visualize state-wise productivity and regional strengths across India.",
-        "Implemented rigorous outlier detection and data enrichment scripts to calculate and compare Production-to-Area ratios (Yield metrics).",
-        "Authored a comprehensive technical documentation suite, including High-Level (HLD) and Low-Level (LLD) architectural designs.",
-        "Conducted granular regional analysis to uncover geographical strengths, such as North India's dominance in sugarcane and wheat production."
+        "Provisioned AWS EC2 infrastructure with SSH access, Elastic IPs, and security groups to simulate production deployment environments.",
+        "Configured secure S3 storage systems and least-privilege IAM policies across multiple cloud access management scenarios.",
+        "Designed complete VPC networking architectures including route tables, internet gateways, and subnet configurations."
       ]
     }
   ]

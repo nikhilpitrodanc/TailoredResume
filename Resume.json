@@ -1,145 +1,196 @@
 {
   "personal_info": {
-    "name": "Krish Chaudhary",
-    "location": "Vadodara, Gujarat",
-    "phone": "+91 6353530662",
-    "email": "krishchaudhary144@gmail.com",
-    "linkedin": "linkedin.com/in/krish-chaudhary-krc8252/",
-    "github": "github.com/krish1440",
-    "portfolio": "portfolio-krish-chaudhary.vercel.app",
-    "kaggle": "kaggle.com/krishchaudhary14"
+    "name": "Nikhil Bharatbhai Pitroda",
+    "location": "Vaghodia, Gujarat, India",
+    "email": "nikhilpitrodanc@gmail.com",
+    "phone": "+91-7304997021",
+    "linkedin": "linkedin.com/in/nikhilpitrodanc",
+    "github": "github.com/nikhilpitrodanc"
   },
-  "summary": "AI/ML Engineer and BTech Computer Science student specializing in Artificial Intelligence with a strong academic 8.05 GPA from Parul University. Builds Generative AI applications and multi-agent architectures using LangChain and RAG to automate complex business workflows for production environments. Successfully deployed agentic systems reducing manual triage by 100% and automated high-fidelity resume platforms reaching 95% ATS matching precision.",
+  "professional_summaries": [
+    "AI Engineer and Full-Stack Developer with hands-on experience building LLM-integrated applications, scalable FastAPI backends, and production-ready AI systems. Skilled in machine learning, NLP, cloud deployment, and full-stack product engineering using React, Python, and modern AI tooling. Experienced in developing agentic AI workflows, optimizing ML inference pipelines, and architecting responsive applications for real-world use cases.",
+    "Results-driven AI Engineer specializing in agentic pipeline design, NLP-powered applications, and cloud-deployed ML systems. Proficient in integrating large language models via OpenAI and Google Gemini APIs, building modular FastAPI backends, and delivering responsive React frontends. Passionate about solving real-world problems through end-to-end AI product engineering."
+  ],
   "skills": {
-    "Machine Learning & AI": [
-      "Machine Learning",
-      "Deep Learning",
-      "Generative AI",
-      "Natural Language Processing",
-      "Computer Vision"
+    "programming_languages": [
+      "Python",
+      "JavaScript (ES6+)",
+      "Java",
+      "C",
+      "SQL"
     ],
-    "LLM & Agentic Systems": [
-      "Large Language Models (LLMs)",
-      "AI Agent Development",
-      "Multi-Agent Systems",
-      "Retrieval-Augmented Generation (RAG)"
+    "frameworks_libraries": [
+      "FastAPI",
+      "React (TypeScript)",
+      "Node.js",
+      "TensorFlow",
+      "PyTorch",
+      "Scikit-learn",
+      "Pandas",
+      "NumPy",
+      "TailwindCSS"
     ],
-    "Data Science & Analytics": [
-      "Data Analysis",
-      "Data Preprocessing",
+    "ai_specializations": [
+      "NLP",
+      "LLM Integration",
+      "Prompt Engineering",
+      "Agentic AI Workflows",
+      "Computer Vision",
+      "Neural Networks",
       "Feature Engineering",
-      "Data Visualization",
-      "Predictive Modeling"
+      "Supervised Learning",
+      "Google Gemini API",
+      "OpenAI API"
     ],
-    "MLOps & Deployment": [
-      "Model Deployment",
-      "MLOps",
-      "Experiment Tracking",
-      "API Development",
-      "Workflow Automation"
+    "cloud_devops": [
+      "AWS EC2",
+      "AWS S3",
+      "IAM",
+      "VPC",
+      "Firebase",
+      "Vercel",
+      "Git",
+      "GitHub",
+      "Postman"
     ],
-    "Software & System Development": [
-      "Backend Development",
-      "Cloud Integration",
-      "Database Management",
-      "System Design"
-    ],
-    "Soft Skills": [
-      "Business Analysis",
-      "Technical Documentation",
-      "Strategic Decision-Making",
-      "Analytical Problem Solving",
-      "Data-Driven Research"
+    "core_strengths": [
+      "Agentic AI Pipeline Design",
+      "ML Inference Optimization",
+      "Full-Stack AI Development",
+      "REST API Architecture"
     ]
   },
+  "education": [
+    {
+      "institution": "Parul University",
+      "location": "Vadodara, Gujarat, India",
+      "degree": "B.Tech in Computer Science Engineering - Artificial Intelligence",
+      "start_date": "Aug 2023",
+      "end_date": "May 2027",
+      "gpa": "7.78"
+    }
+  ],
+  "certifications": [
+    "Google – Generative AI Fundamentals",
+    "Machine Learning Specialization – Coursera (In Progress)",
+    "AWS Cloud Services Lab – AWS Academy"
+  ],
   "experience": [
     {
-      "company": "Abhay Engineering",
-      "role": "Business Analyst",
-      "start_date": "Apr 2025",
-      "end_date": "May 2025",
+      "company": "Remote – Mumbai-based Agency",
+      "role": "Freelance Video Editor & Graphic Designer",
+      "start_date": "2023",
+      "end_date": "2024",
       "bullet_points": [
-        "Audited six months of historical sales records to identify 18% discrepancy rates caused by inconsistent manual data entry across legacy spreadsheet systems.",
-        "Interviewed five key personnel to map lifecycle stages, identifying three major bottlenecks in manual inventory tracking for structured workflow automation system design.",
-        "Transformed manual billing requirements into a structured technical roadmap for BI platforms, ensuring the system addressed 100% of identified core operational gaps."
+        "Delivered 30+ creative assets across multiple client engagements while managing concurrent project timelines with zero missed deadlines.",
+        "Optimized content production workflows by standardizing editing and design tool selection, reducing average delivery time by approximately 20%."
       ]
     },
     {
-      "company": "iNeuron",
-      "role": "Data Analyst",
-      "start_date": "Jun 2024",
-      "end_date": "Jul 2024",
+      "company": "SCOPE, Parul University",
+      "role": "Content Editor – Video & Graphic Design",
+      "start_date": "Jan 2024",
+      "end_date": "Mar 2024",
       "bullet_points": [
-        "Executed statistical audits across 15 major crop variants like Sugarcane, identifying localized production strengths using Python-based data science modeling methods.",
-        "Devised a multi-stage data validation framework for unit standardization, reducing total dataset preprocessing time by 60% through custom Python script workflow automation.",
-        "Authored 10 pages of technical documentation detailing the architectural design and statistical methodologies used for large-scale agricultural Machine Learning analysis."
+        "Produced video assets and promotional creatives for university campaigns across multiple departments under strict deadlines.",
+        "Managed end-to-end post-production workflows and ensured 100% on-time delivery for banners, posters, and digital media assets."
       ]
     }
   ],
   "projects": [
     {
-      "name": "Email Automator & AI Sales Agent",
-      "github_link": "https://github.com/krish1440/LangGraph-Email-Automator",
-      "technologies": [
-        "LangGraph",
-        "Python",
-        "Google Gemini",
-        "RAG",
-        "GitHub Actions"
-      ],
-      "bullet_points": [
-        "Constructed a stateful agentic pipeline using LangGraph nodes for intent parsing and RAG-based knowledge retrieval, eliminating 100% of manual email triage effort.",
-        "Orchestrated a serverless CI/CD automation workflow via GitHub Actions with 15-minute cron triggers, enabling zero-infrastructure continuous operation for two live production domains.",
-        "Scaled the system to handle dual-site inquiry volumes by engineering modular LangGraph pipelines, reducing average lead response time from hours to 15 minutes."
-      ]
-    },
-    {
       "name": "TailoredResume.ai",
-      "github_link": "https://github.com/krish1440/TailoredResume.ai",
-      "technologies": [
+      "github_link": "https://github.com/nikhilpitrodanc",
+      "tech_stack": [
+        "Python",
         "FastAPI",
-        "Gemini 1.5 Pro",
-        "ReportLab",
-        "NLP",
-        "Pydantic"
+        "React",
+        "OpenAI API",
+        "NLP"
       ],
-      "bullet_points": [
-        "Developed an agentic AI pipeline using FastAPI and Gemini to automate targeted resume tailoring, achieving a 95% ATS match score for users.",
-        "Engineered a high-fidelity PDF generation engine using ReportLab, ensuring 90% keyword coverage for must-have skills while enforcing strict industry-standard formatting constraints.",
-        "Integrated a fallback multi-model architecture with Gemini Pro and Flash to ensure 99.9% system availability and processing reliability during peak traffic periods."
+      "master_narrative": "Engineered an AI-powered resume tailoring platform that automates ATS-optimized resume generation by matching candidate profiles against job descriptions using advanced NLP. The system features a scalable FastAPI backend, real-time semantic analysis, and a responsive React dashboard to streamline the entire job application workflow end-to-end.",
+      "quantified_impact": [
+        "Reduced manual resume customization time by 80% by engineering scalable FastAPI backend APIs to process and transform document uploads.",
+        "Improved ATS compatibility scores by 60% by applying advanced NLP techniques via OpenAI API for intelligent keyword matching and optimization.",
+        "Achieved 95% accuracy in matching candidate profiles with technical job requirements through semantic analysis workflows.",
+        "Improved navigation speed and interaction efficiency by 40% by building responsive React dashboards with optimized UX flows."
+      ],
+      "core_actions": [
+        "Engineered scalable FastAPI backend APIs to handle document uploads, parsing, and AI-driven resume transformation workflows.",
+        "Applied advanced NLP techniques using OpenAI API for keyword extraction, semantic matching, and ATS compatibility optimization.",
+        "Implemented semantic analysis workflows achieving 95% accuracy in aligning candidate profiles with job description requirements.",
+        "Built responsive React dashboards improving navigation speed and interaction efficiency for an end-to-end user experience."
       ]
     },
     {
-      "name": "OrderEazy Analytics",
-      "github_link": "https://github.com/krish1440/OrderEasy",
-      "technologies": [
-        "React",
-        "TypeScript",
-        "PostgreSQL",
-        "Gemini Pro",
-        "Pandas"
+      "name": "VisionAssist – AI for Dementia Care",
+      "github_link": "https://github.com/nikhilpitrodanc/Ai-for-dementia-care",
+      "tech_stack": [
+        "Python",
+        "FastAPI",
+        "Google Gemini API",
+        "React (TypeScript)",
+        "Scikit-learn",
+        "TensorFlow"
       ],
-      "bullet_points": [
-        "Improved business intelligence reporting by integrating a Gemini Pro module that synthesizes complex metrics, cutting executive reporting time by 70% in production.",
-        "Increased monthly revenue by 35% through implementation of RFM segmentation and time-series forecasting models using custom Python-based regression and data science engines.",
-        "Migrated legacy spreadsheets to a unified Supabase PostgreSQL architecture, reducing critical business data retrieval and report generation time from minutes to milliseconds."
+      "master_narrative": "Developed an end-to-end agentic AI healthcare platform integrating Google Gemini API with structured prompt workflows to assist dementia patients and caregivers. The system features a Random Forest classifier for early cognitive decline detection, a TensorFlow-powered computer vision module for real-time face and object recognition, and a role-based React TypeScript frontend with critical patient safety features including SOS alerts and medication reminders.",
+      "quantified_impact": [
+        "Achieved 75–80% accuracy for early cognitive decline detection by training and deploying a Scikit-learn Random Forest classifier on a 10,000+ record dataset.",
+        "Improved TensorFlow computer vision recognition speed by 38% and reduced inference latency by 50% through optimized pipeline engineering.",
+        "Delivered a fully agentic AI pipeline by integrating Google Gemini API with structured prompt workflows and confidence-based response processing.",
+        "Architected FastAPI backend services with modular REST APIs supporting authentication, AI inference, reminders, and patient activity management.",
+        "Engineered a React TypeScript frontend with role-based routing and patient-safety features including SOS alerts and medication reminders."
+      ],
+      "core_actions": [
+        "Developed an end-to-end agentic AI pipeline integrating Google Gemini API with structured prompt workflows and confidence-based response processing.",
+        "Trained and deployed a Scikit-learn Random Forest classifier on a 10,000+ record dataset for early cognitive decline detection.",
+        "Optimized TensorFlow computer vision inference pipelines, improving recognition speed by 38% and reducing latency by 50%.",
+        "Architected modular FastAPI backend REST APIs supporting authentication, AI inference, reminders, and patient activity management.",
+        "Engineered a React TypeScript frontend with role-based routing, SOS alerts, and medication reminder patient-safety features."
+      ]
+    },
+    {
+      "name": "Cosmo Storage",
+      "github_link": "https://github.com/nikhilpitrodanc/cosmo-storage",
+      "tech_stack": [
+        "React",
+        "TailwindCSS",
+        "Firebase",
+        "JavaScript"
+      ],
+      "master_narrative": "Designed and deployed a production-ready cloud storage web application featuring a responsive, animated UI hosted on Vercel. Integrated Firebase for authentication and real-time file synchronization, with a mobile-first layout and a custom animation system to deliver a polished, high-usability cross-device experience.",
+      "quantified_impact": [
+        "Deployed a production-ready cloud storage interface on Vercel with reusable animated UI components and a responsive mobile-first architecture.",
+        "Enabled real-time file synchronization and secure user authentication by deeply integrating Firebase authentication and storage systems.",
+        "Improved cross-device usability and perceived performance by developing custom animation systems and optimizing the responsive frontend architecture."
+      ],
+      "core_actions": [
+        "Designed and deployed a production-ready cloud storage interface using React with reusable animated UI components hosted on Vercel.",
+        "Integrated Firebase authentication and storage systems with responsive mobile-first layouts and real-time file synchronization.",
+        "Developed custom animation systems and optimized responsive frontend architecture for improved cross-device usability."
+      ]
+    },
+    {
+      "name": "AWS Cloud Services Lab",
+      "github_link": "https://github.com/nikhilpitrodanc",
+      "tech_stack": [
+        "AWS EC2",
+        "AWS S3",
+        "IAM",
+        "VPC",
+        "Security Groups"
+      ],
+      "master_narrative": "Provisioned and configured a complete AWS infrastructure lab simulating real-world production deployment environments. The project covers EC2 instance lifecycle management, secure S3 storage with least-privilege IAM policies, and full VPC networking architecture design including route tables, internet gateways, and subnet configurations.",
+      "quantified_impact": [
+        "Simulated production deployment environments by provisioning AWS EC2 infrastructure with SSH access, Elastic IPs, and security groups.",
+        "Enforced cloud security best practices by configuring secure S3 storage systems and least-privilege IAM policies across multiple access management scenarios.",
+        "Designed complete VPC networking architectures including route tables, internet gateways, and subnet configurations for scalable, isolated cloud infrastructure."
+      ],
+      "core_actions": [
+        "Provisioned AWS EC2 infrastructure with SSH access, Elastic IPs, and security groups to simulate production deployment environments.",
+        "Configured secure S3 storage systems and least-privilege IAM policies across multiple cloud access management scenarios.",
+        "Designed complete VPC networking architectures including route tables, internet gateways, and subnet configurations."
       ]
     }
-  ],
-  "education": [
-    {
-      "institution": "Parul University",
-      "degree": "BTech Computer Science Engineering - Artificial Intelligence",
-      "location": "Vadodara, Gujarat",
-      "start_date": "Jun 2023",
-      "end_date": "2027",
-      "cgpa": "8.05"
-    }
-  ],
-  "certifications": [
-    "Generative AI for Business - IIM Mumbai (2025)",
-    "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate - Oracle (2025)",
-    "IBM Data Analyst - Coursera (2024)",
-    "Accenture Job Simulation - Forage (2024)"
   ]
 }

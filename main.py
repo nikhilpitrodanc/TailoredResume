@@ -21,7 +21,8 @@ import re
 import time
 from google import genai
 from google.genai import types
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
 from pydantic import BaseModel
@@ -45,6 +46,31 @@ app = FastAPI(
     description="Agentic AI Resume Tailoring Service using Google Gemini",
     version="1.1.0"
 )
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"success": False, "error": f"Internal Server Error: {str(exc)}"}
+    )
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"success": False, "error": exc.detail}
+    )
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    errors = []
+    for err in exc.errors():
+        loc = " -> ".join([str(l) for l in err.get("loc", [])])
+        errors.append(f"{loc}: {err.get('msg')}")
+    return JSONResponse(
+        status_code=422,
+        content={"success": False, "error": "Validation Error", "details": errors}
+    )
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
@@ -140,7 +166,7 @@ def create_pdf(data: dict, output_buffer, template="classic"):
         fontName=font_bold,
         fontSize=11 if template in ["modern", "creative", "split"] else 10.5, 
         spaceAfter=0.2, 
-        spaceBefore=3, 
+        spaceBefore=0.5, 
         textColor=line_color
     ))
     
@@ -573,9 +599,11 @@ def analyze_jd(jd_text: str) -> Optional[Dict[str, Any]]:
             error_str = str(e)
             print(f">>> Gemini Error with {model_name}: {error_str}")
             if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
-                raise Exception("API Rate Limit Exceeded. Please wait 1 minute and try again.")
+                print(f">>> Rate limit hit on {model_name}. Waiting 2 seconds before next model...")
+                time.sleep(2)
+                continue
             continue
-    return None
+    raise Exception("All Gemini models failed or rate limits exceeded for JD Analysis.")
 
 
 def tailor_resume_attempt(master_data: Dict[str, Any], job_description: str, analysis: Dict[str, Any], feedback: str = None) -> Optional[Dict[str, Any]]:
@@ -835,8 +863,11 @@ Return ONLY this JSON object with no extra text, no markdown fences:
             return json.loads(response.text)
         except Exception as e:
             error_str = str(e)
+            print(f">>> Gemini Error with {model_name} in tailoring: {error_str}")
             if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
-                raise Exception("API Rate Limit Exceeded. Please wait 1 minute and try again.")
+                print(f">>> Rate limit hit on {model_name}. Waiting 2 seconds before next model...")
+                time.sleep(2)
+                continue
             continue
     return None
 
@@ -866,7 +897,10 @@ async def tailor_endpoint(master_json: str = Form(...), jd: str = Form(...)):
     async def event_generator():
         try:
             yield json.dumps({"step": "step-wait"}) + "\n"
-            master_data = json.loads(master_json)
+            try:
+                master_data = json.loads(master_json)
+            except json.JSONDecodeError:
+                raise Exception("Invalid JSON format in master resume data.")
             yield json.dumps({"step": "step-load"}) + "\n"
             
             analysis = analyze_jd(jd)
