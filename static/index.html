@@ -59,24 +59,7 @@
     .delay-200 { transition-delay: 200ms; }
     .delay-300 { transition-delay: 300ms; }
 
-    /* Page Loader Transition */
-    #page-loader {
-        position: fixed;
-        inset: 0;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.6s ease-out, visibility 0.6s;
-    }
-    #page-loader.hidden-loader {
-        opacity: 0;
-        visibility: hidden;
-    }
-    
+
     body {
         font-family: 'Outfit', sans-serif;
     }
@@ -148,13 +131,6 @@
 </head>
 <body class="min-h-screen text-slate-800 flex flex-col relative">
 
-    <!-- Page Transition Loader -->
-    <div id="page-loader">
-        <div class="relative inline-block">
-            <span class="material-symbols-outlined text-6xl text-indigo-600 mb-4">document_scanner</span>
-            <div class="scanner-laser"></div>
-        </div>
-    </div>
 
     <!-- Glassy Mesh Background -->
     <div class="animated-bg">
@@ -482,14 +458,7 @@
     </footer>
 
     <script>
-        // Page Loader Transition
         window.addEventListener('load', () => {
-            const loader = document.getElementById('page-loader');
-            if(loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 600);
-            }
-            
             // Scroll Reveals
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
